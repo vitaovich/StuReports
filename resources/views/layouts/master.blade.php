@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Stu Reports</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
+        <title>@yield('title')</title>
         <style>
             html, body {
                 background-color: #fff;
@@ -19,10 +9,6 @@
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
-            }
-            p {
-              color: #000000;
-              font-size: 30px;
             }
 
             .full-height {
@@ -69,27 +55,12 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
+        <!-- @section('sidebar')
+            This is the master sidebar.
+        @show -->
 
-            <div class="content">
-                <div class="title m-b-md">
-                    StuReports
-                </div>
-
-                <div class="links">
-                    <a href="/login">login</a>
-                </div>
-            </div>
+        <div class="container">
+            @yield('content')
         </div>
     </body>
 </html>
