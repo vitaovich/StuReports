@@ -20,3 +20,15 @@ Route::get('/login', function () {
 });
 
 Route::post('/login', 'UsersController@loginUser');
+
+Route::get('/student_individual', function() {
+	return view('student_individual');
+});
+
+/*
+/ Still working on the POST route for the report submissions.
+*/
+
+Route::get('/student_team', function() {
+	return view('student_team');
+});
