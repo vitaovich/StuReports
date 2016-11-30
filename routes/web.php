@@ -19,6 +19,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/users/create', function () {
+    return view('Users.create');
+});
+
 Route::post('/login', 'UsersController@loginUser');
 
 Route::get('/student_individual', function() {

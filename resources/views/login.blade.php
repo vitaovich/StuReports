@@ -1,29 +1,14 @@
 @extends('layouts.master')
-<!--
-@section('title', 'Page Title')
 
-@section('sidebar')
-    @parent
-
-    <p>This is appended to the master sidebar.</p>
-@endsection -->
+@section('title', 'Login')
 
 @section('content')
   <form method="POST" action="/login">
-  {!! csrf_field() !!}
-
-  <div>
-      Username:
-      <input type="users" name="username" id="username">
-  </div>
-
-  <div>
-      Password:
-      <input type="password" name="password" id="password">
-  </div>
-  <div>
-      <button type="submit">Login</button>
-  </div>
+  {{ csrf_field() }}
+    Username:
+    <input type="users" name="username" id="username">
+    Password:
+    <input type="password" name="password" id="password">
+    <button type="submit">Login</button>
   </form>
-
 @endsection

@@ -1,6 +1,8 @@
 <html>
     <head>
         <title>@yield('title')</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <style>
             html, body {
                 background-color: #fff;
@@ -9,6 +11,10 @@
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
+            }
+            p {
+              color: #000000;
+              font-size: 30px;
             }
 
             .full-height {
@@ -55,12 +61,12 @@
         </style>
     </head>
     <body>
-        <!-- @section('sidebar')
-            This is the master sidebar.
-        @show -->
+        @yield('sidebar');
 
-        <div class="container">
-            @yield('content')
+<div class="flex-center position-ref full-height">
+           <div class="content">
+          @yield('content')
         </div>
+      </div>
     </body>
 </html>
