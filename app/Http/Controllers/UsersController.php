@@ -46,6 +46,12 @@ class UsersController extends Controller
       $user->email = $request->email;
 
       $user->save();
+
+      $login = new Login;
+      $login->user_id = $request->user_id;
+      $login->username = $request->first_name;
+      $login->pass = "nothing";
+      $login->save();
       return view('welcome');
     }
 
@@ -66,8 +72,15 @@ class UsersController extends Controller
       $url = env('APP_URL', 'http://localhost');
       $user = json_decode(file_get_contents($url . "/api/users/" . $login->user_id), TRUE);
 
+      if($user['Role'] == 'student')
+      {
+        return view('welcomeStudent', ['fn' => $user['First_Name'],
+                                'ln' => $user['Last_Name'],
+                                'role' => $user['Role'],
+                                'email' => $user['email']]);
+      }
       //Pass values from web api to view file 'resources/views/welcomeUser.blade.php'
-      return view('welcomeUser', ['fn' => $user['First_Name'],
+      return view('welcomeProfessor', ['fn' => $user['First_Name'],
                               'ln' => $user['Last_Name'],
                               'role' => $user['Role'],
                               'email' => $user['email']]);
