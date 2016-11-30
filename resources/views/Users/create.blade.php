@@ -2,7 +2,6 @@
 
 @section('title', 'Create User')
 
-
 @section('content')
   <form method="POST" action="/api/users">
     <input type="hidden" name="_method" value="PUT">

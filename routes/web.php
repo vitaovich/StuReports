@@ -23,6 +23,10 @@ Route::get('/users/create', function () {
     return view('Users.create');
 });
 
+Route::get('/classes/create', function () {
+    return view('Class.create');
+});
+
 Route::post('/login', 'UsersController@loginUser');
 
 Route::get('/student_individual', function() {

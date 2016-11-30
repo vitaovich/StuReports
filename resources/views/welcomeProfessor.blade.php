@@ -18,6 +18,6 @@
 
   <div class="links">
     <a href="/users/create">Create User</a>
-    <a href="/users/create">Create Class</a>
+    <a href="/classes/create">Create Class</a>
   </div>
 @endsection
