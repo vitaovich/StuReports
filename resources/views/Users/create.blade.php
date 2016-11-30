@@ -1,8 +1,9 @@
 @extends('layouts.master')
 
-@section('title', 'Login')
+@section('title', 'Create User')
 
-@section('sidebar')
+
+@section('content')
   <form method="POST" action="/api/users">
     <input type="hidden" name="_method" value="PUT">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">

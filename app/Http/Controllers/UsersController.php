@@ -19,7 +19,7 @@ class UsersController extends Controller
       // $stmt->execute();
       // return $stmt->fetchAll(PDO::FETCH_ASSOC);
       $users = User::all();
-      return $users[0]->First_Name;
+      return $users;
     }
 
     public function getUser($id)

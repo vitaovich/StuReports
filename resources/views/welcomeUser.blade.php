@@ -4,18 +4,16 @@
 
 @section('sidebar')
     @parent
-
-    <a href="/api/users">Create User</a>
+    <p>Welcome {{$fn}} {{$ln}}</p>
+    <p>Email: {{$email}}</p>
+    <p>Role: {{$role}}</p>
 @endsection
 
 
 @section('content')
-  <div class="title m-b-md">
-      Welcome {{$fn}} {{$ln}}
-  </div>
 
   <div class="links">
-      <p>Email: {{$email}}</p>
-      <p>Role: {{$role}}</p>
+    <a href="/users/create">Create User</a>
+    <a href="/users/create">Create Class</a>
   </div>
 @endsection

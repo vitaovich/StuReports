@@ -14,7 +14,7 @@
             }
             p {
               color: #000000;
-              font-size: 30px;
+              font-size: 15px;
             }
 
             .full-height {
@@ -63,7 +63,7 @@
     <body>
         @yield('sidebar');
 
-<div class="flex-center position-ref full-height">
+<div class="flex-center position-ref">
            <div class="content">
           @yield('content')
         </div>
