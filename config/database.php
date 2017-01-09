@@ -54,9 +54,9 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => env('DB_HOST', 'vitoal2.com'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'StuReports'),
+            'database' => env('DB_DATABASE', 'StuReports2'),
             'username' => env('DB_USERNAME', 'vitaliy-alekhnovich'),
             'password' => env('DB_PASSWORD', 'arch'),
             'charset' => 'utf8',

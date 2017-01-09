@@ -24,14 +24,6 @@ class UsersController extends Controller
 
     public function getUser($id)
     {
-      // $db = DB::connection('mysql');
-      //
-      // $stmt = $db->getPdo()->prepare("CALL sel_User(?)");
-      //
-      // $stmt->bindParam(1, $id);
-      //
-      // $stmt->execute();
-      // return $stmt->fetchAll(PDO::FETCH_ASSOC);
       $user = User::findOrFail($id);
       return $user;
     }
@@ -57,17 +49,6 @@ class UsersController extends Controller
 
     public function loginUser(Request $request)
     {
-      // //custom DB call to simulate eastern sign on (WARNING: doesn't use stored procedure)
-      // $db = DB::connection('mysql');
-      // $username = $request->input('username');
-      // $stmt = $db->getPdo()->prepare("SELECT user_id FROM logins WHERE username = ?");
-      // $stmt->bindParam(1, $username);
-      // $stmt->execute();
-      // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      //
-      // //Get value from user_id column and call Web Api to '{$url}/api/users/{$id}'
-      // $id = $results[0]['user_id'];
-
       $login = Login::findOrFail($request->username);
       $url = env('APP_URL', 'http://localhost');
       $user = json_decode(file_get_contents($url . "/api/users/" . $login->user_id), TRUE);
