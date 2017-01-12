@@ -1,36 +1,85 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('title', 'Create User')
 
 @section('content')
-  <form method="POST" action="/api/users">
-    <input type="hidden" name="_method" value="PUT">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  <div>    User ID:
-      <input type="number" name="user_id" id="user_id">
-  </div>
-  <div>
-    First Name:
-    <input type="text" name="first_name" id="first_name">
-  </div>
-  <div>
-    Last Name:
-    <input type="text" name="last_name" id="last_name">
-  </div>
-  <div>
-    Role:
-    <select name="role">
-      <option value="admin">Admin</option>
-      <option value="professor">Professor</option>
-      <option value="student">Student</option>
-    </select>
-  </div>
-  <div>
-    Email:
-    <input type="email" name="email" id="email">
-  </div>
-  <div>
-    <button type="submit">Create</button>
-  </div>
-  </form>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">Dashboard</div>
+
+            <div class="panel-body">
+              <form class="form-horizontal" method="POST" action="/api/users">
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                    <label for="name" class="col-md-4 control-label">Name:</label>
+
+                    <div class="col-md-6">
+                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+
+                        @if ($errors->has('name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="email" class="col-md-4 control-label">E-Mail Address:</label>
+
+                    <div class="col-md-6">
+                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <label for="password" class="col-md-4 control-label">Password:</label>
+
+                    <div class="col-md-6">
+                        <input id="password" type="password" class="form-control" name="password" required>
+
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password-confirm" class="col-md-4 control-label">Confirm Password:</label>
+
+                    <div class="col-md-6">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="role" class="col-md-4 control-label">Role:</label>
+                  <select class="col-md-6" id="role" name="role">
+                    <option value="admin">Admin</option>
+                    <option value="instructor">Instructor</option>
+                    <option value="student">Student</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                        <button type="submit" class="btn btn-primary">
+                            Register
+                        </button>
+                    </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

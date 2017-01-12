@@ -12,12 +12,6 @@ class UsersController extends Controller
 {
     public function getUsers()
     {
-      // $db = DB::connection('mysql');
-      //
-      // $stmt = $db->getPdo()->prepare("CALL sel_Users");
-      //
-      // $stmt->execute();
-      // return $stmt->fetchAll(PDO::FETCH_ASSOC);
       $users = User::all();
       return $users;
     }
@@ -31,20 +25,13 @@ class UsersController extends Controller
     public function putUser(Request $request)
     {
       $user = new User;
-      $user->User_ID = $request->user_id;
-      $user->First_Name = $request->first_name;
-      $user->Last_Name = $request->last_name;
-      $user->Role = $request->role;
+      $user->name = $request->name;
       $user->email = $request->email;
+      $user->password = $request->password;
+      $user->Role = $request->role;
 
       $user->save();
-
-      $login = new Login;
-      $login->user_id = $request->user_id;
-      $login->username = $request->first_name;
-      $login->pass = "nothing";
-      $login->save();
-      return view('welcome');
+      return view('home');
     }
 
     public function loginUser(Request $request)
