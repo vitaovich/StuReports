@@ -14,7 +14,7 @@ class CreateTeamReportsTable extends Migration
     public function up()
     {
         Schema::create('team_reports', function (Blueprint $table) {
-            $table->integer('Team_Report_id');
+            $table->increments('Team_Report_id');
             $table->string('Easiest_Understand');
             $table->string('Hardest_Understand');
             $table->string('Easiest_Approach');
@@ -29,8 +29,6 @@ class CreateTeamReportsTable extends Migration
             $table->integer('Sprint');
             $table->unsignedInteger('Group_id');
             $table->timestamps();
-
-            $table->primary('Team_Report_id');
             $table->foreign('Group_id')->references('Group_id')->on('project_groups');
         });
     }

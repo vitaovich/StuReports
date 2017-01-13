@@ -27,3 +27,6 @@ Route::get('projectgroups', function(){
 Route::get('studentgroups', function(){
   return App\Student_group::all();
 });
+Route::get('teamreports', function(){
+  return App\TeamReport::all();
+});

@@ -37,6 +37,9 @@ Route::get('/student_individual', function() {
 / Still working on the POST route for the report submissions.
 */
 
+// Mike code below
+Route::post('submit_team_report', 'ReportsController@putTeamReport');
+
 Route::get('/student_team', function() {
 	return view('student_team');
 });
