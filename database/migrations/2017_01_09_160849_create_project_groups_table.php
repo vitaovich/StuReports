@@ -19,7 +19,7 @@ class CreateProjectGroupsTable extends Migration
             $table->string('Project');
             $table->timestamps();
 
-            $table->foreign('Class_id')->references('Class_id')->on('classes');
+            $table->foreign('Class_id')->references('Class_id')->on('classrooms');
         });
     }
 

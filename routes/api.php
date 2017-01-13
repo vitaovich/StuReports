@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::get('users', 'UsersController@getUsers');
 Route::get('users/{id}', 'UsersController@getUser');
 Route::put('users', 'UsersController@putUser');
+
+Route::get('classrooms', function(){
+  return App\Classroom::all();
+});

@@ -12,13 +12,14 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
-    $faker->seed(666);
-    return [
-        'name' => $faker->unique()->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
-    ];
+$factory->define(App\Classroom::class, function (Faker\Generator $faker) {
+  $seasons = ['Fall','Winter','Spring','Summer'];
+
+  return [
+      'Teacher_id' => 2,
+      'Year' => $faker->numberBetween($min = 1997, $max = 2017),
+      'Quarter' => $seasons[$faker->numberBetween($min = 0, $max = 3)],
+      'Course_Number' => $faker->numberBetween($min = 1000, $max = 9999),
+      'Sprint_length' => $faker->numberBetween($min = 1, $max = 4)
+  ];
 });

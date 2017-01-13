@@ -21,7 +21,7 @@ class CreateStudentGroupsTable extends Migration
 
             $table->foreign('Student_id')->references('id')->on('users');
             $table->foreign('Group_id')->references('Group_id')->on('project_groups');
-            $table->foreign('Class_id')->references('Class_id')->on('classes');
+            $table->foreign('Class_id')->references('Class_id')->on('classrooms');
         });
     }
 
