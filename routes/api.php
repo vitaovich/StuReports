@@ -20,3 +20,7 @@ Route::put('users', 'UsersController@putUser');
 Route::get('classrooms', function(){
   return App\Classroom::all();
 });
+
+Route::get('projectgroups', function(){
+  return App\Project_group::all();
+});
