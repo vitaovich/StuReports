@@ -24,3 +24,6 @@ Route::get('classrooms', function(){
 Route::get('projectgroups', function(){
   return App\Project_group::all();
 });
+Route::get('studentgroups', function(){
+  return App\Student_group::all();
+});
