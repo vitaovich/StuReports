@@ -43,9 +43,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                    @if (Auth::check())
+                    @if (Auth::check() && Auth::user()->isAdmin())
                         <li><p class="navbar-text">Role: {{ Auth::user()->Role }}</p></li>
-                        <li><a href="{{ url('/users/create') }}">Create User</a></li>
+                        <li><a href="{{ url('/users') }}">Users</a></li>
                     @endif
                     </ul>
 

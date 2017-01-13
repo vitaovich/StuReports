@@ -10,6 +10,11 @@ use PDO;
 
 class UsersController extends Controller
 {
+    public function index()
+    {
+      return view('Users.index', ['users' => $this->getUsers()]);
+    }
+
     public function getUsers()
     {
       $users = User::all();
@@ -32,25 +37,5 @@ class UsersController extends Controller
 
       $user->save();
       return view('home');
-    }
-
-    public function loginUser(Request $request)
-    {
-      $login = Login::findOrFail($request->username);
-      $url = env('APP_URL', 'http://localhost');
-      $user = json_decode(file_get_contents($url . "/api/users/" . $login->user_id), TRUE);
-
-      if($user['Role'] == 'student')
-      {
-        return view('welcomeStudent', ['fn' => $user['First_Name'],
-                                'ln' => $user['Last_Name'],
-                                'role' => $user['Role'],
-                                'email' => $user['email']]);
-      }
-      //Pass values from web api to view file 'resources/views/welcomeUser.blade.php'
-      return view('welcomeProfessor', ['fn' => $user['First_Name'],
-                              'ln' => $user['Last_Name'],
-                              'role' => $user['Role'],
-                              'email' => $user['email']]);
     }
 }

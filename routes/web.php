@@ -19,6 +19,8 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/users', 'UsersController@index');
+
 Route::get('/users/create', function () {
     return view('Users.create');
 });
@@ -26,8 +28,6 @@ Route::get('/users/create', function () {
 Route::get('/classes/create', function () {
     return view('Class.create');
 });
-
-Route::post('/login', 'UsersController@loginUser');
 
 Route::get('/student_individual', function() {
 	return view('student_individual');

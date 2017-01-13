@@ -15,19 +15,24 @@ class DatabaseSeeder extends Seeder
           'name' => 'admin',
           'email' => 'admin',
           'password' => bcrypt('password'),
-          'Role' => 'Admin'
+          'Role' => 'Admin',
+          'remember_token' => str_random(10)
       ]);
       DB::table('users')->insert([
-          'name' => 'This Instructor',
+          'name' => 'Instructor',
           'email' => 'instructor',
           'password' => bcrypt('password'),
-          'Role' => 'Instructor'
+          'Role' => 'Instructor',
+          'remember_token' => str_random(10)
       ]);
       DB::table('users')->insert([
-          'name' => 'This Student',
+          'name' => 'Student',
           'email' => 'student',
           'password' => bcrypt('password'),
-          'Role' => 'Student'
+          'Role' => 'Student',
+          'remember_token' => str_random(10)
       ]);
+      factory(App\User::class, 10)->create();
+
     }
 }
