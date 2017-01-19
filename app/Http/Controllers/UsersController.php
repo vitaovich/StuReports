@@ -29,10 +29,16 @@ class UsersController extends Controller
 
     public function putUser(Request $request)
     {
+      $this->validate($request, [
+        'name' => 'required|max:255',
+        'email' => 'required|email|max:255|unique:users',
+        'password' => 'required|min:6|confirmed',
+      ]);
+
       $user = new User;
       $user->name = $request->name;
       $user->email = $request->email;
-      $user->password = $request->password;
+      $user->password = bcrypt($request->password);
       $user->Role = $request->role;
 
       $user->save();
