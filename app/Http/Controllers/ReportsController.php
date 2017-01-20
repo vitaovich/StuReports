@@ -99,5 +99,7 @@ class ReportsController extends Controller
     $timelog->Hours = $request->thursday_hours;
     $timelog->Description = $request->thursday_description;
     $timelog->save();
+
+    return view('home');
   }
 }
