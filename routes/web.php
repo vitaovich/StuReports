@@ -44,6 +44,12 @@ Route::get('/student_team', function() {
 	return view('student_team');
 });
 
+Route::post('submit_individual_report', 'ReportsController@putIndividualReport');
+
+Route::get('/student_individual', function() {
+	return view('student_individual');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
