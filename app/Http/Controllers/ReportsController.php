@@ -1,13 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\IndividualTimeLog;
 use App\IndividualReport;
-//use App\Http\Controllers\Auth\*;
+use App\Task;
 use Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 
 class ReportsController extends Controller
@@ -72,34 +72,53 @@ class ReportsController extends Controller
     $timelog->Description = $request->monday_description;
     $timelog->save();
 
-    $timelog = new IndividualTimeLog;
-    $timelog->Individual_Report_id = $reportID;
-    $timelog->Day = Carbon::today()->subDays(3);
-    $timelog->Hours = $request->wednesday_hours;
-    $timelog->Description = $request->wednesday_description;
-    $timelog->save();
 
     $timelog = new IndividualTimeLog;
     $timelog->Individual_Report_id = $reportID;
-    $timelog->Day = Carbon::today()->subDays(2);
+    $timelog->Day = Carbon::today()->subDays(3);
     $timelog->Hours = $request->tuesday_hours;
     $timelog->Description = $request->tuesday_description;
     $timelog->save();
 
     $timelog = new IndividualTimeLog;
     $timelog->Individual_Report_id = $reportID;
-    $timelog->Day = Carbon::today()->subDays(1);
+    $timelog->Day = Carbon::today()->subDays(2);
     $timelog->Hours = $request->wednesday_hours;
     $timelog->Description = $request->wednesday_description;
     $timelog->save();
 
     $timelog = new IndividualTimeLog;
     $timelog->Individual_Report_id = $reportID;
-    $timelog->Day = Carbon::today();
+    $timelog->Day = Carbon::today()->subDays(1);
     $timelog->Hours = $request->thursday_hours;
     $timelog->Description = $request->thursday_description;
     $timelog->save();
 
+    $timelog = new IndividualTimeLog;
+    $timelog->Individual_Report_id = $reportID;
+    $timelog->Day = Carbon::today();
+    $timelog->Hours = $request->friday_hours;
+    $timelog->Description = $request->friday_description;
+    $timelog->save();
+
+    // We need to add task names to the tasks table
+    // this loop only does task descriptions for numRows
+    // this loop still uses dummy data for Group_id
+    // it also uses dummy data for status
+
+    $taskDescriptions = Input::get('newActivityDescription');
+    foreach ($taskDescriptions as $newDescription)
+    {
+      if($newDescription != "")
+      {
+        $newTask = new Task;
+        $newTask->Description = $newDescription;
+        $newTask->Student_id = Auth::user()->id;
+        $newTask->Status = 1;
+        $newTask->Group_id = 1;
+        $newTask->save();
+      }
+    }
     return view('home');
   }
 }

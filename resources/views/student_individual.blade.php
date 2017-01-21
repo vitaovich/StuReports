@@ -37,8 +37,27 @@
               </tr>
             </table>
             <br />
-            <input type="button" onclick="newActivity()" id="newActivityButton" value="New Activity" />
             <table id="activitiesTable">
+              <tr>
+               <th>Title</th><th>Description</th>
+              </tr>
+              <tr id="rowID1">
+                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>  </tr>
+              <tr id="rowID2">
+                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>
+              </tr>
+              <tr id="rowID3">
+                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>
+              </tr>
+              <tr id="rowID4">
+                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>
+              </tr>
+              <tr id="rowID5">
+                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>
+              </tr>
+              <tr id="rowID6">
+                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>
+              </tr>
             </table>
             <script type="text/javascript" src="{!! asset('js/NewActivity.js') !!}"></script>
             <br />

@@ -38,3 +38,7 @@ Route::get('individualreports', function(){
 Route::get('timelogs', function(){
   return App\IndividualTimeLog::all();
 });
+
+Route::get('tasks', function(){
+  return App\Task::all();
+});
