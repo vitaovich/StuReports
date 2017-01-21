@@ -7,6 +7,7 @@
       <div class="panel panel-default">
       <div class="panel-heading">Dashboard</div>
         <div class="panel-body">
+          <h3 id="timeLogsHeader">Time Logs</h3>
           @if (Auth::check() && Auth::user()->isStudent())
           <form class="form-horizontal" method="POST" action="/submit_individual_report">
              {!! csrf_field() !!}
@@ -37,29 +38,31 @@
               </tr>
             </table>
             <br />
-            <table id="activitiesTable">
+            <h3 id="newTaskHeader">New Tasks</h3>
+            <p id="javascriptDisabled">Note: JavaScript is disabled. For a new task to be submitted, ensure that both the title and description are valid.</p>
+            <table id="tasksTable">
               <tr>
                <th>Title</th><th>Description</th>
               </tr>
               <tr id="rowID1">
-                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>  </tr>
+                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>  </tr>
               <tr id="rowID2">
-                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
               </tr>
               <tr id="rowID3">
-                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
               </tr>
               <tr id="rowID4">
-                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
               </tr>
               <tr id="rowID5">
-                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
               </tr>
               <tr id="rowID6">
-                <td><input type="text" name="newActivityName[]" class="newActivityTitleClass"></td><td><input type="text" name="newActivityDescription[]" class="newActivityDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
               </tr>
             </table>
-            <script type="text/javascript" src="{!! asset('js/NewActivity.js') !!}"></script>
+            <script type="text/javascript" src="{!! asset('js/NewTask.js') !!}"></script>
             <br />
             <p>Private Comments</p>
             <input type="text" name="Private_Comments" id="Private_Comments">

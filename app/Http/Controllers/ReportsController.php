@@ -106,7 +106,7 @@ class ReportsController extends Controller
     // this loop still uses dummy data for Group_id
     // it also uses dummy data for status
 
-    $taskDescriptions = Input::get('newActivityDescription');
+    $taskDescriptions = Input::get('newTaskDescription');
     foreach ($taskDescriptions as $newDescription)
     {
       if($newDescription != "")
