@@ -21,7 +21,6 @@ class CreateTasksTable extends Migration
             $table->string('Status');
             $table->unsignedInteger('Group_id');
             $table->timestamps();
-
             $table->foreign('Student_id')->references('id')->on('users');
             $table->foreign('Group_id')->references('Group_id')->on('project_groups');
         });
