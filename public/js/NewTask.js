@@ -25,7 +25,7 @@ function newTask()
   row.id = 'rowID' + numRows;
   var title = row.insertCell(0);
   var description = row.insertCell(1);
-  title.innerHTML = '<td><input type="text" name="newTaskTitle[]" class="newTaskTitleClass" required></td>';
+  title.innerHTML = '<td><input type="text" name="newTaskName[]" class="newTaskNameClass" required></td>';
   description.innerHTML = '</td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass" required></td><td><input type="button" onclick="removeTask(' + (numRows) + ')" id="newTaskButton" value="Delete Task" /></td>';
 }
 

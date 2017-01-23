@@ -101,22 +101,21 @@ class ReportsController extends Controller
     $timelog->Description = $request->friday_description;
     $timelog->save();
 
-    // We need to add task names to the tasks table
-    // this loop only does task descriptions for numRows
-    // this loop still uses dummy data for Group_id
-    // it also uses dummy data for status
-
+    $index = 0;
+    $taskNames = Input::get('newTaskName');
     $taskDescriptions = Input::get('newTaskDescription');
     foreach ($taskDescriptions as $newDescription)
     {
-      if($newDescription != "")
+      if($newDescription != "" && $taskNames[$index] != "")
       {
         $newTask = new Task;
         $newTask->Description = $newDescription;
+        $newTask->Task_name = $taskNames[$index];
         $newTask->Student_id = Auth::user()->id;
-        $newTask->Status = 1;
+        $newTask->Status = "new";
         $newTask->Group_id = 1;
         $newTask->save();
+        $index++;
       }
     }
     return view('home');

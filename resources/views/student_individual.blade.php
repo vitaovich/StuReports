@@ -45,21 +45,22 @@
                <th>Title</th><th>Description</th>
               </tr>
               <tr id="rowID1">
-                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>  </tr>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+              </tr>
               <tr id="rowID2">
-                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
               </tr>
               <tr id="rowID3">
-                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
               </tr>
               <tr id="rowID4">
-                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
               </tr>
               <tr id="rowID5">
-                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
               </tr>
               <tr id="rowID6">
-                <td><input type="text" name="newTaskName[]" class="newTaskTitleClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
               </tr>
             </table>
             <script type="text/javascript" src="{!! asset('js/NewTask.js') !!}"></script>
