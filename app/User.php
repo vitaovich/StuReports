@@ -27,7 +27,17 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-      return $this->Role == 'Admin' || $this->Role == 'Instructor';
+      return $this->Role == 'Admin';
+    }
+
+    public function isInstructor()
+    {
+      return $this->Role == 'Instructor';
+    }
+
+    public function classrooms()
+    {
+        return $this->hasMany('App\Classroom', 'Teacher_id');
     }
 
     public function isStudent()
