@@ -30,3 +30,15 @@ Route::get('studentgroups', function(){
 Route::get('teamreports', function(){
   return App\TeamReport::all();
 });
+
+Route::get('individualreports', function(){
+  return App\IndividualReport::all();
+});
+
+Route::get('timelogs', function(){
+  return App\IndividualTimeLog::all();
+});
+
+Route::get('tasks', function(){
+  return App\Task::all();
+});

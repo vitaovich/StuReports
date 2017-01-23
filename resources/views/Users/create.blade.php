@@ -65,9 +65,9 @@
                 <div class="form-group">
                   <label for="role" class="col-md-4 control-label">Role:</label>
                   <select class="col-md-6" id="role" name="role">
-                    <option value="admin">Admin</option>
-                    <option value="instructor">Instructor</option>
-                    <option value="student">Student</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Instructor">Instructor</option>
+                    <option value="Student">Student</option>
                   </select>
                 </div>
                 <div class="form-group">

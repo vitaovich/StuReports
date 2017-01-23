@@ -6,6 +6,7 @@
     <div class="panel panel-default">
     <div class="panel-heading">Dashboard</div>
       <div class="panel-body">
+        @if (Auth::check() && Auth::user()->isStudent())
         <form class="form-horizontal" method="POST" action="/submit_team_report">
           {!! csrf_field() !!}
           <p>What was the easiest to understand?</p>
@@ -33,6 +34,9 @@
           <br />
           <input type="submit" value="Submit"/>
         </form>
+        @else
+          <p>You must be logged in as a student to submit a report</p>
+        @endif
       </div>
     </div>
   </div>

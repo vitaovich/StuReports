@@ -39,4 +39,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Classroom', 'Teacher_id');
     }
+
+    public function isStudent()
+    {
+      return $this->Role == 'Student';
+    }
 }

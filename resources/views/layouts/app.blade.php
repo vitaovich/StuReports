@@ -46,6 +46,11 @@
                     @if (Auth::check() && Auth::user()->isAdmin())
                         <li><p class="navbar-text">Role: {{ Auth::user()->Role }}</p></li>
                         <li><a href="{{ url('/users') }}">Users</a></li>
+                    <!-- Mike code below -->
+                    @elseif (Auth::check() && Auth::user()->isStudent())
+                      <li><a href="{{ url('/student_team')  }}">Submit Team Report</a></li>
+                      <li><a href="{{ url('/student_individual')  }}">Submit Individual Report</a></li>
+                    <!-- Mike code above -->
                     @endif
                     </ul>
 
