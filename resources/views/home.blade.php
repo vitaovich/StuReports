@@ -9,7 +9,12 @@
               <div class="panel-heading">Dashboard</div>
 
               <div class="panel-body">
-                  You are logged in!
+                @if (Auth::check() && Auth::user()->isInstructor())
+                  {{ $projects = App\Classroom::with('projects')->where('Teacher_id', Auth::user()->id)->get() }}
+                  @foreach ($projects as $project)
+                  <p>{{$project->Project}}</p>
+                  @endforeach
+                @endif
               </div>
           </div>
       </div>
