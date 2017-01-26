@@ -3,24 +3,28 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\User;
 
 class LoginTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+    use DatabaseTransactions;
+
     public function testGoodLoginWorks()
     {
+      $user = new User;
+      $user->name = 'Test';
+      $user->email = 'test@test.com';
+      $user->password = bcrypt('password');
+      $user->Role = 'Student';
+      $user->save();
         $this->visit('/')
              ->click('Login')
              ->seePageIs('/login')
-             ->type('seth.riedel@gmail.com', 'email')
-             ->type('t3ddv3rr3s', 'password')
+             ->type('test@test.com', 'email')
+             ->type('password', 'password')
              ->press('Login')
              ->seePageIs('/home')
-             ->see('You are logged in!');
+             ->see('Status Reports');
     }
 
     public function testBadLoginDoesntWork()
@@ -28,7 +32,7 @@ class LoginTest extends TestCase
         $this->visit('/')
              ->click('Login')
              ->seePageIs('/login')
-             ->type('fleeb@fleeb.com', 'email')
+             ->type('test@test.com', 'email')
              ->type('password', 'password')
              ->press('Login')
              ->seePageIs('/login')
