@@ -24,7 +24,7 @@ class Task extends Model
 
   public static function getTasks($userID)
   {
-    $tasks = Task::where('Student_id', $userID);
+    $tasks = Task::where('Student_id', $userID)->where('Status', 'new')->orwhere('Status', 'continuing');
     return $tasks;
   }
 }
