@@ -7,7 +7,7 @@
       <div class="panel panel-default">
       <div class="panel-heading">Dashboard</div>
         <div class="panel-body">
-          <h3 id="timeLogsHeader">Time Logs</h3>
+          <h2 id="timeLogsHeader">Time Logs</h2>
           @if (Auth::check() && Auth::user()->isStudent())
           <form class="form-horizontal" method="POST" action="/submit_individual_report">
              {!! csrf_field() !!}
@@ -38,7 +38,7 @@
               </tr>
             </table>
             <br />
-            <h3 id="newTaskHeader">New Tasks</h3>
+            <h2 id="newTaskHeader">New Tasks</h2>
             <p id="javascriptDisabled">Note: JavaScript is disabled. For a new task to be submitted, ensure that both the title and description are valid.</p>
             <table id="tasksTable">
               <tr>
@@ -65,11 +65,41 @@
             </table>
             <script type="text/javascript" src="{!! asset('js/NewTask.js') !!}"></script>
             <br />
+            <h2>Prior Tasks</h2>
+            <!-- {{ $priorReports = App\Task::where('Student_id', Auth::user()->id)->get() }} -->
+            <?php $priorReports = App\Task::getTasks(Auth::user()->id)->get();
+                // I also want to get all teammate IDs here
+             ?>
+            @foreach ($priorReports as $priorReport)
+              <div class="oldTaskDiv">
+                <h4 class="taskNameHeader">Task Name:</h4> <p>{{ $priorReport->Task_name }}</p>
+                <h4>Original Description:</h4> <p>{{ $priorReport->Description }}</p>
+                <h4>Latest Progress</h4>
+                <input type="text" name="latestProgress[]" class="LatestProgressClass">
+                <h4>Status</h4>
+                <div class="statusPointsClass">
+                  <div class="statusOptionsClass">
+                    <input type="radio" name="taskStatus[]" value="continuing" checked><p>Continuing</p> <p class="estimatedNumberOfSprintsClass">Estimated number of sprints to completion: </p> <input type="number"  min="1"  max="30" step="1" value="1">
+                  </div>
+                  <div class="statusOptionsClass">
+                    <input type="radio" name="taskStatus[]" value="completed"><p> Completed</p>
+                  </div>
+                  <div class="statusOptionsClass">
+                    <input type="radio" name="taskStatus[]" value="abandoned"><p>Abandoned</p>
+                  </div>
+                  <div class="statusOptionsClass">
+                    <input type="radio" name="taskStatus[]" value="reassigned"><p>Reassigned to: </p>
+                  </div>
+                </div>
+              </div>
+            @endforeach
             <p>Private Comments</p>
             <input type="text" name="Private_Comments" id="Private_Comments">
             <br>
             <input type="submit" value="Submit"/>
           </form>
+
+          <h2 id="teamTasks">Teammate Accountability (Private)</h2>
           @else
             <p>You must be logged in as a student to submit a report</p>
           @endif

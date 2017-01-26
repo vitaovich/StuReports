@@ -44,4 +44,16 @@ class User extends Authenticatable
     {
       return $this->Role == 'Student';
     }
+
+    // Under construction
+    public function group()
+    {
+      return $this->belongsTo('App\Project_group');
+    }
+
+    // Under construction
+    public function tasks()
+    {
+      return $this->hasMany('App\Task', 'Student_id');
+    }
 }

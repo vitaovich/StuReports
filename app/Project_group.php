@@ -12,4 +12,11 @@ class Project_group extends Model
     {
         return $this->belongsTo('App\Classroom', 'Class_id');
     }
+
+
+    // Under construction
+    public function users()
+    {
+      return $this->hasMany('App\User');
+    }
 }

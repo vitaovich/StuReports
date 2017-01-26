@@ -39,6 +39,15 @@ class ReportsController extends Controller
     return $reports;
   }
 
+  // Under construction
+  public function getContinuingTasks()
+  {
+    $tasks = Task::where()->get();
+    $tasks = Task::where->('Student_id', '=', Auth::user()->id)
+    ->where('Status', '=', 'new')
+    ->orWhere->('Status', '=', 'continuing')->get();
+    return $tasks;
+  }
 
   // TODO: fix this (test to get long error messsages)
   public function putIndividualReport(Request $request)
