@@ -130,7 +130,13 @@ class ReportsController extends Controller
           $index++;
         }
       }
-    }    
+    }
+
+    // work in progress
+    $oldTaskProgress = Input::get('latestProgress');
+    $oldTaskStatus = Input::get('taskStatus');
+
+
 
     return view('home');
   }
