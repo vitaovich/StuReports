@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\IndividualTimeLog;
 use App\IndividualReport;
+use App\TeamReport;
 use App\Task;
 use Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;

@@ -7,16 +7,16 @@ use App\User;
 
 class LoginTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseMigrations;
 
     public function testGoodLoginWorks()
     {
-      $user = new User;
-      $user->name = 'Test';
-      $user->email = 'test@test.com';
-      $user->password = bcrypt('password');
-      $user->Role = 'Student';
-      $user->save();
+        $user = new User;
+        $user->name = 'Test';
+        $user->email = 'test@test.com';
+        $user->password = bcrypt('password');
+        $user->Role = 'Student';
+        $user->save();
         $this->visit('/')
              ->click('Login')
              ->seePageIs('/login')
