@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\IndividualTimeLog;
 use App\IndividualReport;
-use App\TeamReport;
 use App\Task;
 use App\TaskReport;
 use Auth;
@@ -116,6 +115,8 @@ class ReportsController extends Controller
     $index = 0;
     $newTaskNames = Input::get('newTaskName');
     $newTaskDescriptions = Input::get('newTaskDescription');
+    $priorTasks = Task::getTasks(Auth::user()->id);
+
     if(is_array($newTaskDescriptions) || is_object($newTaskDescriptions))
     {
       foreach ($newTaskDescriptions as $newDescription)
@@ -136,13 +137,14 @@ class ReportsController extends Controller
 
     // Prior Tasks
     // work in progress.
-    $priorTaskProgress = Input::get('latestProgress');
-    $priorTaskStatuses = Input::get('taskStatus');
-    $estimatedSprints = Input::get('estimatedSprints');
-    $priorTasks = Task::getTasks(Auth::user()->id);
+
     $index = 0;
-    if(is_array($priorTasks) || is_object($priorTasks))
+
+    if((is_array($priorTasks) && count($priorTasks) > 0) || (is_object($priorTasks) && !is_null($priorTasks)))
     {
+      $priorTaskProgress = Input::get('latestProgress');
+      $priorTaskStatuses = Input::get('taskStatus');
+      $estimatedSprints = Input::get('estimatedSprints');
       foreach($priorTasks as $priorTask)
       {
         $taskReport = new TaskReport;
@@ -170,14 +172,50 @@ class ReportsController extends Controller
           $taskReport->Reassigned = 0;
         }
         $taskReport->save();
-        $priorTaskStatus = $priorTaskStatuses[$index];
-        $priorTaskEntry = Task::find($priorTask->Task_id)->first();
-        $priorTaskEntry->Status = $priorTaskStatus[0];
+        $priorTaskStatus = $radio;
+        $priorTaskEntry = Task::find($priorTask->Task_id);//->first();
+        $priorTaskEntry->Status = $radio;
         $priorTaskEntry->update();
         $index++;
       }
     }
 
+      // if(is_array($priorTasks) || is_object($priorTasks))
+      // {
+      //   foreach($priorTasks as $priorTask)
+      //   {
+      //     $taskReport = new TaskReport;
+      //     $taskReport->Task_id = $priorTask->Task_id;
+      //     $taskReport->Latest_Progress = $priorTaskProgress[$index];
+      //     $taskReport->Individual_Report_id = $reportID;
+      //     $taskReport->Sprint = 1; // fix this
+      //     $radio = $priorTaskStatuses[$index];
+      //
+      //     if($radio == 'continuing')
+      //     {
+      //       $taskReport->Remaining_Sprints = $estimatedSprints[$index];
+      //       $taskReport->Reassigned = 0;
+      //     }
+      //
+      //     elseif($radio == 'reassigned')
+      //     {
+      //       $taskReport->Remaining_Sprints = 0;
+      //       $taskReport->Reassigned = 1;
+      //     }
+      //
+      //     else
+      //     {
+      //       $taskReport->Remaining_Sprints = 0;
+      //       $taskReport->Reassigned = 0;
+      //     }
+      //     $taskReport->save();
+      //     $priorTaskStatus = $priorTaskStatuses[$index];
+      //     $priorTaskEntry = Task::find($priorTask->Task_id)->first();
+      //     $priorTaskEntry->Status = $radio;
+      //     $priorTaskEntry->update();
+      //     $index++;
+      //   }
+      // }
 
     return view('home');
   }

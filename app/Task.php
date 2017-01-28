@@ -28,14 +28,15 @@ class Task extends Model
   public static function getTasks($userID)
   {
     // $tasks = Task::where('Student_id', $userID)->get();//->where('Status', 'new')->orwhere('Status', 'continuing');
-    // $tasks = Task::getOngoingTasks()->where('Student_id', '=', $userID);
-    return Task::where('Student_id', $userID)->get();
+    $tasks = Task::getOngoingTasks()->where('Student_id', '=', $userID);
+    // return Task::where('Student_id', $userID);//->get();
+    return $tasks;
   }
 
   public static function getOngoingTasks()
   {
     // return DB::table('tasks')->select('*')->where('Status', '=', 'new')->orWhere('Status', '=','continuing');
-    return Task::where('Status', '=', 'new')->orWhere('Status', '=','continuing');
+    return Task::orWhere('Status', 'new')->orWhere('Status','continuing')->get();
 
   }
 

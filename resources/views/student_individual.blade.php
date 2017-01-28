@@ -77,17 +77,17 @@
                 <h4 class="taskNameHeader">Task Name:</h4> <p>{{ $priorReport->Task_name }}</p>
                 <h4>Original Description:</h4> <p>{{ $priorReport->Description }}</p>
                 <h4>Latest Progress</h4>
-                <input type="text" name="latestProgress[]" class="LatestProgressClass">
+                <input type="text" name="latestProgress[]" class="LatestProgressClass" required>
                 <h4>Status</h4>
                 <div class="statusPointsClass">
                   <div class="statusOptionsClass">
-                    <input type="radio" name="taskStatus[<?php echo $counter ?>][]" value="continuing" checked><p>Continuing</p> <p class="estimatedNumberOfSprintsClass">Estimated number of sprints to completion: </p> <input type="number" name="estimatedSprints[]" min="1"  max="30" step="1" value="1">
+                    <input type="radio" name="taskStatus[<?php echo $counter ?>]" value="continuing" checked><p>Continuing</p> <p class="estimatedNumberOfSprintsClass">Estimated number of sprints to completion: </p> <input type="number" name="estimatedSprints[]" min="1"  max="30" step="1" value="1">
                   </div>
                   <div class="statusOptionsClass">
-                    <input type="radio" name="taskStatus[<?php echo $counter ?>][]" value="completed"><p> Completed</p>
+                    <input type="radio" name="taskStatus[<?php echo $counter ?>]" value="completed"><p> Completed</p>
                   </div>
                   <div class="statusOptionsClass">
-                    <input type="radio" name="taskStatus[<?php echo $counter ?>][]" value="abandoned"><p>Abandoned</p>
+                    <input type="radio" name="taskStatus[<?php echo $counter ?>]" value="abandoned"><p>Abandoned</p>
                   </div>
                   <div class="statusOptionsClass">
                     <input type="radio" name="taskStatus[<?php echo $counter ?>][]" value="reassigned"><p>Reassigned to: </p>
