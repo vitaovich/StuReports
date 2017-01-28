@@ -40,17 +40,6 @@ class ReportsController extends Controller
     return $reports;
   }
 
-  // Deemed unnecessary
-  /*
-  public function getContinuingTasks()
-  {
-    // $tasks = Task::where()->get();
-    $tasks = Task::where('Student_id', '=', Auth::user()->id)
-    ->where('Status', '=', 'new')
-    ->orWhere->('Status', '=', 'continuing')->get();
-    return $tasks;
-  }
-  */
   // TODO: fix this (test to get long error messsages)
   public function putIndividualReport(Request $request)
   {
@@ -135,9 +124,6 @@ class ReportsController extends Controller
       }
     }
 
-    // Prior Tasks
-    // work in progress.
-
     $index = 0;
 
     if((is_array($priorTasks) && count($priorTasks) > 0) || (is_object($priorTasks) && !is_null($priorTasks)))
@@ -179,44 +165,6 @@ class ReportsController extends Controller
         $index++;
       }
     }
-
-      // if(is_array($priorTasks) || is_object($priorTasks))
-      // {
-      //   foreach($priorTasks as $priorTask)
-      //   {
-      //     $taskReport = new TaskReport;
-      //     $taskReport->Task_id = $priorTask->Task_id;
-      //     $taskReport->Latest_Progress = $priorTaskProgress[$index];
-      //     $taskReport->Individual_Report_id = $reportID;
-      //     $taskReport->Sprint = 1; // fix this
-      //     $radio = $priorTaskStatuses[$index];
-      //
-      //     if($radio == 'continuing')
-      //     {
-      //       $taskReport->Remaining_Sprints = $estimatedSprints[$index];
-      //       $taskReport->Reassigned = 0;
-      //     }
-      //
-      //     elseif($radio == 'reassigned')
-      //     {
-      //       $taskReport->Remaining_Sprints = 0;
-      //       $taskReport->Reassigned = 1;
-      //     }
-      //
-      //     else
-      //     {
-      //       $taskReport->Remaining_Sprints = 0;
-      //       $taskReport->Reassigned = 0;
-      //     }
-      //     $taskReport->save();
-      //     $priorTaskStatus = $priorTaskStatuses[$index];
-      //     $priorTaskEntry = Task::find($priorTask->Task_id)->first();
-      //     $priorTaskEntry->Status = $radio;
-      //     $priorTaskEntry->update();
-      //     $index++;
-      //   }
-      // }
-
     return view('home');
   }
 }
