@@ -67,10 +67,10 @@
             <br />
             <h2>Prior Tasks</h2>
             <!-- {{ $priorReports = App\Task::where('Student_id', Auth::user()->id)->get() }} -->
-            <?php $priorReports = App\Task::getTasks(Auth::user()->id)->get();
+            <?php $priorReports = App\Task::getTasks(Auth::user()->id);//->get();
                 // I also want to get all teammate IDs here
                 // TODO only one radio button in total is selectable
-                $counter = 1;
+                $counter = 0;
              ?>
             @foreach ($priorReports as $priorReport)
               <div class="oldTaskDiv">
@@ -81,16 +81,16 @@
                 <h4>Status</h4>
                 <div class="statusPointsClass">
                   <div class="statusOptionsClass">
-                    <input type="radio" name="taskStatus[ <?php echo $counter ?>][]" value="continuing" checked><p>Continuing</p> <p class="estimatedNumberOfSprintsClass">Estimated number of sprints to completion: </p> <input type="number"  min="1"  max="30" step="1" value="1">
+                    <input type="radio" name="taskStatus[<?php echo $counter ?>][]" value="continuing" checked><p>Continuing</p> <p class="estimatedNumberOfSprintsClass">Estimated number of sprints to completion: </p> <input type="number" name="estimatedSprints[]" min="1"  max="30" step="1" value="1">
                   </div>
                   <div class="statusOptionsClass">
-                    <input type="radio" name="taskStatus[ <?php echo $counter ?>][]" value="completed"><p> Completed</p>
+                    <input type="radio" name="taskStatus[<?php echo $counter ?>][]" value="completed"><p> Completed</p>
                   </div>
                   <div class="statusOptionsClass">
-                    <input type="radio" name="taskStatus[ <?php echo $counter ?>][]" value="abandoned"><p>Abandoned</p>
+                    <input type="radio" name="taskStatus[<?php echo $counter ?>][]" value="abandoned"><p>Abandoned</p>
                   </div>
                   <div class="statusOptionsClass">
-                    <input type="radio" name="taskStatus[ <?php echo $counter ?>][]" value="reassigned"><p>Reassigned to: </p>
+                    <input type="radio" name="taskStatus[<?php echo $counter ?>][]" value="reassigned"><p>Reassigned to: </p>
                   </div>
                 </div>
               </div>

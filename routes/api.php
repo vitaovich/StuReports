@@ -42,3 +42,7 @@ Route::get('timelogs', function(){
 Route::get('tasks', function(){
   return App\Task::all();
 });
+
+Route::get('taskreports', function(){
+  return App\TaskReport::all();
+});

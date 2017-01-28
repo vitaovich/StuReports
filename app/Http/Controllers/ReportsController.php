@@ -6,6 +6,7 @@ use App\IndividualTimeLog;
 use App\IndividualReport;
 use App\TeamReport;
 use App\Task;
+use App\TaskReport;
 use Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Input;
@@ -123,7 +124,7 @@ class ReportsController extends Controller
         {
           $newTask = new Task;
           $newTask->Description = $newDescription;
-          $newTask->Task_name = $taskNames[$index];
+          $newTask->Task_name = $newTaskNames[$index]; // problem line?
           $newTask->Student_id = Auth::user()->id;
           $newTask->Status = "new";
           $newTask->Group_id = 1;
@@ -133,10 +134,49 @@ class ReportsController extends Controller
       }
     }
 
-    // work in progress
-    $oldTaskProgress = Input::get('latestProgress');
-    $oldTaskStatus = Input::get('taskStatus');
+    // Prior Tasks
+    // work in progress.
+    $priorTaskProgress = Input::get('latestProgress');
+    $priorTaskStatuses = Input::get('taskStatus');
+    $estimatedSprints = Input::get('estimatedSprints');
+    $priorTasks = Task::getTasks(Auth::user()->id);
+    $index = 0;
+    if(is_array($priorTasks) || is_object($priorTasks))
+    {
+      foreach($priorTasks as $priorTask)
+      {
+        $taskReport = new TaskReport;
+        $taskReport->Task_id = $priorTask->Task_id;
+        $taskReport->Latest_Progress = $priorTaskProgress[$index];
+        $taskReport->Individual_Report_id = $reportID;
+        $taskReport->Sprint = 1; // fix this
+        $radio = $priorTaskStatuses[$index];
 
+        if($radio == 'continuing')
+        {
+          $taskReport->Remaining_Sprints = $estimatedSprints[$index];
+          $taskReport->Reassigned = 0;
+        }
+
+        elseif($radio == 'reassigned')
+        {
+          $taskReport->Remaining_Sprints = 0;
+          $taskReport->Reassigned = 1;
+        }
+
+        else
+        {
+          $taskReport->Remaining_Sprints = 0;
+          $taskReport->Reassigned = 0;
+        }
+        $taskReport->save();
+        $priorTaskStatus = $priorTaskStatuses[$index];
+        $priorTaskEntry = Task::find($priorTask->Task_id)->first();
+        $priorTaskEntry->Status = $priorTaskStatus[0];
+        $priorTaskEntry->update();
+        $index++;
+      }
+    }
 
 
     return view('home');

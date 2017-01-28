@@ -15,4 +15,9 @@ class TaskReport extends Model
     'Remaining_Sprints',
     'Reassigned',
   );
+
+  public function task()
+  {
+    return $this->belongsTo('App\Task');
+  }
 }
