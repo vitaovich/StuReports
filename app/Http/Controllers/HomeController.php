@@ -26,11 +26,11 @@ class HomeController extends Controller
     {
         if(Auth::user()->isInstructor())
         {
-          return view('Users.Instructor.index');
+          return redirect('home/instructor');
         }
         elseif (Auth::user()->isAdmin())
         {
-          return redirect('home/admin');
+          return redirect('home/admin', ['course' => $course]);
         }
         else
         {

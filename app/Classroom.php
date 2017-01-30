@@ -1,5 +1,5 @@
 <?php
-
+//Need to rename to course
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;

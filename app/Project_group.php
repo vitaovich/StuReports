@@ -13,8 +13,12 @@ class Project_group extends Model
         return $this->belongsTo('App\Classroom', 'Class_id');
     }
 
-    public function users()
+    public function student_group()
     {
-      return $this->hasMany('App\User');
+      return $this->hasMany('App\Student_group', 'Group_id');
+    }
+    public function projects()
+    {
+        return $this->hasMany('App\Project_group', 'Class_id');
     }
 }
