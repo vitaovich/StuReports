@@ -33,6 +33,8 @@ Route::get('/student_individual', function() {
 	return view('student_individual');
 });
 
+Route::resource('course', 'CourseController');
+
 /*
 / Still working on the POST route for the report submissions.
 */
@@ -53,3 +55,7 @@ Route::get('/student_individual', function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/home/admin', function()
+{
+  return view('Home.Admin.index');
+});

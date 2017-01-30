@@ -13,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'Role',
     ];
 
     /**
@@ -37,7 +37,7 @@ class User extends Authenticatable
 
     public function classrooms()
     {
-        return $this->hasMany('App\Classroom', 'Teacher_id');
+        return Classroom::All();
     }
 
     public function isStudent()

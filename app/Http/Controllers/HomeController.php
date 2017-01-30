@@ -30,7 +30,7 @@ class HomeController extends Controller
         }
         elseif (Auth::user()->isAdmin())
         {
-          return view('Users.Admin.index');
+          return redirect('home/admin');
         }
         else
         {

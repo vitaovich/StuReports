@@ -15,6 +15,6 @@ class Classroom extends Model
 
   public function instructor()
   {
-      return $this->belongsTo('App\User');
+      return $this->belongsTo('App\User', 'Teacher_id');
   }
 }
