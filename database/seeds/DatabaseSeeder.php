@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
       factory(App\Project_group::class, 10)->create();
       factory(App\Student_group::class, 20)->create();
     }
-	
+
 	public function seedUsers()
 	{
 		DB::table('users')->insert([
@@ -121,14 +121,14 @@ class DatabaseSeeder extends Seeder
           'remember_token' => str_random(10)
       ]);
 	}
-	
+
 	public function seedClasses()
 	{
 		DB::table('classrooms')->insert([
 		  'Class_id' => 10001,
           'Teacher_id' => 20001,
           'Year' => 2016,
-		  'Quarter' => 'fall'
+		  'Quarter' => 'fall',
           'Course_Number' => 147521,
           'Sprint_length' => 1
       ]);
@@ -136,12 +136,12 @@ class DatabaseSeeder extends Seeder
 		  'Class_id' => 10002,
           'Teacher_id' => 20002,
           'Year' => 2017,
-		  'Quarter' => 'winter'
+		  'Quarter' => 'winter',
           'Course_Number' => 147522,
           'Sprint_length' => 1
       ]);
 	}
-	
+
 	public function seedProjectGroups()
 	{
 		DB::table('project_groups')->insert([
@@ -159,41 +159,41 @@ class DatabaseSeeder extends Seeder
 	{
 		DB::table('student_groups')->insert([
 		  'Student_id' => 30001,
-		  'Group_id' => 1, 
-		  'Class_id' = > 10001
+		  'Group_id' => 1,
+		  'Class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
 		  'Student_id' => 30002,
-		  'Group_id' => 1, 
-		  'Class_id' = > 10001
+		  'Group_id' => 1,
+		  'Class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
 		  'Student_id' => 30003,
-		  'Group_id' => 1, 
-		  'Class_id' = > 10001
+		  'Group_id' => 1,
+		  'Class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
 		  'Student_id' => 30004,
-		  'Group_id' => 1, 
-		  'Class_id' = > 10001
+		  'Group_id' => 1,
+		  'Class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
 		  'Student_id' => 30005,
-		  'Group_id' => 2, 
-		  'Class_id' = > 10001
+		  'Group_id' => 2,
+		  'Class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
 		  'Student_id' => 30006,
-		  'Group_id' => 2, 
-		  'Class_id' = > 10001
+		  'Group_id' => 2,
+		  'Class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
 		  'Student_id' => 30007,
-		  'Group_id' => 2, 
-		  'Class_id' = > 10001
+		  'Group_id' => 2,
+		  'Class_id' => 10001
       ]);
 	}
-	
+
 	public function seedIndivdualReports()
 	{
 		DB::table('individual_reports')->insert([
@@ -263,7 +263,7 @@ class DatabaseSeeder extends Seeder
           'Sprint' => 1
       ]);
 	}
-	
+
 	public function seedTasks()
 	{
 		DB::table('individual_reports')->insert([
