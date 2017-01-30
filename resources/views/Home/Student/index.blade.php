@@ -12,8 +12,6 @@
                 <h3 class="bg-primary">Tasks</h3>
                 <h3 class="bg-primary">Status Reports</h3>
                 <h3 class="bg-primary">Announcements</h3>
-                <h3 class="bg-primary">Lectures</h3>
-                <h3 class="bg-primary">Administration</h3>
               </div>
           </div>
       </div>
