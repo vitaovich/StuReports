@@ -14,12 +14,12 @@ class CreateProjectGroupsTable extends Migration
     public function up()
     {
         Schema::create('project_groups', function (Blueprint $table) {
-            $table->increments('Group_id');
-            $table->unsignedInteger('Class_id');
-            $table->string('Project');
+            $table->increments('id');
+            $table->unsignedInteger('course_id');
+            $table->string('project');
             $table->timestamps();
 
-            $table->foreign('Class_id')->references('Class_id')->on('classrooms');
+            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 

@@ -14,14 +14,14 @@ class CreateTaskEvaluationsTable extends Migration
     public function up()
     {
         Schema::create('task_evaluations', function (Blueprint $table) {
-            $table->unsignedInteger('Task_id');
-            $table->unsignedInteger('Individual_Report_id');
-            $table->string('Concur');
-            $table->string('Comments');
+            $table->unsignedInteger('task_id');
+            $table->unsignedInteger('individual_report_id');
+            $table->string('concur');
+            $table->string('comments');
             $table->timestamps();
 
-            $table->foreign('Task_id')->references('Task_id')->on('tasks');
-            $table->foreign('Individual_Report_id')->references('Individual_Report_id')->on('individual_reports');
+            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->foreign('individual_report_id')->references('id')->on('individual_reports');
         });
     }
 

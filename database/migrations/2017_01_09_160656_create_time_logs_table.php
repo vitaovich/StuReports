@@ -15,13 +15,13 @@ class CreateTimeLogsTable extends Migration
     {
         Schema::create('time_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('Individual_Report_id');
-            $table->date('Day');
-            $table->float('Hours');
-            $table->string('Description');
+            $table->unsignedInteger('individual_report_id');
+            $table->date('day');
+            $table->float('hours');
+            $table->string('description');
             $table->timestamps();
 
-            $table->foreign('Individual_Report_id')->references('Individual_Report_id')->on('individual_reports');
+            $table->foreign('individual_report_id')->references('id')->on('individual_reports');
         });
     }
 

@@ -14,13 +14,13 @@ class CreateIndividualReportsTable extends Migration
     public function up()
     {
         Schema::create('individual_reports', function (Blueprint $table) {
-            $table->increments('Individual_Report_id');
-            $table->string('Private_Comments');
-            $table->unsignedInteger('Student_id');
-            $table->integer('Sprint');
+            $table->increments('id');
+            $table->string('private_comments');
+            $table->unsignedInteger('student_id');
+            $table->integer('sprint');
             $table->timestamps();
 
-            $table->foreign('Student_id')->references('id')->on('users');
+            $table->foreign('student_id')->references('id')->on('users');
         });
     }
 

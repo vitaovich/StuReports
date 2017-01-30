@@ -14,10 +14,10 @@ class CreateAssignmentsTable extends Migration
     public function up()
     {
         Schema::create('assignments', function (Blueprint $table) {
-            $table->increments('Assignment_id');
-            $table->string('Assignment_Name');
-            $table->date('Open_Assignment');
-            $table->date('Close_Assignment');
+            $table->increments('id');
+            $table->string('assignment_name');
+            $table->date('open_assignment');
+            $table->date('close_assignment');
             $table->timestamps();
         });
     }

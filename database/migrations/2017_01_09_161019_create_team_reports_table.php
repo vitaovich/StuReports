@@ -14,22 +14,22 @@ class CreateTeamReportsTable extends Migration
     public function up()
     {
         Schema::create('team_reports', function (Blueprint $table) {
-            $table->increments('Team_Report_id');
-            $table->string('Easiest_Understand');
-            $table->string('Hardest_Understand');
-            $table->string('Easiest_Approach');
-            $table->string('Hardest_Approach');
-            $table->string('Easiest_Solve');
-            $table->string('Hardest_Solve');
-            $table->string('Easiest_Evaluate');
-            $table->string('Hardest_Evaluate');
-            $table->string('Pace');
-            $table->string('Client');
-            $table->string('Comments');
-            $table->integer('Sprint');
-            $table->unsignedInteger('Group_id');
+            $table->increments('id');
+            $table->string('easiest_understand');
+            $table->string('hardest_understand');
+            $table->string('easiest_approach');
+            $table->string('hardest_approach');
+            $table->string('easiest_solve');
+            $table->string('hardest_solve');
+            $table->string('easiest_evaluate');
+            $table->string('hardest_evaluate');
+            $table->string('pace');
+            $table->string('client');
+            $table->string('comments');
+            $table->integer('sprint');
+            $table->unsignedInteger('group_id');
             $table->timestamps();
-            $table->foreign('Group_id')->references('Group_id')->on('project_groups');
+            $table->foreign('group_id')->references('id')->on('project_groups');
         });
     }
 

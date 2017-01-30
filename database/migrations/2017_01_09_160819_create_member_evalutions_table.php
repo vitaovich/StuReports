@@ -14,15 +14,15 @@ class CreateMemberEvalutionsTable extends Migration
     public function up()
     {
         Schema::create('member_evaluations', function (Blueprint $table) {
-            $table->unsignedInteger('Member_id');
-            $table->unsignedInteger('Individual_Report_id');
-            $table->string('Concur_Hours');
-            $table->string('Performing');
-            $table->string('Comments');
+            $table->unsignedInteger('id');
+            $table->unsignedInteger('individual_report_id');
+            $table->string('concur_hours');
+            $table->string('performing');
+            $table->string('comments');
             $table->timestamps();
 
-            $table->foreign('Individual_Report_id')->references('Individual_Report_id')->on('individual_reports');
-            $table->foreign('Member_id')->references('id')->on('users');
+            $table->foreign('individual_report_id')->references('id')->on('individual_reports');
+            $table->foreign('id')->references('id')->on('users');
         });
     }
 

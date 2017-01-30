@@ -15,25 +15,25 @@ class DatabaseSeeder extends Seeder
           'name' => 'admin',
           'email' => 'admin',
           'password' => bcrypt('password'),
-          'Role' => 'Admin',
+          'role' => 'Admin',
           'remember_token' => str_random(10)
       ]);
       DB::table('users')->insert([
           'name' => 'Stu Steiner',
           'email' => 'instructor',
           'password' => bcrypt('password'),
-          'Role' => 'Instructor',
+          'role' => 'Instructor',
           'remember_token' => str_random(10)
       ]);
       DB::table('users')->insert([
           'name' => 'Student',
           'email' => 'student',
           'password' => bcrypt('password'),
-          'Role' => 'Student',
+          'role' => 'Student',
           'remember_token' => str_random(10)
       ]);
       factory(App\User::class, 20)->create();
-      factory(App\Classroom::class, 10)->create();
+      factory(App\Course::class, 10)->create();
       factory(App\Project_group::class, 10)->create();
       factory(App\Student_group::class, 20)->create();
     }
@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
           'name' => 'admin',
           'email' => 'admin',
           'password' => bcrypt('admin1'),
-          'Role' => 'Admin',
+          'role' => 'Admin',
           'remember_token' => str_random(10)
       ]);
       DB::table('users')->insert([
@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
           'name' => 'Dr. Pepper',
           'email' => 'DrPepper@gmail.com',
           'password' => bcrypt('mr.pib'),
-          'Role' => 'Instructor',
+          'role' => 'Instructor',
           'remember_token' => str_random(10)
       ]);
 	  DB::table('users')->insert([
@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
           'name' => 'Dr. Lee',
           'email' => 'drLee@gmail.com',
           'password' => bcrypt('BruceLee'),
-          'Role' => 'Instructor',
+          'role' => 'Instructor',
           'remember_token' => str_random(10)
       ]);
       DB::table('users')->insert([
@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
           'name' => 'Joe Smith',
           'email' => 'SmithLord@excite.com',
           'password' => bcrypt('smith1234'),
-          'Role' => 'Student',
+          'role' => 'Student',
           'remember_token' => str_random(10)
       ]);
 	  DB::table('users')->insert([
@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
           'name' => 'Steve Bennett',
           'email' => 'sBennett@yahoo.com',
           'password' => bcrypt('steve_1'),
-          'Role' => 'Student',
+          'role' => 'Student',
           'remember_token' => str_random(10)
       ]);
 	  DB::table('users')->insert([
@@ -85,7 +85,7 @@ class DatabaseSeeder extends Seeder
           'name' => 'Joe Flacco',
           'email' => 'jflacco@gmail.com',
           'password' => bcrypt('pass_word1234'),
-          'Role' => 'Student',
+          'role' => 'Student',
           'remember_token' => str_random(10)
       ]);
 	  DB::table('users')->insert([
@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
           'name' => 'Steve Jobs',
           'email' => 'sjobs@gmail.com',
           'password' => bcrypt('jobless'),
-          'Role' => 'Student',
+          'role' => 'Student',
           'remember_token' => str_random(10)
       ]);
 	  DB::table('users')->insert([
@@ -101,7 +101,7 @@ class DatabaseSeeder extends Seeder
           'name' => 'Mark Harmen',
           'email' => 'mharmen@gmail.com',
           'password' => bcrypt('pass'),
-          'Role' => 'Student',
+          'role' => 'Student',
           'remember_token' => str_random(10)
       ]);
 	  DB::table('users')->insert([
@@ -109,7 +109,7 @@ class DatabaseSeeder extends Seeder
           'name' => 'James Black',
           'email' => 'jblack@gmail.com',
           'password' => bcrypt('nfl'),
-          'Role' => 'Student',
+          'role' => 'Student',
           'remember_token' => str_random(10)
       ]);
 	  DB::table('users')->insert([
@@ -117,242 +117,242 @@ class DatabaseSeeder extends Seeder
           'name' => 'Amanda Wood',
           'email' => 'awood@wood.com',
           'password' => bcrypt('123456789'),
-          'Role' => 'Student',
+          'role' => 'Student',
           'remember_token' => str_random(10)
       ]);
 	}
 
 	public function seedClasses()
 	{
-		DB::table('classrooms')->insert([
-		  'Class_id' => 10001,
-          'Teacher_id' => 20001,
-          'Year' => 2016,
-		  'Quarter' => 'fall',
-          'Course_Number' => 147521,
-          'Sprint_length' => 1
+		DB::table('courses')->insert([
+		  'id' => 10001,
+          'teacher_id' => 20001,
+          'year' => 2016,
+		  'quarter' => 'fall',
+          'course_number' => 147521,
+          'sprint_length' => 1
       ]);
-		DB::table('classrooms')->insert([
-		  'Class_id' => 10002,
-          'Teacher_id' => 20002,
-          'Year' => 2017,
-		  'Quarter' => 'winter',
-          'Course_Number' => 147522,
-          'Sprint_length' => 1
+		DB::table('courses')->insert([
+		  'id' => 10002,
+          'teacher_id' => 20002,
+          'year' => 2017,
+		  'quarter' => 'winter',
+          'course_number' => 147522,
+          'sprint_length' => 1
       ]);
 	}
 
-	public function seedProjectGroups()
+	public function seedprojectGroups()
 	{
 		DB::table('project_groups')->insert([
-		  'Group_id' => 1,
-          'Class_id' => 10001,
-          'Project' => "exchange'a'grams"
+		  'id' => 1,
+          'class_id' => 10001,
+          'project' => "exchange'a'grams"
       ]);
 		DB::table('project_groups')->insert([
-		  'Group_id' => 2,
-          'Class_id' => 10001,
-          'Project' => "myFace"
+		  'id' => 2,
+          'class_id' => 10001,
+          'project' => "myFace"
       ]);
 	}
 	public function seedStudentGroups()
 	{
 		DB::table('student_groups')->insert([
-		  'Student_id' => 30001,
-		  'Group_id' => 1,
-		  'Class_id' => 10001
+		  'student_id' => 30001,
+		  'group_id' => 1,
+		  'class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
-		  'Student_id' => 30002,
-		  'Group_id' => 1,
-		  'Class_id' => 10001
+		  'student_id' => 30002,
+		  'group_id' => 1,
+		  'class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
-		  'Student_id' => 30003,
-		  'Group_id' => 1,
-		  'Class_id' => 10001
+		  'student_id' => 30003,
+		  'group_id' => 1,
+		  'class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
-		  'Student_id' => 30004,
-		  'Group_id' => 1,
-		  'Class_id' => 10001
+		  'student_id' => 30004,
+		  'group_id' => 1,
+		  'class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
-		  'Student_id' => 30005,
-		  'Group_id' => 2,
-		  'Class_id' => 10001
+		  'student_id' => 30005,
+		  'group_id' => 2,
+		  'class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
-		  'Student_id' => 30006,
-		  'Group_id' => 2,
-		  'Class_id' => 10001
+		  'student_id' => 30006,
+		  'group_id' => 2,
+		  'class_id' => 10001
       ]);
 		DB::table('student_groups')->insert([
-		  'Student_id' => 30007,
-		  'Group_id' => 2,
-		  'Class_id' => 10001
+		  'student_id' => 30007,
+		  'group_id' => 2,
+		  'class_id' => 10001
       ]);
 	}
 
 	public function seedIndivdualReports()
 	{
 		DB::table('individual_reports')->insert([
-		  'Individual_Report_id' => 1,
-          'Private_Comments' => "no comments",
-          'Student_id' => 30001,
-          'Sprint' => 1
+		  'id' => 1,
+          'private_comments' => "no comments",
+          'student_id' => 30001,
+          'sprint' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Individual_Report_id' => 8,
-          'Private_Comments' => "project is going well, but other members haven't done anthing yet",
-          'Student_id' => 30001,
-          'Sprint' => 2
+		  'id' => 8,
+          'private_comments' => "project is going well, but other members haven't done anthing yet",
+          'student_id' => 30001,
+          'sprint' => 2
       ]);
 		DB::table('individual_reports')->insert([
-		  'Individual_Report_id' => 2,
-          'Private_Comments' => "no comments",
-          'Student_id' => 30002,
-          'Sprint' => 1
+		  'id' => 2,
+          'private_comments' => "no comments",
+          'student_id' => 30002,
+          'sprint' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Individual_Report_id' => 9,
-          'Private_Comments' => "no comments",
-          'Student_id' => 30002,
-          'Sprint' => 2
+		  'id' => 9,
+          'private_comments' => "no comments",
+          'student_id' => 30002,
+          'sprint' => 2
       ]);
 		DB::table('individual_reports')->insert([
-		  'Individual_Report_id' => 3,
-          'Private_Comments' => "no comments",
-          'Student_id' => 30003,
-          'Sprint' => 1
+		  'id' => 3,
+          'private_comments' => "no comments",
+          'student_id' => 30003,
+          'sprint' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Individual_Report_id' => 10,
-          'Private_Comments' => "no comments",
-          'Student_id' => 30003,
-          'Sprint' => 2
+		  'id' => 10,
+          'private_comments' => "no comments",
+          'student_id' => 30003,
+          'sprint' => 2
       ]);
 		DB::table('individual_reports')->insert([
-		  'Individual_Report_id' => 4,
-          'Private_Comments' => "no comments",
-          'Student_id' => 30004,
-          'Sprint' => 1
+		  'id' => 4,
+          'private_comments' => "no comments",
+          'student_id' => 30004,
+          'sprint' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Individual_Report_id' => 11,
-          'Private_Comments' => "no comments",
-          'Student_id' => 30004,
-          'Sprint' => 2
+		  'id' => 11,
+          'private_comments' => "no comments",
+          'student_id' => 30004,
+          'sprint' => 2
       ]);
 		DB::table('individual_reports')->insert([
-		  'Individual_Report_id' => 5,
-          'Private_Comments' => "no comments",
-          'Student_id' => 30005,
-          'Sprint' => 1
+		  'id' => 5,
+          'private_comments' => "no comments",
+          'student_id' => 30005,
+          'sprint' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Individual_Report_id' => 6,
-          'Private_Comments' => "no comments",
-          'Student_id' => 30006,
-          'Sprint' => 1
+		  'id' => 6,
+          'private_comments' => "no comments",
+          'student_id' => 30006,
+          'sprint' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Individual_Report_id' => 7,
-          'Private_Comments' => "no comments",
-          'Student_id' => 30007,
-          'Sprint' => 1
+		  'id' => 7,
+          'private_comments' => "no comments",
+          'student_id' => 30007,
+          'sprint' => 1
       ]);
 	}
 
 	public function seedTasks()
 	{
 		DB::table('individual_reports')->insert([
-		  'Task_id' => 1,
-		  'Description' => "set up working devoplment enviroment",
-          'Task_name' => "Devoplment enviroment",
-          'Student_id' => 30001,
-          'Status' => "Continuing",
-          'Group_id' => 1
+		  'task_id' => 1,
+		  'description' => "set up working devoplment enviroment",
+          'task_name' => "Devoplment enviroment",
+          'student_id' => 30001,
+          'status' => "Continuing",
+          'group_id' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Task_id' => 2,
-		  'Description' => "set up working test enviroment",
-          'Task_name' => "Testing enviroment",
-          'Student_id' => 30002,
-          'Status' => "Continuing",
-          'Group_id' => 1
+		  'task_id' => 2,
+		  'description' => "set up working test enviroment",
+          'task_name' => "Testing enviroment",
+          'student_id' => 30002,
+          'status' => "Continuing",
+          'group_id' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Task_id' => 3,
-		  'Description' => "Begin basic SRS",
-          'Task_name' => "SRS",
-          'Student_id' => 30003,
-          'Status' => "Continuing",
-          'Group_id' => 1
+		  'task_id' => 3,
+		  'description' => "Begin basic SRS",
+          'task_name' => "SRS",
+          'student_id' => 30003,
+          'status' => "Continuing",
+          'group_id' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Task_id' => 4,
-		  'Description' => "Design database schema",
-          'Task_name' => "Database",
-          'Student_id' => 30004,
-          'Status' => "Continuing",
-          'Group_id' => 1
+		  'task_id' => 4,
+		  'description' => "Design database schema",
+          'task_name' => "Database",
+          'student_id' => 30004,
+          'status' => "Continuing",
+          'group_id' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Task_id' => 5,
-		  'Description' => "set up working devoplment enviroment",
-          'Task_name' => "Devoplment enviroment",
-          'Student_id' => 30005,
-          'Status' => "Continuing",
-          'Group_id' => 2
+		  'task_id' => 5,
+		  'description' => "set up working devoplment enviroment",
+          'task_name' => "Devoplment enviroment",
+          'student_id' => 30005,
+          'status' => "Continuing",
+          'group_id' => 2
       ]);
 		DB::table('individual_reports')->insert([
-		  'Task_id' => 6,
-		  'Description' => "set up working test enviroment",
-          'Task_name' => "Testing enviroment",
-          'Student_id' => 30006,
-          'Status' => "Continuing",
-          'Group_id' => 2
+		  'task_id' => 6,
+		  'description' => "set up working test enviroment",
+          'task_name' => "Testing enviroment",
+          'student_id' => 30006,
+          'status' => "Continuing",
+          'group_id' => 2
       ]);
 		DB::table('individual_reports')->insert([
-		  'Task_id' => 7,
-		  'Description' => "Begin basic SRS",
-          'Task_name' => "SRS",
-          'Student_id' => 30007,
-          'Status' => "Continuing",
-          'Group_id' => 2
+		  'task_id' => 7,
+		  'description' => "Begin basic SRS",
+          'task_name' => "SRS",
+          'student_id' => 30007,
+          'status' => "Continuing",
+          'group_id' => 2
       ]);
 		DB::table('individual_reports')->insert([
-		  'Task_id' => 8,
-		  'Description' => "Work on SRS",
-          'Task_name' => "SRS",
-          'Student_id' => 30001,
-          'Status' => "Continuing",
-          'Group_id' => 1
+		  'task_id' => 8,
+		  'description' => "Work on SRS",
+          'task_name' => "SRS",
+          'student_id' => 30001,
+          'status' => "Continuing",
+          'group_id' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Task_id' => 9,
-		  'Description' => "Get database online",
-          'Task_name' => "Database",
-          'Student_id' => 30002,
-          'Status' => "Continuing",
-          'Group_id' => 1
+		  'task_id' => 9,
+		  'description' => "Get database online",
+          'task_name' => "Database",
+          'student_id' => 30002,
+          'status' => "Continuing",
+          'group_id' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Task_id' => 10,
-		  'Description' => "help get database online and working",
-          'Task_name' => "Database",
-          'Student_id' => 30003,
-          'Status' => "Continuing",
-          'Group_id' => 1
+		  'task_id' => 10,
+		  'description' => "help get database online and working",
+          'task_name' => "Database",
+          'student_id' => 30003,
+          'status' => "Continuing",
+          'group_id' => 1
       ]);
 		DB::table('individual_reports')->insert([
-		  'Task_id' => 11,
-		  'Description' => "Work on getting SRS done",
-          'Task_name' => "SRS",
-          'Student_id' => 30004,
-          'Status' => "Continuing",
-          'Group_id' => 1
+		  'task_id' => 11,
+		  'description' => "Work on getting SRS done",
+          'task_name' => "SRS",
+          'student_id' => 30004,
+          'status' => "Continuing",
+          'group_id' => 1
       ]);
 	}
 }

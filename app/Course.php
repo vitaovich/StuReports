@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Classroom extends Model
+class Course extends Model
 {
-  protected $primaryKey = 'Class_id';
+  protected $primaryKey = 'id';
 
   public function projects()
   {
-      return $this->hasMany('App\Project_group', 'Class_id');
+      return $this->hasMany('App\Project_group', 'course_id');
   }
 
   public function instructor()

@@ -14,14 +14,14 @@ class CreateStudentGroupsTable extends Migration
     public function up()
     {
         Schema::create('student_groups', function (Blueprint $table) {
-            $table->unsignedInteger('Student_id');
-            $table->unsignedInteger('Group_id');
-            $table->unsignedInteger('Class_id');
+            $table->unsignedInteger('student_id');
+            $table->unsignedInteger('group_id');
+            $table->unsignedInteger('course_id');
             $table->timestamps();
 
-            $table->foreign('Student_id')->references('id')->on('users');
-            $table->foreign('Group_id')->references('Group_id')->on('project_groups');
-            $table->foreign('Class_id')->references('Class_id')->on('classrooms');
+            $table->foreign('student_id')->references('id')->on('users');
+            $table->foreign('group_id')->references('id')->on('project_groups');
+            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 

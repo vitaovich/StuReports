@@ -14,16 +14,16 @@ class CreateTaskReportsTable extends Migration
     public function up()
     {
         Schema::create('task_reports', function (Blueprint $table) {
-            $table->unsignedInteger('Individual_Report_id');
-            $table->string('Latest_Progress');
-            $table->unsignedInteger('Task_id');
-            $table->integer('Sprint');
-            $table->integer('Remaining_Sprints');
-            $table->integer('Reassigned');
+            $table->unsignedInteger('individual_report_id');
+            $table->string('latest_progress');
+            $table->unsignedInteger('task_id');
+            $table->integer('sprint');
+            $table->integer('remaining_sprints');
+            $table->integer('reassigned');
             $table->timestamps();
 
-            $table->foreign('Individual_Report_id')->references('Individual_Report_id')->on('individual_reports');
-            $table->foreign('Task_id')->references('Task_id')->on('tasks');
+            $table->foreign('individual_report_id')->references('id')->on('individual_reports');
+            $table->foreign('task_id')->references('id')->on('tasks');
         });
     }
 
