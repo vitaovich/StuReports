@@ -6,6 +6,7 @@ use App\IndividualTimeLog;
 use App\IndividualReport;
 use App\Task;
 use App\TaskReport;
+use App\TeamReport;
 use Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Input;

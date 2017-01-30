@@ -7,8 +7,8 @@
       <div class="panel panel-default">
       <div class="panel-heading">Dashboard</div>
         <div class="panel-body">
-          <h2 id="timeLogsHeader">Time Logs</h2>
           @if (Auth::check() && Auth::user()->isStudent())
+          <h2 id="timeLogsHeader">Time Logs</h2>
           <form class="form-horizontal" method="POST" action="/submit_individual_report">
              {!! csrf_field() !!}
             <table>
@@ -65,7 +65,6 @@
             </table>
             <script type="text/javascript" src="{!! asset('js/NewTask.js') !!}"></script>
             <br />
-            <h2>Prior Tasks</h2>
             <!-- {{ $priorReports = App\Task::where('Student_id', Auth::user()->id)->get() }} -->
             <?php $priorReports = App\Task::getTasks(Auth::user()->id);//->get();
                 // I also want to get all teammate IDs here
@@ -73,6 +72,9 @@
                 $counter = 0;
              ?>
             @foreach ($priorReports as $priorReport)
+            <?php if($counter == 0)
+              echo '<h2>Prior Tasks</h2>';
+             ?>
               <div class="oldTaskDiv">
                 <h4 class="taskNameHeader">Task Name:</h4> <p>{{ $priorReport->Task_name }}</p>
                 <h4>Original Description:</h4> <p>{{ $priorReport->Description }}</p>
@@ -90,7 +92,7 @@
                     <input type="radio" name="taskStatus[<?php echo $counter ?>]" value="abandoned"><p>Abandoned</p>
                   </div>
                   <div class="statusOptionsClass">
-                    <input type="radio" name="taskStatus[<?php echo $counter ?>][]" value="reassigned"><p>Reassigned to: </p>
+                    <input type="radio" name="taskStatus[<?php echo $counter ?>]" value="reassigned"><p>Reassigned to: </p>
                   </div>
                 </div>
               </div>
