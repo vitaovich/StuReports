@@ -6,7 +6,7 @@
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
-            <div class="panel-heading">CSCD {{$course->Quarter}} {{$course->Year}}</div>
+            <div class="panel-heading"><h1>CSCD {{$course->Quarter}} {{$course->Year}}</h1></div>
 
             <div class="panel-body">
               @if(Auth::user()->isInstructor())

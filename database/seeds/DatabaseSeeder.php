@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
           'remember_token' => str_random(10)
       ]);
       DB::table('users')->insert([
-          'name' => 'Instructor',
+          'name' => 'Stu Steiner',
           'email' => 'instructor',
           'password' => bcrypt('password'),
           'Role' => 'Instructor',

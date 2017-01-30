@@ -30,11 +30,11 @@ class HomeController extends Controller
         }
         elseif (Auth::user()->isAdmin())
         {
-          return redirect('home/admin', ['course' => $course]);
+          return redirect('home/admin');
         }
         else
         {
-          return view('Users.Student.index');
+          return view('Home.Student.index');
         }
     }
 }

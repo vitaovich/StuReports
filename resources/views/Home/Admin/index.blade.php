@@ -12,14 +12,24 @@
               <div class="container">
               <div class="panel-body">
                 @if(Auth::user()->isAdmin())
-                  @foreach (Auth::user()->classrooms() as $classroom)
-                  <div class="row margin-top">
-                    <div class="col-md-3">CSCD {{$classroom->Quarter}} {{$classroom->Year}}</div>
-                    <div class="col-md-3">Instructor: {{$classroom->instructor->name}}</div>
-                    <div class="col-md-6"><a href="/course/{{$classroom->Class_id}}/edit" class="btn-sm btn-primary">Edit</a></div>
-                  </div>
-                </br>
-                  @endforeach
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Course</th>
+                      <th>Instructor</th>
+                      <th><th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach (Auth::user()->classrooms() as $classroom)
+                      <tr>
+                        <td>CSCD {{$classroom->Quarter}} {{$classroom->Year}}</td>
+                        <td>Instructor: {{$classroom->instructor->name}}</td>
+                        <td><a href="/course/{{$classroom->Class_id}}/edit" class="btn-sm btn-primary">Edit</a></td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
                 @endif
               </div>
             </div>

@@ -10,14 +10,15 @@
             <div class="panel-heading">Create a course</div>
 
             <div class="panel-body">
+              <div class="container">
               {{ Form::model($course, ['route' => ['course.update', $course->Class_id], 'method' => 'PUT']) }}
               <div class="form-group row">
                   {{ Form::label('Teacher_id', 'Teacher')}}
-                  {{ Form::text('Teacher_id', null, ['class' => 'form-control']) }}
+                  {{ Form::text('Teacher_id') }}
               </div>
               <div class="form-group row">
                   {{ Form::label('Year', 'Year') }}
-                  {{ Form::number('Year', null, ['class' => 'form-control']) }}
+                  {{ Form::number('Year') }}
               </div>
               <div class="form-group row">
                   {{ Form::label('Quarter', 'Quarter') }}
@@ -33,6 +34,7 @@
               </div>
               {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
             </div>
+          </div>
         </div>
     </div>
 </div>
