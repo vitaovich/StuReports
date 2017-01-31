@@ -35,7 +35,7 @@ class User extends Authenticatable
       return $this->role == 'Instructor';
     }
 
-    public function classrooms()
+    public function courses()
     {
         return Course::All();
     }

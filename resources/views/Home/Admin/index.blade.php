@@ -19,11 +19,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach (Auth::user()->classrooms() as $classroom)
+                    @foreach (Auth::user()->courses() as $course)
                       <tr>
-                        <td>CSCD {{$classroom->Quarter}} {{$classroom->Year}}</td>
-                        <td>{{$classroom->instructor->name}}</td>
-                        <td><a href="/course/{{$classroom->Class_id}}/edit" class="btn-sm btn-primary">Edit</a></td>
+                        <td>CSCD {{$course->quarter}} {{$course->year}}</td>
+                        <td>{{$course->instructor->name}}</td>
+                        <td><a href="/course/{{$course->id}}/edit" class="btn-sm btn-primary">Edit</a></td>
                       </tr>
                     @endforeach
                   </tbody>

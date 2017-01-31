@@ -11,26 +11,26 @@
 
             <div class="panel-body">
               <div class="container">
-              {{ Form::model($course, ['route' => ['course.update', $course->Class_id], 'method' => 'PUT']) }}
+              {{ Form::model($course, ['route' => ['course.update', $course->id], 'method' => 'PUT']) }}
               <div class="form-group row">
-                  {{ Form::label('Teacher_id', 'Teacher')}}
-                  {{ Form::text('Teacher_id') }}
+                  {{ Form::label('teacher_id', 'Teacher')}}
+                  {{ Form::text('teacher_id') }}
               </div>
               <div class="form-group row">
-                  {{ Form::label('Year', 'Year') }}
-                  {{ Form::number('Year') }}
+                  {{ Form::label('year', 'Year') }}
+                  {{ Form::number('year') }}
               </div>
               <div class="form-group row">
-                  {{ Form::label('Quarter', 'Quarter') }}
-                  {{ Form::select('Quarter', ['Fall' => 'Fall', 'Winter' => 'Winter', 'Spring' => 'Spring', 'Summer' => 'Summer']) }}
+                  {{ Form::label('quarter', 'Quarter') }}
+                  {{ Form::select('quarter', ['Fall' => 'Fall', 'Winter' => 'Winter', 'Spring' => 'Spring', 'Summer' => 'Summer']) }}
               </div>
               <div class="form-group row">
-                  {{ Form::label('Course_Number', 'Course#') }}
-                  {{ Form::number('Course_Number') }}
+                  {{ Form::label('course_number', 'Course#') }}
+                  {{ Form::number('course_number') }}
               </div>
               <div class="form-group row">
-                  {{ Form::label('Sprint_length', 'Sprint length') }}
-                  {{ Form::number('Sprint_length') }}
+                  {{ Form::label('sprint_length', 'Sprint length') }}
+                  {{ Form::number('sprint_length') }}
               </div>
               {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
             </div>
