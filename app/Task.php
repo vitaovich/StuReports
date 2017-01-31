@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class Task extends Model
 {
-  protected $primaryKey = 'Task_id';
+  protected $primaryKey = 'id';
   protected $table = 'tasks';
 
   protected $fillable = array(
-    'Description',
-    'Task_name',
-    'Student_id',
-    'Status',
-    'Group_id',
+    'description',
+    'task_name',
+    'student_id',
+    'status',
+    'group_id',
   );
 
   public function user()
@@ -28,7 +28,7 @@ class Task extends Model
   public static function getTasks($userID)
   {
     // $tasks = Task::where('Student_id', $userID)->get();//->where('Status', 'new')->orwhere('Status', 'continuing');
-    $tasks = Task::getOngoingTasks()->where('Student_id', '=', $userID);
+    $tasks = Task::getOngoingTasks()->where('student_id', '=', $userID);
     // return Task::where('Student_id', $userID);//->get();
     return $tasks;
   }
@@ -36,12 +36,12 @@ class Task extends Model
   public static function getOngoingTasks()
   {
     // return DB::table('tasks')->select('*')->where('Status', '=', 'new')->orWhere('Status', '=','continuing');
-    return Task::orWhere('Status', 'new')->orWhere('Status','continuing')->get();
+    return Task::orWhere('status', 'new')->orWhere('status','continuing')->get();
 
   }
 
   public function classrooms()
   {
-      return $this->hasMany('App\TaskReport', 'Task_id');
+      return $this->hasMany('App\TaskReport', 'task_id');
   }
 }

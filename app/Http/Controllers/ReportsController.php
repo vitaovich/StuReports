@@ -17,20 +17,20 @@ class ReportsController extends Controller
   public function putTeamReport(Request $request)
   {
     $teamReport = new TeamReport;
-    $teamReport->Easiest_Understand = $request->Easiest_Understand;
-    $teamReport->Hardest_Understand = $request->Hardest_Understand;
-    $teamReport->Easiest_Approach = $request->Easiest_Approach;
-    $teamReport->Hardest_Approach = $request->Hardest_Approach;
-    $teamReport->Easiest_Solve = $request->Easiest_Solve;
-    $teamReport->Hardest_Solve = $request->Hardest_Solve;
-    $teamReport->Easiest_Evaluate = $request->Easiest_Evaluate;
-    $teamReport->Hardest_Evaluate = $request->Hardest_Evaluate;
-    $teamReport->Pace = $request->Pace;
-    $teamReport->Client = $request->Client;
-    $teamReport->Comments = $request->Comments;
+    $teamReport->easiest_understand = $request->easiest_understand;
+    $teamReport->hardest_understand = $request->hardest_understand;
+    $teamReport->easiest_approach = $request->easiest_approach;
+    $teamReport->hardest_approach = $request->hardest_approach;
+    $teamReport->easiest_solve = $request->easiest_solve;
+    $teamReport->hardest_solve = $request->hardest_solve;
+    $teamReport->easiest_evaluate = $request->easiest_evaluate;
+    $teamReport->hardest_evaluate = $request->hardest_evaluate;
+    $teamReport->pace = $request->pace;
+    $teamReport->client = $request->client;
+    $teamReport->comments = $request->comments;
     //TODO: the following two lines contain dummy data that needs to be changed
-    $teamReport->Sprint = 0;
-    $teamReport->Group_id = 1;
+    $teamReport->sprint = 0;
+    $teamReport->group_id = 1;
     $teamReport->save();
     return view('home');
   }
@@ -45,61 +45,61 @@ class ReportsController extends Controller
   public function putIndividualReport(Request $request)
   {
     $report = new IndividualReport;
-    $report->Student_id = Auth::user()->id;
-    $report->Private_Comments = $request->Private_Comments;
-    $report->Sprint = 1; // dummy value
+    $report->student_id = Auth::user()->id;
+    $report->private_comments = $request->private_comments;
+    $report->sprint = 1; // dummy value
     $report->save();
 
-    $reportID = $report->Individual_Report_id;
+    $reportID = $report->id;
 
     $timelog = new IndividualTimeLog;
-    $timelog->Individual_Report_id = $reportID;
-    $timelog->Day = Carbon::today()->subDays(6);
-    $timelog->Hours = $request->saturday_hours;
-    $timelog->Description = $request->saturday_description;
+    $timelog->individual_report_id = $reportID;
+    $timelog->day = Carbon::today()->subDays(6);
+    $timelog->hours = $request->saturday_hours;
+    $timelog->description = $request->saturday_description;
     $timelog->save();
 
     $timelog = new IndividualTimeLog;
-    $timelog->Individual_Report_id = $reportID;
-    $timelog->Day = Carbon::today()->subDays(5);
-    $timelog->Hours = $request->sunday_hours;
-    $timelog->Description = $request->sunday_description;
+    $timelog->individual_report_id = $reportID;
+    $timelog->day = Carbon::today()->subDays(5);
+    $timelog->hours = $request->sunday_hours;
+    $timelog->description = $request->sunday_description;
     $timelog->save();
 
     $timelog = new IndividualTimeLog;
-    $timelog->Individual_Report_id = $reportID;
-    $timelog->Day = Carbon::today()->subDays(4);
-    $timelog->Hours = $request->monday_hours;
-    $timelog->Description = $request->monday_description;
+    $timelog->individual_report_id = $reportID;
+    $timelog->day = Carbon::today()->subDays(4);
+    $timelog->hours = $request->monday_hours;
+    $timelog->description = $request->monday_description;
     $timelog->save();
 
 
     $timelog = new IndividualTimeLog;
-    $timelog->Individual_Report_id = $reportID;
-    $timelog->Day = Carbon::today()->subDays(3);
-    $timelog->Hours = $request->tuesday_hours;
-    $timelog->Description = $request->tuesday_description;
+    $timelog->individual_report_id = $reportID;
+    $timelog->day = Carbon::today()->subDays(3);
+    $timelog->hours = $request->tuesday_hours;
+    $timelog->description = $request->tuesday_description;
     $timelog->save();
 
     $timelog = new IndividualTimeLog;
-    $timelog->Individual_Report_id = $reportID;
-    $timelog->Day = Carbon::today()->subDays(2);
-    $timelog->Hours = $request->wednesday_hours;
-    $timelog->Description = $request->wednesday_description;
+    $timelog->individual_report_id = $reportID;
+    $timelog->day = Carbon::today()->subDays(2);
+    $timelog->hours = $request->wednesday_hours;
+    $timelog->description = $request->wednesday_description;
     $timelog->save();
 
     $timelog = new IndividualTimeLog;
-    $timelog->Individual_Report_id = $reportID;
-    $timelog->Day = Carbon::today()->subDays(1);
-    $timelog->Hours = $request->thursday_hours;
-    $timelog->Description = $request->thursday_description;
+    $timelog->individual_report_id = $reportID;
+    $timelog->day = Carbon::today()->subDays(1);
+    $timelog->hours = $request->thursday_hours;
+    $timelog->description = $request->thursday_description;
     $timelog->save();
 
     $timelog = new IndividualTimeLog;
-    $timelog->Individual_Report_id = $reportID;
-    $timelog->Day = Carbon::today();
-    $timelog->Hours = $request->friday_hours;
-    $timelog->Description = $request->friday_description;
+    $timelog->individual_report_id = $reportID;
+    $timelog->day = Carbon::today();
+    $timelog->hours = $request->friday_hours;
+    $timelog->description = $request->friday_description;
     $timelog->save();
 
     $index = 0;
@@ -114,11 +114,11 @@ class ReportsController extends Controller
         if($newDescription != "" && $newTaskNames[$index] != "")
         {
           $newTask = new Task;
-          $newTask->Description = $newDescription;
-          $newTask->Task_name = $newTaskNames[$index]; // problem line?
-          $newTask->Student_id = Auth::user()->id;
-          $newTask->Status = "new";
-          $newTask->Group_id = 1;
+          $newTask->description = $newDescription;
+          $newTask->task_name = $newTaskNames[$index]; // problem line?
+          $newTask->student_id = Auth::user()->id;
+          $newTask->status = "new";
+          $newTask->group_id = 1;
           $newTask->save();
           $index++;
         }
@@ -135,33 +135,33 @@ class ReportsController extends Controller
       foreach($priorTasks as $priorTask)
       {
         $taskReport = new TaskReport;
-        $taskReport->Task_id = $priorTask->Task_id;
-        $taskReport->Latest_Progress = $priorTaskProgress[$index];
-        $taskReport->Individual_Report_id = $reportID;
-        $taskReport->Sprint = 1; // fix this
+        $taskReport->task_id = $priorTask->id;
+        $taskReport->latest_progress = $priorTaskProgress[$index];
+        $taskReport->individual_report_id = $reportID;
+        $taskReport->sprint = 1; // fix this
         $radio = $priorTaskStatuses[$index];
 
         if($radio == 'continuing')
         {
-          $taskReport->Remaining_Sprints = $estimatedSprints[$index];
-          $taskReport->Reassigned = 0;
+          $taskReport->remaining_sprints = $estimatedSprints[$index];
+          $taskReport->reassigned = 0;
         }
 
         elseif($radio == 'reassigned')
         {
-          $taskReport->Remaining_Sprints = 0;
-          $taskReport->Reassigned = 1;
+          $taskReport->remaining_sprints = 0;
+          $taskReport->reassigned = 1;
         }
 
         else
         {
-          $taskReport->Remaining_Sprints = 0;
-          $taskReport->Reassigned = 0;
+          $taskReport->remaining_sprints = 0;
+          $taskReport->reassigned = 0;
         }
         $taskReport->save();
         $priorTaskStatus = $radio;
-        $priorTaskEntry = Task::find($priorTask->Task_id);//->first();
-        $priorTaskEntry->Status = $radio;
+        $priorTaskEntry = Task::find($priorTask->id);//->first();
+        $priorTaskEntry->status = $radio;
         $priorTaskEntry->update();
         $index++;
       }

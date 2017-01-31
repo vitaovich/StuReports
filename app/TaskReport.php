@@ -8,12 +8,12 @@ class TaskReport extends Model
 {
   protected $table = 'task_reports';
   protected $fillable = array(
-    'Individual_Report_id',
-    'Latest_Progress',
-    'Task_id',
-    'Sprint',
-    'Remaining_Sprints',
-    'Reassigned',
+    'individual_report_id',
+    'latest_progress',
+    'task_id',
+    'sprint',
+    'remaining_sprints',
+    'reassigned',
   );
 
   public function task()

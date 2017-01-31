@@ -10,9 +10,9 @@ class IndividualTimeLog extends Model
   protected $table = 'time_logs';
 
   protected $fillable = array(
-    'Individual_Report_id',
-    'Day',
-    'Hours',
-    'Description',
+    'individual_report_id',
+    'day',
+    'hours',
+    'description',
   );
 }
