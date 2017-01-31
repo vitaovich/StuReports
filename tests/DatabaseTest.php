@@ -19,34 +19,6 @@ class DatabaseTest extends TestCase
         $student->password = bcrypt('password');
         $student->role = 'Student';
         $student->save();
-        $student_id = $student->getAttribute('id');
-
-        $instructor = new User;
-        $instructor->name = 'Instructor';
-        $instructor->email = 'instructor@instructor.com';
-        $instructor->password = bcrypt('password');
-        $instructor->role = 'Instructor';
-        $instructor->save();
-        $instructor_id = $instructor->getAttribute('id');
-
-        $course = new Course;
-        $course->teacher_id = $instructor_id;
-        $course->year = 2017;
-        $course->quarter = 'Fall';
-        $course->course_number = 488;
-        $course->sprint_length = 7;
-        $course->save();
-        $course_id = $course->getAttribute('id');
-        $student->course_id = $course_id;
-        $student->save();
-
-        $project_group = new Project_group;
-        $project_group->course_id = $course_id;
-        $project_group->project = "Test";
-        $project_group->save();
-        $project_id = $project_group->getAttribute('id');
-        $student->group_id = $project_id;
-        $student->save();
 
         $saturday_hours = '' . (rand(1, 96) * .25);
         $sunday_hours = '' . (rand(1, 96) * .25);
@@ -128,31 +100,36 @@ class DatabaseTest extends TestCase
         $student->save();
         $student_id = $student->getAttribute('id');
 
-        $instructor = new User;
-        $instructor->name = 'Instructor';
-        $instructor->email = 'instructor@instructor.com';
-        $instructor->password = bcrypt('password');
-        $instructor->role = 'Instructor';
-        $instructor->save();
-        $instructor_id = $instructor->getAttribute('id');
+        //uncomment once functionality is added in ReportsController
+        //$instructor = new User;
+        //$instructor->name = 'Instructor';
+        //$instructor->email = 'instructor@instructor.com';
+        //$instructor->password = bcrypt('password');
+        //$instructor->role = 'Instructor';
+        //$instructor->save();
+        //$instructor_id = $instructor->getAttribute('id');
 
-        $course = new Course;
-        $course->teacher_id = $instructor_id;
-        $course->year = 2017;
-        $course->quarter = 'Fall';
-        $course->course_number = 488;
-        $course->sprint_length = 7;
-        $course->save();
-        $course_id = $course->getAttribute('id');
-        $student->course_id = $course_id;
+        //uncomment once functionality is added in ReportsController
+        //$course = new Course;
+        //$course->teacher_id = $instructor_id;
+        //$course->year = 2017;
+        //$course->quarter = 'Fall';
+        //$course->course_number = 488;
+        //$course->sprint_length = 7;
+        //$course->save();
+        //$course_id = $course->getAttribute('id');
+        //$student->course_id = $course_id;
+        $student->course_id = 1; //comment once functionality is added in ReportsController
         $student->save();
 
-        $project_group = new Project_group;
-        $project_group->course_id = $course_id;
-        $project_group->project = "Test";
-        $project_group->save();
-        $project_id = $project_group->getAttribute('id');
-        $student->group_id = $project_id;
+        //uncomment once functionality is added in ReportsController
+        //$project_group = new Project_group;
+        //$project_group->course_id = $course_id;
+        //$project_group->project = "Test";
+        //$project_group->save();
+        //$project_id = $project_group->getAttribute('id');
+        //$student->group_id = $project_id;
+        $student->group_id = 1; //comment once functionality is added in ReportsController
         $student->save();
 
         $easiest_understand = 'easiest understand';
@@ -186,7 +163,8 @@ class DatabaseTest extends TestCase
              ->type($comments, 'comments')
              ->press('Submit')
              ->seeInDatabase('team_reports', [
-               'group_id' => $project_id,
+               //'group_id' => $project_id, //uncomment once functionality is added in ReportsController
+               'group_id' => 1, //comment once functionality is added in ReportsController
                'easiest_understand' => $easiest_understand,
                'hardest_understand' => $hardest_understand,
                'easiest_approach' => $easiest_approach,
