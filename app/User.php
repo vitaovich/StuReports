@@ -27,22 +27,22 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-      return $this->Role == 'Admin';
+      return $this->role == 'Admin';
     }
 
     public function isInstructor()
     {
-      return $this->Role == 'Instructor';
+      return $this->role == 'Instructor';
     }
 
     public function classrooms()
     {
-        return Classroom::All();
+        return Course::All();
     }
 
     public function isStudent()
     {
-      return $this->Role == 'Student';
+      return $this->role == 'Student';
     }
 
     // Under construction
@@ -54,6 +54,6 @@ class User extends Authenticatable
     // Under construction
     public function tasks()
     {
-      return $this->hasMany('App\Task', 'Student_id');
+      return $this->hasMany('App\Task', 'student_id');
     }
 }

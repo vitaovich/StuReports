@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Classroom;
+use App\Course;
 
 class CourseController extends Controller
 {
@@ -35,12 +35,12 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-      $course = new Classroom;
-      $course->Teacher_id = $request->teacher_id;
-      $course->Year = $request->year;
-      $course->Quarter = $request->quarter;
-      $course->Course_Number = $request->course_number;
-      $course->Sprint_length = $request->sprint_length;
+      $course = new Course;
+      $course->teacher_id = $request->teacher_id;
+      $course->year = $request->year;
+      $course->quarter = $request->quarter;
+      $course->course_number = $request->course_number;
+      $course->sprint_length = $request->sprint_length;
 
       $course->save();
 
@@ -66,7 +66,7 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        $course = Classroom::find($id);
+        $course = Course::find($id);
         return view("Course.edit", ['course' => $course]);
     }
 
@@ -79,12 +79,12 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $course = Classroom::find($id);
-        $course->Teacher_id = $request->Teacher_id;
-        $course->Year = $request->Year;
-        $course->Quarter = $request->Quarter;
-        $course->Course_Number = $request->Course_Number;
-        $course->Sprint_length = $request->Sprint_length;
+        $course = Course::find($id);
+        $course->teacher_id = $request->teacher_id;
+        $course->year = $request->year;
+        $course->quarter = $request->quarter;
+        $course->course_number = $request->course_number;
+        $course->sprint_length = $request->sprint_length;
 
         $course->save();
 

@@ -39,7 +39,7 @@ class UsersController extends Controller
       $user->name = $request->name;
       $user->email = $request->email;
       $user->password = bcrypt($request->password);
-      $user->Role = $request->role;
+      $user->role = $request->role;
 
       $user->save();
       return view('home');

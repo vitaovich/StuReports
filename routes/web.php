@@ -61,6 +61,6 @@ Route::get('/home/admin', function()
 });
 Route::get('/home/instructor', function()
 {
-  $course = App\Classroom::where('Teacher_id', Auth::user()->id)->first();
+  $course = App\Course::where('Teacher_id', Auth::user()->id)->first();
   return view('Home.Instructor.index', ['course' => $course]);
 });
