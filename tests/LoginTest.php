@@ -7,7 +7,7 @@ use App\User;
 
 class LoginTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     public function testGoodLoginWorks()
     {
@@ -15,7 +15,7 @@ class LoginTest extends TestCase
         $user->name = 'Test';
         $user->email = 'test@test.com';
         $user->password = bcrypt('password');
-        $user->Role = 'Student';
+        $user->role = 'Student';
         $user->save();
         $this->visit('/')
              ->click('Login')
@@ -24,7 +24,7 @@ class LoginTest extends TestCase
              ->type('password', 'password')
              ->press('Login')
              ->seePageIs('/home')
-             ->see('Status Reports');
+             ->see('Student Home page');
     }
 
     public function testBadLoginDoesntWork()

@@ -4,22 +4,49 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\User;
-use App\Classroom;
+use App\Course;
 use App\Project_group;
-use App\Student_group;
 
 class DatabaseTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     public function testIndividualReportIsPutIntoTable()
     {
-        $user = new User;
-        $user->name = 'Test';
-        $user->email = 'test@test.com';
-        $user->password = bcrypt('password');
-        $user->Role = 'Student';
-        $user->save();
+        $student = new User;
+        $student->name = 'Test';
+        $student->email = 'test@test.com';
+        $student->password = bcrypt('password');
+        $student->role = 'Student';
+        $student->save();
+        $student_id = $student->getAttribute('id');
+
+        $instructor = new User;
+        $instructor->name = 'Instructor';
+        $instructor->email = 'instructor@instructor.com';
+        $instructor->password = bcrypt('password');
+        $instructor->role = 'Instructor';
+        $instructor->save();
+        $instructor_id = $instructor->getAttribute('id');
+
+        $course = new Course;
+        $course->teacher_id = $instructor_id;
+        $course->year = 2017;
+        $course->quarter = 'Fall';
+        $course->course_number = 488;
+        $course->sprint_length = 7;
+        $course->save();
+        $course_id = $course->getAttribute('id');
+        $student->course_id = $course_id;
+        $student->save();
+
+        $project_group = new Project_group;
+        $project_group->course_id = $course_id;
+        $project_group->project = "Test";
+        $project_group->save();
+        $project_id = $project_group->getAttribute('id');
+        $student->group_id = $project_id;
+        $student->save();
 
         $saturday_hours = '' . (rand(1, 96) * .25);
         $sunday_hours = '' . (rand(1, 96) * .25);
@@ -55,7 +82,7 @@ class DatabaseTest extends TestCase
              ->type($wednesday_description, 'wednesday_description')
              ->type($thursday_description, 'thursday_description')
              ->type($friday_description, 'friday_description')
-             ->type('comment', 'Private_Comments')
+             ->type('comment', 'private_comments')
              ->press('Submit')
              ->seePageIs('/submit_individual_report')
              ->seeInDatabase('individual_reports', [
@@ -93,42 +120,40 @@ class DatabaseTest extends TestCase
 
     public function testTeamReportIsPutIntoTable()
     {
-        $user = new User;
-        $user->name = 'Test';
-        $user->email = 'test@test.com';
-        $user->password = bcrypt('password');
-        $user->Role = 'Student';
-        $user->save();
-        $user_id = $user->getAttribute('id');
+        $student = new User;
+        $student->name = 'Test';
+        $student->email = 'test@test.com';
+        $student->password = bcrypt('password');
+        $student->role = 'Student';
+        $student->save();
+        $student_id = $student->getAttribute('id');
 
-        $user = new User;
-        $user->name = 'Teacher';
-        $user->email = 'teacher@teacher.com';
-        $user->password = bcrypt('password');
-        $user->Role = 'Teacher';
-        $user->save();
-        $teacher_id = $user->getAttribute('id');
+        $instructor = new User;
+        $instructor->name = 'Instructor';
+        $instructor->email = 'instructor@instructor.com';
+        $instructor->password = bcrypt('password');
+        $instructor->role = 'Instructor';
+        $instructor->save();
+        $instructor_id = $instructor->getAttribute('id');
 
-        $class = new Classroom;
-        $class->Teacher_id = $teacher_id;
-        $class->Year = 2017;
-        $class->Quarter = 'Fall';
-        $class->Course_Number = 488;
-        $class->Sprint_length = 7;
-        $class->save();
-        $class_id = $class->getAttribute('Class_id');
+        $course = new Course;
+        $course->teacher_id = $instructor_id;
+        $course->year = 2017;
+        $course->quarter = 'Fall';
+        $course->course_number = 488;
+        $course->sprint_length = 7;
+        $course->save();
+        $course_id = $course->getAttribute('id');
+        $student->course_id = $course_id;
+        $student->save();
 
         $project_group = new Project_group;
-        $project_group->Class_id = $class_id;
-        $project_group->Project = "Test";
+        $project_group->course_id = $course_id;
+        $project_group->project = "Test";
         $project_group->save();
-        $project_id = $project_group->getAttribute('Group_id');
-
-        $student_group = new Student_group;
-        $student_group->Student_id = $user_id;
-        $student_group->Group_id = $project_id;
-        $student_group->Class_id = $class_id;
-        $student_group->save();
+        $project_id = $project_group->getAttribute('id');
+        $student->group_id = $project_id;
+        $student->save();
 
         $easiest_understand = 'easiest understand';
         $hardest_understand = 'hardest_understand';
@@ -148,31 +173,31 @@ class DatabaseTest extends TestCase
              ->type('password', 'password')
              ->press('Login')
              ->click('Submit Team Report')
-             ->type($easiest_understand, 'Easiest_Understand')
-             ->type($hardest_understand, 'Hardest_Understand')
-             ->type($easiest_approach, 'Easiest_Approach')
-             ->type($hardest_approach, 'Hardest_Approach')
-             ->type($easiest_solve, 'Easiest_Solve')
-             ->type($hardest_solve, 'Hardest_Solve')
-             ->type($easiest_evaluate, 'Easiest_Evaluate')
-             ->type($hardest_evaluate, 'Hardest_Evaluate')
-             ->type($pace, 'Pace')
-             ->type($client, 'Client')
-             ->type($comments, 'Comments')
+             ->type($easiest_understand, 'easiest_understand')
+             ->type($hardest_understand, 'hardest_understand')
+             ->type($easiest_approach, 'easiest_approach')
+             ->type($hardest_approach, 'hardest_approach')
+             ->type($easiest_solve, 'easiest_solve')
+             ->type($hardest_solve, 'hardest_solve')
+             ->type($easiest_evaluate, 'easiest_evaluate')
+             ->type($hardest_evaluate, 'hardest_evaluate')
+             ->type($pace, 'pace')
+             ->type($client, 'client')
+             ->type($comments, 'comments')
              ->press('Submit')
              ->seeInDatabase('team_reports', [
-               'Group_id' => $project_id,
-               'Easiest_Understand' => $easiest_understand,
-               'Hardest_Understand' => $hardest_understand,
-               'Easiest_Approach' => $easiest_approach,
-               'Hardest_Approach' => $hardest_approach,
-               'Easiest_Solve' => $easiest_solve,
-               'Hardest_Solve' => $hardest_solve,
-               'Easiest_Evaluate' => $easiest_evaluate,
-               'Hardest_Evaluate' => $hardest_evaluate,
-               'Pace' => $pace,
-               'Client' => $client,
-               'Comments' => $comments
+               'group_id' => $project_id,
+               'easiest_understand' => $easiest_understand,
+               'hardest_understand' => $hardest_understand,
+               'easiest_approach' => $easiest_approach,
+               'hardest_approach' => $hardest_approach,
+               'easiest_solve' => $easiest_solve,
+               'hardest_solve' => $hardest_solve,
+               'easiest_evaluate' => $easiest_evaluate,
+               'hardest_evaluate' => $hardest_evaluate,
+               'pace' => $pace,
+               'client' => $client,
+               'comments' => $comments
              ]);
     }
 }
