@@ -32,10 +32,9 @@ class DatabaseSeeder extends Seeder
           'role' => 'Student',
           'remember_token' => str_random(10)
       ]);
-      factory(App\User::class, 20)->create();
       factory(App\Course::class, 10)->create();
       factory(App\Project_group::class, 10)->create();
-      factory(App\Student_group::class, 20)->create();
+      factory(App\User::class, 20)->create();
     }
 
 	public function seedUsers()

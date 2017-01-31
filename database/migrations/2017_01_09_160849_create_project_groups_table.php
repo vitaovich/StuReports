@@ -30,6 +30,7 @@ class CreateProjectGroupsTable extends Migration
      */
     public function down()
     {
+      Schema::disableForeignKeyConstraints(); 
         Schema::dropIfExists('project_groups');
     }
 }
