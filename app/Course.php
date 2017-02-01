@@ -12,9 +12,14 @@ class Course extends Model
   {
       return $this->hasMany('App\Project_group', 'course_id');
   }
+  
+  public function students()
+  {
+	  return $this->hasMany('App\User', 'course_id');
+  }
 
   public function instructor()
   {
-      return $this->belongsTo('App\User', 'teacher_id');
+      return $this->belongsTo('App\User');
   }
 }

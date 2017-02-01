@@ -21,7 +21,17 @@ class Task extends Model
 
   public function user()
   {
-    return $this->belongsTo('App\User', 'id');
+    return $this->belongsTo('App\User', 'student_id');
+  }
+  
+  public function group()
+  {
+	  return $this->belongsTo('App\Project_group', 'group_id');
+  }
+  
+  public function taskReports()
+  {
+	  return $this->hasMany('App\TaskReport');
   }
 
   // this doesn't really work
@@ -37,11 +47,5 @@ class Task extends Model
   {
     // return DB::table('tasks')->select('*')->where('Status', '=', 'new')->orWhere('Status', '=','continuing');
     return Task::orWhere('status', 'new')->orWhere('status','continuing')->get();
-
-  }
-
-  public function classrooms()
-  {
-      return $this->hasMany('App\TaskReport', 'task_id');
   }
 }

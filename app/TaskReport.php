@@ -20,4 +20,9 @@ class TaskReport extends Model
   {
     return $this->belongsTo('App\Task');
   }
+  
+  public function report()
+  {
+	  return $this->belongsTo('App\IndividualReport');
+  }
 }

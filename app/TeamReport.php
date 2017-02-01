@@ -24,4 +24,9 @@ class TeamReport extends Model
     'group_id',
     'sprint',
   );
+  
+  public function group()
+  {
+	  return $this->belongsTo('App\Project_group', 'group_id');
+  }
 }
