@@ -24,7 +24,7 @@ class AvailabilityController extends Controller
     public function getTeam()
     {
       if($this->isAvailable() || !(Auth::check() && Auth::user()->isStudent())) //redirects to "not available" page for non-students
-        return view('student_individual');
+        return view('student_team');
       else
         return view('reports_unavailable');
     }
@@ -32,7 +32,7 @@ class AvailabilityController extends Controller
     public function getIndividual()
     {
       if($this->isAvailable() || !(Auth::check() && Auth::user()->isStudent())) //redirects to "not available" page for non-students
-        return view('student_team');
+        return view('student_individual');
       else
         return view('reports_unavailable');
     }
