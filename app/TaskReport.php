@@ -18,11 +18,11 @@ class TaskReport extends Model
 
   public function task()
   {
-    return $this->belongsTo('App\Task');
+    return $this->belongsTo('App\Task', 'task_id');
   }
   
-  public function report()
+  public function reports()
   {
-	  return $this->belongsTo('App\IndividualReport');
+	  return $this->belongsTo('App\IndividualReport', 'individual_report_id');
   }
 }

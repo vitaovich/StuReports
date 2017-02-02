@@ -16,7 +16,6 @@ class CreateGradebookTable extends Migration
         Schema::create('gradebook', function (Blueprint $table) {
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('assignment_id');
-            $table->unsignedInteger('course_id');
             $table->integer('submitted');
             $table->integer('grade');
             $table->timestamps();

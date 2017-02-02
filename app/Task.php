@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class Task extends Model
 {
-  protected $primaryKey = 'id';
   protected $table = 'tasks';
 
   protected $fillable = array(
@@ -31,7 +30,7 @@ class Task extends Model
   
   public function taskReports()
   {
-	  return $this->hasMany('App\TaskReport');
+	  return $this->hasMany('App\TaskReport', 'task_id');
   }
 
   // this doesn't really work
