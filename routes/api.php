@@ -60,6 +60,6 @@ Route::get('course/projects/{course_id}', function($course_id){
 	return App\Course::find($course_id)->projects;
 });
 
-Route::get('project/memebers/{project_id}', function($project_id){
+Route::get('project/members/{project_id}', function($project_id){
 	echo App\Project_group::find($project_id)->students;
 });
