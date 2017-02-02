@@ -42,15 +42,21 @@ Route::resource('course', 'CourseController');
 // Mike code below
 Route::post('submit_team_report', 'ReportsController@putTeamReport');
 
-Route::get('/student_team', function() {
-	return view('student_team');
-});
+//Route::get('/student_team', function() {
+//	return view('student_team');
+//});
+
+//uses AvailabilityController to check if it's a submission day (under construction)
+Route::get('/student_team', 'AvailabilityController@getTeam');
 
 Route::post('submit_individual_report', 'ReportsController@putIndividualReport');
 
-Route::get('/student_individual', function() {
-	return view('student_individual');
-});
+//Route::get('/student_individual', function() {
+//	return view('student_individual');
+//});
+
+//uses AvailabilityController to check if it's a submission day (under construction)
+Route::get('/student_individual', 'AvailabilityController@getIndividual');
 
 Auth::routes();
 
