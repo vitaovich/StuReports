@@ -35,6 +35,11 @@ class User extends Authenticatable
       return $this->role == 'Instructor';
     }
 
+    public function course()
+    {
+        return Course::find($this->course_id);
+    }
+
     public function courses()
     {
         return Course::All();

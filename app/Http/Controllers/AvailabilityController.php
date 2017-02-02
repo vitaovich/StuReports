@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use App\Course;
 use Auth;
 
 class AvailabilityController extends Controller
@@ -12,11 +12,13 @@ class AvailabilityController extends Controller
     //TODO: make this work with other sprint lengths
     public function isAvailable()
     {
-        $weekday = Carbon::today()->dayOfWeek;
-        if($weekday == 6) //friday
-          return true;
-        else
-          return false;
+        $course = Auth::user()->course();
+        if($course == NULL)
+            return false;
+
+        $available = $course->reports_available;
+
+        return $available == 1;
     }
 
     public function getTeam()
