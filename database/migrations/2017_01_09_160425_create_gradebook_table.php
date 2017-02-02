@@ -22,7 +22,6 @@ class CreateGradebookTable extends Migration
 
             $table->foreign('student_id')->references('id')->on('users');
             $table->foreign('assignment_id')->references('id')->on('assignments');
-            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 

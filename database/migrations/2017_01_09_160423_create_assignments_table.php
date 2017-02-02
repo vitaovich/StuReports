@@ -20,6 +20,8 @@ class CreateAssignmentsTable extends Migration
             $table->date('open_assignment');
             $table->date('close_assignment');
             $table->timestamps();
+			
+			$table->foreign('course_id')->references('id')->on('courses');
         });
     }
 
