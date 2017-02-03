@@ -44,7 +44,10 @@ class UpdateSprintTiming extends Command
             foreach($courses as $course)
             {
               $sprint_end = $course->next_sprint_end;
-              if($sprint_end == Carbon::today())
+
+              if($course->active == 0)
+                  $course->reports_available = 0;
+              elseif($sprint_end == Carbon::today())
               {
                   $course->reports_available = 1;
                   $course->last_sprint_end = $sprint_end;
