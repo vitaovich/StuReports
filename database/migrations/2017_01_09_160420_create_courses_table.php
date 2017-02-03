@@ -23,6 +23,7 @@ class CreateCoursesTable extends Migration
             $table->dateTime('last_sprint_end')->nullable();
             $table->dateTime('next_sprint_end')->nullable();
             $table->boolean('reports_available')->default(0);
+            $table->boolean('active')->default(false);
             $table->timestamps();
 
             $table->foreign('teacher_id')->references('id')->on('users');

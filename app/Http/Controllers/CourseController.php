@@ -39,6 +39,7 @@ class CourseController extends Controller
       $course->teacher_id = $request->teacher_id;
       $course->year = $request->year;
       $course->quarter = $request->quarter;
+      $course->active = $request->active;
       $course->course_number = $request->course_number;
       $course->sprint_length = $request->sprint_length;
 
@@ -83,6 +84,7 @@ class CourseController extends Controller
         $course->teacher_id = $request->teacher_id;
         $course->year = $request->year;
         $course->quarter = $request->quarter;
+        $course->active = $request->active;
         $course->course_number = $request->course_number;
         $course->sprint_length = $request->sprint_length;
 

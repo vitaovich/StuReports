@@ -5,10 +5,13 @@
 @section('content')
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
-          <div class="panel panel-default">
-            <div class="panel-heading"><h1>CSCD {{$course->quarter}} {{$course->year}}</h1></div>
+        @if(isset($courses))
+          @foreach($courses as $course)
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h1>CSCD {{$course->quarter}} {{$course->year}}</h1>
+              </div>
             <div class="panel-body">
-              @if(Auth::user()->isInstructor())
               <table class="table table-striped">
                 <tbody>
                   @foreach ($course->projects as $project)
@@ -28,9 +31,10 @@
                   @endforeach
                 </tbody>
               </table>
-              @endif
             </div>
-          </div>
+            </div>
+          @endforeach
+        @endif
       </div>
   </div>
 @endsection

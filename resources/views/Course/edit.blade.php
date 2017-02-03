@@ -25,6 +25,11 @@
                   {{ Form::select('quarter', ['Fall' => 'Fall', 'Winter' => 'Winter', 'Spring' => 'Spring', 'Summer' => 'Summer']) }}
               </div>
               <div class="form-group row">
+                  {{ Form::label('active', 'Active') }}
+                  {{ Form::hidden('active', 0) }}
+                  {{ Form::checkbox('active', 1) }}
+              </div>
+              <div class="form-group row">
                   {{ Form::label('course_number', 'Course#') }}
                   {{ Form::number('course_number') }}
               </div>
