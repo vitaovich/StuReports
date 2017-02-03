@@ -15,7 +15,7 @@ class Task_evaluation extends Model
 	
     public function taskEvaluated()
 	{
-		return $this->belongsTo('App\Task', 'task_id')
+		return $this->belongsTo('App\Task', 'task_id');
 	}
 	
 	public function report()

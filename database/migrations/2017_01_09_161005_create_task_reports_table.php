@@ -14,6 +14,7 @@ class CreateTaskReportsTable extends Migration
     public function up()
     {
         Schema::create('task_reports', function (Blueprint $table) {
+			$table->increments('id');
             $table->unsignedInteger('individual_report_id');
             $table->string('latest_progress');
             $table->unsignedInteger('task_id');

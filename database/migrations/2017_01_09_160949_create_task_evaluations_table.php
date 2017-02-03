@@ -14,6 +14,7 @@ class CreateTaskEvaluationsTable extends Migration
     public function up()
     {
         Schema::create('task_evaluations', function (Blueprint $table) {
+			$table->increments('id');
             $table->unsignedInteger('task_id');
             $table->unsignedInteger('individual_report_id');
             $table->string('concur');

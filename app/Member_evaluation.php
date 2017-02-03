@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Member_evaluation extends Model
 {
 	protected $fillable = array(
-		'id',
+		'student_id',
         'individual_report_id',
 		'concur_hours',
         'performing',
@@ -21,6 +21,6 @@ class Member_evaluation extends Model
 	
 	public function memberEvaluated()
 	{
-		return $this->belongsTo('App\User');
+		return $this->belongsTo('App\User', 'student_id');
 	}
 }
