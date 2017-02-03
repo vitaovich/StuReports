@@ -18,7 +18,7 @@ class Course extends Model
   {
       return $this->hasMany('App\Project_group', 'course_id');
   }
-  
+
   public function students()
   {
 	  return $this->hasMany('App\User', 'course_id');
@@ -26,9 +26,9 @@ class Course extends Model
 
   public function instructor()
   {
-      return $this->belongsTo('App\User');
+      return $this->belongsTo('App\User', 'teacher_id');
   }
-  
+
   public function assignments()
   {
       return $this->hasMany('App\Assignment', 'course_id');

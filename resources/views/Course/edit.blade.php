@@ -26,7 +26,8 @@
               </div>
               <div class="form-group row">
                   {{ Form::label('active', 'Active') }}
-                  {{ Form::checkbox('active', 'value') }}
+                  {{ Form::hidden('active', 0) }}
+                  {{ Form::checkbox('active', 1) }}
               </div>
               <div class="form-group row">
                   {{ Form::label('course_number', 'Course#') }}
