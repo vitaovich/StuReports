@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class IndividualReport extends Model
 {
-  protected $primaryKey = 'id';
   protected $table = 'individual_reports';
 
   protected $fillable = array(
@@ -15,7 +14,7 @@ class IndividualReport extends Model
     'sprint',
   );
   
-  public function student()
+  public function students()
   {
 	  return $this->belongsTo('App\User');
   }
@@ -28,5 +27,15 @@ class IndividualReport extends Model
   public function taskReports()
   {
 	  return $this->hasMany('App\TaskReport', 'individual_report_id');
+  }
+  
+  public function taskEvaluations()
+  {
+	  return $this->hasMany('App\Task_evaluation', 'individual_report_id');
+  }
+  
+  public function memberEvaluations()
+  {
+	  return $this->hasMany('App\Member_evaluation', 'individual_report_id');
   }
 }

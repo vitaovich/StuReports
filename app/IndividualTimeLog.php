@@ -15,4 +15,9 @@ class IndividualTimeLog extends Model
     'hours',
     'description',
   );
+  
+  public function report()
+  {
+	  return $this->belongsTo('App\IndividualReport', 'individual_report_id');
+  }
 }
