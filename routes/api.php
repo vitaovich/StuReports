@@ -62,8 +62,13 @@ Route::get('user/task/reports/{user_id}', function($user_id){
 });
 
 //Get a users individual reports, based on a user id
-Route::get('user/reports/{user_id}', function($user_id){
+Route::get('user/reports/{user_id}', function($_id){
 	return App\User::findOrFail($user_id)->individualReports;
+});
+
+//Get a users assignments, based on student id
+Route::get('user/assignments/{user_id}', function($user_id){
+	return App\User::findOrFail($user_id)->assignments;
 });
 
 //Get a users individual report time logs, based on a individual report id

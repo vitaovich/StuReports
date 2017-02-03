@@ -17,7 +17,7 @@ class CreateGradebookTable extends Migration
 			$table->increments('id');
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('assignment_id');
-            $table->integer('submitted');
+            $table->boolean('submitted');
             $table->integer('grade');
             $table->timestamps();
 
