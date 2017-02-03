@@ -28,6 +28,10 @@
                     <option value="summer">Summer</option>
                   </select>
                 </div>
+                <div class="form-group row">
+                    {{ Form::label('active', 'Active') }}
+                    {{ Form::checkbox('active', 'value') }}
+                </div>
                 <div>
                   Course Number:
                   <input type="number" name="course_number" id="course_number">

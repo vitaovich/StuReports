@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->string('quarter');
             $table->integer('course_number');
             $table->integer('sprint_length');
+            $table->boolean('active')->default(false);
             $table->timestamps();
 
             $table->foreign('teacher_id')->references('id')->on('users');
