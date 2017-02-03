@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project_group extends Model
 {
-    public function classroom()
+	protected $fillable = array(
+		'course_id',
+		'project',
+	);
+	
+    public function course()
     {
         return $this->belongsTo('App\Course', 'course_id');
     }
@@ -15,8 +20,14 @@ class Project_group extends Model
     {
       return $this->hasMany('App\User', 'group_id');
     }
-    public function projects()
-    {
-        return $this->hasMany('App\Project_group', 'course_id');
-    }
+	
+	public function teamReports()
+	{
+		return $this->hasMany('App\TeamReport', 'group_id');
+	}
+	
+	public function tasks()
+	{
+		return $this->hasMany('App\Task', 'task_id');
+	}
 }

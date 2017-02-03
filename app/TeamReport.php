@@ -10,18 +10,23 @@ class TeamReport extends Model
   protected $table = 'team_reports';
 
   protected $fillable = array(
-    'Easiest_Understand',
-    'Hardest_Understand',
-    'Easiest_Approach',
-    'Hardest_Approach',
-    'Easiest_Solve',
-    'Hardest_Solve',
-    'Easiest_Evaluate',
-    'Hardest_Evaluate',
-    'Pace',
-    'Client',
-    'Comments',
-    'Group_id',
-    'Sprint',
+    'easiest_understand',
+    'hardest_understand',
+    'easiest_approach',
+    'hardest_approach',
+    'easiest_solve',
+    'hardest_solve',
+    'easiest_evaluate',
+    'hardest_evaluate',
+    'pace',
+    'client',
+    'comments',
+    'group_id',
+    'sprint',
   );
+  
+  public function group()
+  {
+	  return $this->belongsTo('App\Project_group', 'group_id');
+  }
 }

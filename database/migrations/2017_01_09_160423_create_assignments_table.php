@@ -15,10 +15,13 @@ class CreateAssignmentsTable extends Migration
     {
         Schema::create('assignments', function (Blueprint $table) {
             $table->increments('id');
+			$table->unsignedInteger('course_id');
             $table->string('assignment_name');
             $table->date('open_assignment');
             $table->date('close_assignment');
             $table->timestamps();
+			
+			$table->foreign('course_id')->references('id')->on('courses');
         });
     }
 

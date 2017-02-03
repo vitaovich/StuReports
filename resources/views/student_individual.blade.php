@@ -79,7 +79,7 @@
                 <h4 class="taskNameHeader">Task Name:</h4> <p>{{ $priorReport->Task_name }}</p>
                 <h4>Original Description:</h4> <p>{{ $priorReport->Description }}</p>
                 <h4>Latest Progress</h4>
-                <input type="text" name="latestProgress[]" class="LatestProgressClass" required>
+                <input type="text" name="latestProgress[]" class="latestProgressClass" required>
                 <h4>Status</h4>
                 <div class="statusPointsClass">
                   <div class="statusOptionsClass">
@@ -99,7 +99,7 @@
               <?php $counter++; ?>
             @endforeach
             <p>Private Comments</p>
-            <input type="text" name="Private_Comments" id="Private_Comments">
+            <input type="text" name="private_comments" id="private_comments">
             <br>
             <input type="submit" value="Submit"/>
           </form>

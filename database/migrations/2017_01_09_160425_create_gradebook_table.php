@@ -16,14 +16,12 @@ class CreateGradebookTable extends Migration
         Schema::create('gradebook', function (Blueprint $table) {
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('assignment_id');
-            $table->unsignedInteger('course_id');
             $table->integer('submitted');
             $table->integer('grade');
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('users');
             $table->foreign('assignment_id')->references('id')->on('assignments');
-            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 
