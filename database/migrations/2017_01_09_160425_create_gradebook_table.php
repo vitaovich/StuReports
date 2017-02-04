@@ -14,9 +14,10 @@ class CreateGradebookTable extends Migration
     public function up()
     {
         Schema::create('gradebook', function (Blueprint $table) {
+			$table->increments('id');
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('assignment_id');
-            $table->integer('submitted');
+            $table->boolean('submitted');
             $table->integer('grade');
             $table->timestamps();
 

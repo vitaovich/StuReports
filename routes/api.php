@@ -62,8 +62,38 @@ Route::get('user/task/reports/{user_id}', function($user_id){
 });
 
 //Get a users individual reports, based on a user id
-Route::get('user/reports/{user_id}', function($user_id){
+Route::get('user/reports/{user_id}', function($_id){
 	return App\User::findOrFail($user_id)->individualReports;
+});
+
+//Get a users assignments, based on student id
+Route::get('user/assignments/{user_id}', function($user_id){
+	return App\User::findOrFail($user_id)->assignments;
+});
+
+//Get a users individual report time logs, based on a individual report id
+Route::get('report/time/logs/{individual_report_id}', function($individual_report_id){
+	return App\IndividualReport::findOrFail($individual_report_id)->timeLogs;
+});
+
+//get a user's individual report member evalutations
+Route::get('report/member/evaluations/{individual_report_id}', function($individual_report_id){
+	return App\IndividualReport::findOrFail($individual_report_id)->memberEvaluations;
+});
+
+//gets the user being evaluated, based on member evaluation id
+Route::get('report/member/evaluation/{id}', function($id){
+	return App\Member_evaluation::findOrFail($id)->memberEvaluated;
+});
+
+//get a user's individual report task evalutations
+Route::get('report/task/evaluations/{individual_report_id}', function($individual_report_id){
+	return App\IndividualReport::findOrFail($individual_report_id)->taskEvaluations;
+});
+
+//gets the task being evaluated, based on task evaluation id
+Route::get('report/task/evaluation/{id}', function($id){
+	return App\Task_evaluation::findOrFail($id)->taskEvaluated;
 });
 
 //Get a task, based on a task id

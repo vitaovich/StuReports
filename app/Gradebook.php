@@ -16,7 +16,7 @@ class Gradebook extends Model
 	
 	public function assignments()
 	{
-		return $this->belongsTo('App\Assignment', 'assignment_id');
+		return $this->hasMany('App\Assignment', 'assignment_id');
 	}
 	
 	public function student()
