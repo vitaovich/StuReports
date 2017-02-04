@@ -13,7 +13,15 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div>
                   Professor:
-                    <input type="text" name="teacher_id" id="teacher_id">
+                    <!-- <input type="text" name="teacher_id" id="teacher_id"> -->
+                    <?php
+                        $instructors = App\User::where('role', '=', 'Instructor')->get()->toArray();
+                        $options = [];
+                        //echo json_encode($instructors);
+                        foreach($instructors as $instructor)
+                            $options[$instructor['id']] = $instructor['name'];
+                    ?>
+                    {{ Form::select('teacher_id', $options) }}
                 </div>
                 <div>
                   Year:
@@ -22,10 +30,10 @@
                 <div>
                   Quarter:
                   <select name="quarter">
-                    <option value="fall">Fall</option>
-                    <option value="winter">Winter</option>
-                    <option value="spring">Spring</option>
-                    <option value="summer">Summer</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Winter">Winter</option>
+                    <option value="Spring">Spring</option>
+                    <option value="Summer">Summer</option>
                   </select>
                 </div>
                 <div class="form-group row">
