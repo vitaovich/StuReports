@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Create class')
+@section('title', 'Edit course')
 
 @section('content')
 
@@ -14,7 +14,15 @@
               {{ Form::model($course, ['route' => ['course.update', $course->id], 'method' => 'PUT']) }}
               <div class="form-group row">
                   {{ Form::label('teacher_id', 'Teacher')}}
-                  {{ Form::text('teacher_id') }}
+                  <!-- {{ Form::text('teacher_id') }} -->
+                  <?php
+                      $instructors = App\User::where('role', '=', 'Instructor')->get()->toArray();
+                      $options = [];
+                      //echo json_encode($instructors);
+                      foreach($instructors as $instructor)
+                          $options[$instructor['id']] = $instructor['name'];
+                  ?>
+                  {{ Form::select('teacher_id', $options) }}
               </div>
               <div class="form-group row">
                   {{ Form::label('year', 'Year') }}
