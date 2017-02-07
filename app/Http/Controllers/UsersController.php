@@ -6,13 +6,18 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\Login;
+use Auth;
 use PDO;
 
 class UsersController extends Controller
 {
     public function index()
     {
-      return view('Users.index', ['users' => $this->getUsers()]);
+      //return view('Users.index', ['users' => $this->getUsers()]);
+      if(!(Auth::user()->isInstructor() || Auth::user()->isAdmin()))
+          return view('no_permission');
+      else
+          return view('Users.index', ['users' => $this->getUsers()]);
     }
 
     public function getUsers()

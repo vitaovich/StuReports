@@ -25,6 +25,12 @@ Route::get('/users/create', function () {
     return view('Users.create');
 });
 
+Route::get('/users/import', function () {
+    return view('Users.import');
+});
+
+Route::put('/users/import', 'CSVController@handleFile');
+
 Route::get('/classes/create', function () {
     return view('Class.create');
 });
