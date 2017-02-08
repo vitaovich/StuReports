@@ -56,55 +56,75 @@ class ReportsController extends Controller
 
     $reportID = $report->id;
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(6);
-    $timelog->hours = $request->saturday_hours;
-    $timelog->description = $request->saturday_description;
-    $timelog->save();
+    if($request->saturday_hours > 0 || $request->saturday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(6);
+      $timelog->hours = $request->saturday_hours;
+      $timelog->description = $request->saturday_description;
+      $timelog->save();
+    }
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(5);
-    $timelog->hours = $request->sunday_hours;
-    $timelog->description = $request->sunday_description;
-    $timelog->save();
+    if($request->sunday_hours > 0 || $request->sunday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(5);
+      $timelog->hours = $request->sunday_hours;
+      $timelog->description = $request->sunday_description;
+      $timelog->save();
+    }
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(4);
-    $timelog->hours = $request->monday_hours;
-    $timelog->description = $request->monday_description;
-    $timelog->save();
+    if($request->monday_hours > 0 || $request->monday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(4);
+      $timelog->hours = $request->monday_hours;
+      $timelog->description = $request->monday_description;
+      $timelog->save();
+    }
 
+    if($request->tuesday_hours > 0 || $request->tuesday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(3);
+      $timelog->hours = $request->tuesday_hours;
+      $timelog->description = $request->tuesday_description;
+      $timelog->save();
+    }
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(3);
-    $timelog->hours = $request->tuesday_hours;
-    $timelog->description = $request->tuesday_description;
-    $timelog->save();
+    if($request->wednesday_hours > 0 || $request->wednesday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(2);
+      $timelog->hours = $request->wednesday_hours;
+      $timelog->description = $request->wednesday_description;
+      $timelog->save();
+    }
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(2);
-    $timelog->hours = $request->wednesday_hours;
-    $timelog->description = $request->wednesday_description;
-    $timelog->save();
+    if($request->thursday_hours > 0 || $request->thursday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(1);
+      $timelog->hours = $request->thursday_hours;
+      $timelog->description = $request->thursday_description;
+      $timelog->save();
+    }
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(1);
-    $timelog->hours = $request->thursday_hours;
-    $timelog->description = $request->thursday_description;
-    $timelog->save();
-
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today();
-    $timelog->hours = $request->friday_hours;
-    $timelog->description = $request->friday_description;
-    $timelog->save();
+    if($request->friday_hours > 0 || $request->friday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today();
+      $timelog->hours = $request->friday_hours;
+      $timelog->description = $request->friday_description;
+      $timelog->save();
+    }
 
     $index = 0;
     $newTaskNames = Input::get('newTaskName');
@@ -128,7 +148,7 @@ class ReportsController extends Controller
         }
       }
     }
-    
+
     // beging teammate evaluation section
     $counter = 0;
     $teammates = User::getGroupmates(Auth::user()->id);
