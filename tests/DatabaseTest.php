@@ -12,6 +12,15 @@ class DatabaseTest extends TestCase
 
     public function testIndividualReportIsPutIntoTable()
     {
+        DB::table('users')->insert([
+            'name' => 'Student',
+            'email' => 'student',
+            'password' => bcrypt('password'),
+            'role' => 'Student',
+            'remember_token' => str_random(10),
+            'course_id' => 1,
+            'group_id' => 1
+        ]);
         $course = Course::where('id', '=', 1)->first();
         $course->reports_available = 1;
         $course->save();
@@ -87,8 +96,16 @@ class DatabaseTest extends TestCase
 
     public function testTeamReportIsPutIntoTable()
     {
-        $user = User::where('email', '=', 'student')->first();
-        $course = $user->course();
+        DB::table('users')->insert([
+            'name' => 'Student',
+            'email' => 'student',
+            'password' => bcrypt('password'),
+            'role' => 'Student',
+            'remember_token' => str_random(10),
+            'course_id' => 1,
+            'group_id' => 1
+        ]);
+        $course = Course::where('id', '=', 1)->first();
         $course->reports_available = 1;
         $course->save();
         $easiest_understand = 'easiest understand';

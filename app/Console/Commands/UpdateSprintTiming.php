@@ -62,6 +62,8 @@ class UpdateSprintTiming extends Command
               {
                   $course->next_sprint_end = new Carbon('next Friday');
               }
+              elseif($course->last_sprint_end == Carbon::today()) //running again on a sprint day (shouldn't happen if people mind their business)
+                  ;//do nothing
               else //not the right day
                   $course->reports_available = 0;
 

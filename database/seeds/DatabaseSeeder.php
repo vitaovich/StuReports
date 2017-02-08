@@ -25,18 +25,6 @@ class DatabaseSeeder extends Seeder
           'role' => 'Instructor',
           'remember_token' => str_random(10)
       ]);
-      factory(App\Course::class, 10)->create();
-      factory(App\Project_group::class, 10)->create();
-      factory(App\User::class, 20)->create();
-      DB::table('users')->insert([
-          'name' => 'Student',
-          'email' => 'student',
-          'password' => bcrypt('password'),
-          'role' => 'Student',
-          'remember_token' => str_random(10),
-          'course_id' => 1,
-          'group_id' => 1
-      ]);
       factory(App\Course::class, 2)->states('active')->create();
       factory(App\Course::class, 10)->create();
       factory(App\Project_group::class, 10)->create();
@@ -63,6 +51,7 @@ class DatabaseSeeder extends Seeder
           'role' => 'Instructor',
           'remember_token' => str_random(10)
       ]);
+    }
 
 	public function seedUsers()
 	{
