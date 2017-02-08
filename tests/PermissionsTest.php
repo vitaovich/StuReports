@@ -13,15 +13,6 @@ class PermissionsTest extends TestCase
 
     public function testStudentPermissions()
     {
-        DB::table('users')->insert([
-            'name' => 'Student',
-            'email' => 'student',
-            'password' => bcrypt('password'),
-            'role' => 'Student',
-            'remember_token' => str_random(10),
-            'course_id' => 1,
-            'group_id' => 1
-        ]);
         $this->visit('/')
              ->click('Login')
              ->type('student', 'email')

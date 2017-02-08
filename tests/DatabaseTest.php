@@ -12,15 +12,14 @@ class DatabaseTest extends TestCase
 
     public function testIndividualReportIsPutIntoTable()
     {
-        DB::table('users')->insert([
-            'name' => 'Student',
-            'email' => 'student',
-            'password' => bcrypt('password'),
-            'role' => 'Student',
-            'remember_token' => str_random(10),
-            'course_id' => 1,
-            'group_id' => 1
-        ]);
+        $student = new User;
+        $student->name = 'Test';
+        $student->email = 'test@test.com';
+        $student->password = bcrypt('password');
+        $student->role = 'Student';
+        $student->course_id = 1;
+        $student->group_id = 1;
+        $student->save();
         $course = Course::where('id', '=', 1)->first();
         $course->reports_available = 1;
         $course->save();
@@ -40,7 +39,7 @@ class DatabaseTest extends TestCase
         $friday_description = "friday";
         $this->visit('/')
              ->click('Login')
-             ->type('student', 'email')
+             ->type('test@test.com', 'email')
              ->type('password', 'password')
              ->press('Login')
              ->click('Submit Individual Report')
@@ -96,15 +95,14 @@ class DatabaseTest extends TestCase
 
     public function testTeamReportIsPutIntoTable()
     {
-        DB::table('users')->insert([
-            'name' => 'Student',
-            'email' => 'student',
-            'password' => bcrypt('password'),
-            'role' => 'Student',
-            'remember_token' => str_random(10),
-            'course_id' => 1,
-            'group_id' => 1
-        ]);
+        $student = new User;
+        $student->name = 'Test';
+        $student->email = 'test@test.com';
+        $student->password = bcrypt('password');
+        $student->role = 'Student';
+        $student->course_id = 1;
+        $student->group_id = 1;
+        $student->save();
         $course = Course::where('id', '=', 1)->first();
         $course->reports_available = 1;
         $course->save();
@@ -122,7 +120,7 @@ class DatabaseTest extends TestCase
 
         $this->visit('/')
              ->click('Login')
-             ->type('student', 'email')
+             ->type('test@test.com', 'email')
              ->type('password', 'password')
              ->press('Login')
              ->click('Submit Team Report')
