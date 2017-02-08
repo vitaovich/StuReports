@@ -71,7 +71,7 @@
                 // TODO only one radio button in total is selectable
                 $counter = 0;
                 $teammateCounter = 0;
-                $teammates = App\User::getGroupmates(Auth::user()->id);
+                $teammates = App\User::getGroupmates(Auth::user()->group_id);
              ?>
             @foreach ($priorReports as $priorReport)
             <?php if($counter == 0)
