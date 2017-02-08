@@ -20,7 +20,7 @@ class UpdateSprintTiming extends Command
      *
      * @var string
      */
-    protected $description = 'Update Sprint start and end in classes';
+    protected $description = 'Update sprint start and end in classes';
 
     /**
      * Create a new command instance.
@@ -51,6 +51,7 @@ class UpdateSprintTiming extends Command
               {
                   $course->reports_available = 1;
                   $course->last_sprint_end = $sprint_end;
+                  $course->sprint++;
                   //if this sprint didn't end on Friday, move next sprint end to the nearest Friday
                   if((new Carbon($sprint_end))->dayOfWeek != 6)
                       $course->next_sprint_end = (new Carbon($sprint_end))->addDays(21 - $course->sprint_length); //the Friday afterward
