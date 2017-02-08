@@ -13,7 +13,7 @@ class User extends Authenticatable
    * @var array
    */
   protected $fillable = [
-      'name', 'email', 'password', 'Role',
+      'name', 'email', 'password', 'role', 'group_id', 'course_id',
   ];
 
   /**
@@ -80,11 +80,12 @@ class User extends Authenticatable
 		return $this->hasMany('App\Gradebook', 'student_id');
 	}
 
-  public static function getGroupmates($user)
+  public static function getGroupmates($userGroupID) // need to account for multiple classes
   {
     // This class doesn't extend model, meaning I can't use some of the query builder
     // tools provided by Laravel (such as orWhere) so the view has to (inelegantly) take care
     // of filtering out the current user from this collection.
-    return User::where('group_id', '=', $user['group_id'])->get();
+    return User::where('group_id', '=', $userGroupID)->get();
+    // return User::where('group_id', '=', $user['group_id'])->get();
   }
 }
