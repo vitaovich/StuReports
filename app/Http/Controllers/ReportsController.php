@@ -7,6 +7,9 @@ use App\IndividualReport;
 use App\Task;
 use App\TaskReport;
 use App\TeamReport;
+use App\Project_group;
+use App\Member_evaluation;
+use App\Task_evaluation;
 use Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Input;
@@ -167,5 +170,14 @@ class ReportsController extends Controller
       }
     }
     return view('home');
+  }
+  
+  public function getTeamReport(Request $request)
+  {
+	  $group = $request->group_id;
+	  $sprint = $request->sprint;
+	  $team_members = Project_group::findOrFail($group)->students;
+	  //$time_logs = 
+	  return view('team_report', compact('group','sprint', 'team_members'));
   }
 }
