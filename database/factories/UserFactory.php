@@ -24,3 +24,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'course_id' => 1
     ];
 });
+
+$factory->state(App\User::class, 'unassigned', function (Faker\Generator $faker) {
+    return [
+        'group_id' => null,
+    ];
+});
