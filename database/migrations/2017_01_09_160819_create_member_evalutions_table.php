@@ -19,7 +19,7 @@ class CreateMemberEvalutionsTable extends Migration
             $table->unsignedInteger('individual_report_id');
             $table->string('concur_hours');
             $table->string('performing');
-            $table->string('comments');
+            $table->string('comments')->nullable();
             $table->timestamps();
 
             $table->foreign('individual_report_id')->references('id')->on('individual_reports');

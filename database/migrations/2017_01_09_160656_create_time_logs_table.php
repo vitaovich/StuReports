@@ -18,7 +18,7 @@ class CreateTimeLogsTable extends Migration
             $table->unsignedInteger('individual_report_id');
             $table->date('day');
             $table->float('hours');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
 
             $table->foreign('individual_report_id')->references('id')->on('individual_reports');

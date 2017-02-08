@@ -12,13 +12,14 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-
+    @yield('styles')
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    @yield('scripts')
 </head>
 <body>
     <div id="app">

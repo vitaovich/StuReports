@@ -10,6 +10,7 @@ use App\TeamReport;
 use App\Project_group;
 use App\Member_evaluation;
 use App\Task_evaluation;
+use App\User;
 use Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Input;
@@ -55,55 +56,75 @@ class ReportsController extends Controller
 
     $reportID = $report->id;
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(6);
-    $timelog->hours = $request->saturday_hours;
-    $timelog->description = $request->saturday_description;
-    $timelog->save();
+    if($request->saturday_hours > 0 || $request->saturday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(6);
+      $timelog->hours = $request->saturday_hours;
+      $timelog->description = $request->saturday_description;
+      $timelog->save();
+    }
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(5);
-    $timelog->hours = $request->sunday_hours;
-    $timelog->description = $request->sunday_description;
-    $timelog->save();
+    if($request->sunday_hours > 0 || $request->sunday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(5);
+      $timelog->hours = $request->sunday_hours;
+      $timelog->description = $request->sunday_description;
+      $timelog->save();
+    }
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(4);
-    $timelog->hours = $request->monday_hours;
-    $timelog->description = $request->monday_description;
-    $timelog->save();
+    if($request->monday_hours > 0 || $request->monday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(4);
+      $timelog->hours = $request->monday_hours;
+      $timelog->description = $request->monday_description;
+      $timelog->save();
+    }
 
+    if($request->tuesday_hours > 0 || $request->tuesday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(3);
+      $timelog->hours = $request->tuesday_hours;
+      $timelog->description = $request->tuesday_description;
+      $timelog->save();
+    }
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(3);
-    $timelog->hours = $request->tuesday_hours;
-    $timelog->description = $request->tuesday_description;
-    $timelog->save();
+    if($request->wednesday_hours > 0 || $request->wednesday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(2);
+      $timelog->hours = $request->wednesday_hours;
+      $timelog->description = $request->wednesday_description;
+      $timelog->save();
+    }
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(2);
-    $timelog->hours = $request->wednesday_hours;
-    $timelog->description = $request->wednesday_description;
-    $timelog->save();
+    if($request->thursday_hours > 0 || $request->thursday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today()->subDays(1);
+      $timelog->hours = $request->thursday_hours;
+      $timelog->description = $request->thursday_description;
+      $timelog->save();
+    }
 
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today()->subDays(1);
-    $timelog->hours = $request->thursday_hours;
-    $timelog->description = $request->thursday_description;
-    $timelog->save();
-
-    $timelog = new IndividualTimeLog;
-    $timelog->individual_report_id = $reportID;
-    $timelog->day = Carbon::today();
-    $timelog->hours = $request->friday_hours;
-    $timelog->description = $request->friday_description;
-    $timelog->save();
+    if($request->friday_hours > 0 || $request->friday_description)
+    {
+      $timelog = new IndividualTimeLog;
+      $timelog->individual_report_id = $reportID;
+      $timelog->day = Carbon::today();
+      $timelog->hours = $request->friday_hours;
+      $timelog->description = $request->friday_description;
+      $timelog->save();
+    }
 
     $index = 0;
     $newTaskNames = Input::get('newTaskName');
@@ -128,13 +149,53 @@ class ReportsController extends Controller
       }
     }
 
-    $index = 0;
+    // beging teammate evaluation section
+    $counter = 0;
+    $teammates = User::getGroupmates(Auth::user()->id);
+    if((is_array($teammates) && count($teammates) > 0) || (is_object($teammates) && !is_null($teammates)))
+    {
+      foreach($teammates as $teammate)
+      {
+        if($teammate->id != Auth::user()->id)
+        {
+          // now we are looking at each teammate's section.
+          $taskConcurs = Input::get("teammateTaskConcur");
+          $teammateExplains = Input::get("teammateTaskExplain");
+          $teammateTasks = Task::getTasks($teammate->id);
+          $taskCounter = 0;
+          if((is_array($teammateTasks) && count($teammateTasks) > 0) || (is_object($teammateTasks) && !is_null($teammateTasks)))
+          {
+            foreach($teammateTasks as $teammateTask)
+            {
+                $taskEvaluation = new Task_evaluation;
+                $taskEvaluation->task_id = $teammateTask->id;
+                $taskEvaluation->individual_report_id = $report->id;
+                $taskEvaluation->concur = $taskConcurs[$teammate->id][$taskCounter]; // problem line
+                $taskEvaluation->comments = $teammateExplains[$teammate->id][$taskCounter];
+                $taskEvaluation->save();
+                $taskCounter++;
+            }
+          }
+          $memberEvaluation = new Member_evaluation;
+          $memberEvaluation->individual_report_id = $report->id;
+          $memberEvaluation->concur_hours = "yes"; // TODO fix this
+          $performing = Input::get("teammateExpectations");
+          $memberEvaluation->performing = $performing[$teammate->id];
+          $comments = Input::get("teammateExpectationsExplanation");
+          $memberEvaluation->comments = $comments[$teammate->id];
+          $memberEvaluation->student_id = $teammate->id;
+          $memberEvaluation->save();
+        }
+      }
+    }
 
+    $index = 0;
     if((is_array($priorTasks) && count($priorTasks) > 0) || (is_object($priorTasks) && !is_null($priorTasks)))
     {
       $priorTaskProgress = Input::get('latestProgress');
       $priorTaskStatuses = Input::get('taskStatus');
       $estimatedSprints = Input::get('estimatedSprints');
+      $reassignments = Input::get('teammateReassign');
       foreach($priorTasks as $priorTask)
       {
         $taskReport = new TaskReport;
@@ -143,6 +204,7 @@ class ReportsController extends Controller
         $taskReport->individual_report_id = $reportID;
         $taskReport->sprint = 1; // fix this
         $radio = $priorTaskStatuses[$index];
+        $priorTaskEntry = Task::find($priorTask->id);//->first();
 
         if($radio == 'continuing')
         {
@@ -152,8 +214,9 @@ class ReportsController extends Controller
 
         elseif($radio == 'reassigned')
         {
-          $taskReport->remaining_sprints = 0;
-          $taskReport->reassigned = 1;
+          $taskReport->reassigned = $reassignments[$index];
+          $taskReport->remaining_sprints = $estimatedSprints[$index];
+          $priorTaskEntry->student_id = $reassignments[$index];
         }
 
         else
@@ -163,21 +226,15 @@ class ReportsController extends Controller
         }
         $taskReport->save();
         $priorTaskStatus = $radio;
-        $priorTaskEntry = Task::find($priorTask->id);//->first();
-        $priorTaskEntry->status = $radio;
+        if($radio == 'reassigned')
+        {
+          $priorTaskStatus = 'continuing';
+        }
+        $priorTaskEntry->status = $priorTaskStatus;
         $priorTaskEntry->update();
         $index++;
       }
     }
     return view('home');
-  }
-  
-  public function getTeamReport(Request $request)
-  {
-	  $group = $request->group_id;
-	  $sprint = $request->sprint;
-	  $team_members = Project_group::findOrFail($group)->students;
-	  //$time_logs = 
-	  return view('team_report', compact('group','sprint', 'team_members'));
   }
 }

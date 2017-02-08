@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
           'remember_token' => str_random(10)
       ]);
       DB::table('users')->insert([
-          'name' => 'Stu Steiner',
+          'name' => 'fname lname',
           'email' => 'instructor',
           'password' => bcrypt('password'),
           'role' => 'Instructor',
@@ -37,7 +37,32 @@ class DatabaseSeeder extends Seeder
           'course_id' => 1,
           'group_id' => 1
       ]);
-    }
+      factory(App\Course::class, 2)->states('active')->create();
+      factory(App\Course::class, 10)->create();
+      factory(App\Project_group::class, 10)->create();
+      factory(App\User::class, 20)->create();
+      factory(App\User::class, 30)->states('unassigned')->create();
+      DB::table('users')->insert([
+          'name' => 'Tom Capaul',
+          'email' => 'tom',
+          'password' => bcrypt('password'),
+          'role' => 'Instructor',
+          'remember_token' => str_random(10)
+      ]);
+      DB::table('users')->insert([
+          'name' => 'Chris Peters',
+          'email' => 'chris',
+          'password' => bcrypt('password'),
+          'role' => 'Instructor',
+          'remember_token' => str_random(10)
+      ]);
+      DB::table('users')->insert([
+          'name' => 'Stu Steiner',
+          'email' => 'stu',
+          'password' => bcrypt('password'),
+          'role' => 'Instructor',
+          'remember_token' => str_random(10)
+      ]);
 
 	public function seedUsers()
 	{

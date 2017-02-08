@@ -18,7 +18,7 @@ class CreateTaskEvaluationsTable extends Migration
             $table->unsignedInteger('task_id');
             $table->unsignedInteger('individual_report_id');
             $table->string('concur');
-            $table->string('comments');
+            $table->string('comments')->nullable();
             $table->timestamps();
 
             $table->foreign('task_id')->references('id')->on('tasks');
