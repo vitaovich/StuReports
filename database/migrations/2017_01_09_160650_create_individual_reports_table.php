@@ -15,7 +15,7 @@ class CreateIndividualReportsTable extends Migration
     {
         Schema::create('individual_reports', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('private_comments');
+            $table->string('private_comments')->nullable();
             $table->unsignedInteger('student_id');
             $table->integer('sprint');
             $table->timestamps();
