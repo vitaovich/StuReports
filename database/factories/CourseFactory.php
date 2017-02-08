@@ -10,3 +10,9 @@ $factory->define(App\Course::class, function (Faker\Generator $faker) {
       'sprint_length' => $faker->numberBetween($min = 1, $max = 4)
   ];
 });
+
+$factory->state(App\Course::class, 'active', function (Faker\Generator $faker) {
+    return [
+        'active' => 1,
+    ];
+});
