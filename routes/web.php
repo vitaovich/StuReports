@@ -25,6 +25,12 @@ Route::get('/users/create', function () {
     return view('Users.create');
 });
 
+Route::get('/users/import', function () {
+    return view('Users.import');
+});
+
+Route::put('/users/import', 'CSVController@handleFile');
+
 Route::get('/classes/create', function () {
     return view('Class.create');
 });
@@ -32,6 +38,8 @@ Route::get('/classes/create', function () {
 Route::get('/student_individual', function() {
 	return view('student_individual');
 });
+
+Route::get('/team_report/{group_id}/{sprint}', 'ReportsController@getTeamReport');
 
 Route::resource('course', 'CourseController');
 
