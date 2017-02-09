@@ -10,9 +10,22 @@
 			<div class="panel-body">
 				<h3 class="bg-primary">Members</h3>
 				@foreach($team_members as $team_member)
-					<br />{{$team_member->name}}
+					{{$team_member->name}}
+					@if(!($reports->contains('student_id',$team_member->id)))
+						<p>Did Not Submit a Report</p>
+					@else
+						<br />
+					@endif
 				@endforeach
 				<h3 class="bg-primary">Logged Hours</h3>
+				@if(!empty($timeLogs))
+					@foreach($timeLogs as $timeLog)
+						<h5 class="bg-primary">{{$team_members[$reports[$timeLog[0]->individual_report_id]->student_id]->name}}</h5>
+						@foreach($timeLog as $log)
+							<p>{{$log['hours']}} {{$log['description']}}</p>
+						@endforeach
+					@endforeach
+				@endif
 				<h3 class="bg-primary">Tasks</h3>
 				
 				<h3 class="bg-primary">Team Report</h3>
