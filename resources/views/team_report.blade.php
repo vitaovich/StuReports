@@ -18,12 +18,35 @@
 					@endif
 				@endforeach
 				<h3 class="bg-primary">Logged Hours</h3>
-				@if(!empty($timeLogs))
+				@if( ! empty($timeLogs))
 					@foreach($timeLogs as $timeLog)
 						<h5 class="bg-primary">{{$team_members[$reports[$timeLog[0]->individual_report_id]->student_id]->name}}</h5>
+						<table>
+						<tr>
+							<th>
+								<u>Date</u>
+							</th>
+							<th>
+								<u>Hours</u>
+							</th>
+							<th>
+								<u>Description</u>
+							</th>
+						</tr>
 						@foreach($timeLog as $log)
-							<p>{{$log['hours']}} {{$log['description']}}</p>
+							<tr>
+								<td>
+									{{$log['day']}}
+								</td>
+								<td>
+									{{$log['hours']}}
+								</td>
+								<td>
+									{{$log['description']}}
+								</td>
+							</tr>
 						@endforeach
+						</table>
 					@endforeach
 				@endif
 				<h3 class="bg-primary">Tasks</h3>
@@ -51,6 +74,9 @@
 				@endif
 				@if (Auth::check() && Auth::user()->isInstructor())
 					<h3 class="bg-primary">Private Comments</h3>
+					@foreach($reports as $report)
+						<p><b><u>{{$team_members[$report->student_id]->name}}:</u></b> {{$report->private_comments}}</p>
+					@endforeach
 				@endif
 			</div>
 		@else
