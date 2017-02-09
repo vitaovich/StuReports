@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\UpdateSprintTiming::class
+        Commands\UpdateSprintTiming::class,
+        Commands\DebugSprint::class
     ];
 
     /**
