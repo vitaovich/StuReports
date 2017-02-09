@@ -28,6 +28,11 @@ class Project_group extends Model
 	
 	public function tasks()
 	{
-		return $this->hasMany('App\Task', 'task_id');
+		return $this->hasMany('App\Task', 'group_id');
+	}
+	
+	public function individualReports()
+	{
+		return $this->hasManyThrough('App\IndividualReport', 'App\User', 'group_id', 'student_id');
 	}
 }
