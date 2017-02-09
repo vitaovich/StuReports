@@ -39,7 +39,7 @@ Route::get('/student_individual', function() {
 	return view('student_individual');
 });
 
-Route::get('/team_report/{group_id}/{sprint}', 'ReportsController@getTeamReport');
+Route::get('/aggragated_report/group/{group_id}/sprint/{sprint}', 'TeamReportsController@getTeamReport');
 
 Route::resource('course', 'CourseController');
 
