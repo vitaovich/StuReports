@@ -42,11 +42,12 @@ class DebugSprint extends Command
         {
             foreach($courses as $course)
             {
-              if($course->active == 1)
-              {
-                  $course->reports_available = 1;
-                  $course->save();
-              }
+                if($course->active == 1)
+                    $course->reports_available = 1;
+                else //$course->active == 0
+                    $course->reports_available = 0;
+
+                $course->save();
             }
         });
     }
