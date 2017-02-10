@@ -35,13 +35,20 @@ class TeamReportsController extends Controller
 			array_push($timeLogs, $timeLog);
 		}
 		
-		$taskReports = [];
-		foreach($reports as $report)
+		$tasks = [];
+		foreach($team_members as $member)
 		{
-			$taskReport = IndividualReport::findOrFail($report->id)->taskReports;
-			array_push($taskReports, $taskReport);
+			$member_tasks = User::findOrFail($member->id)->tasks;
+			foreach($member_tasks as $task)
+			{
+				$task_and_Reports = [];
+				array_push($task_and_Reports, $task);
+				$taskReports = Task::findOrFail($task->id)->taskReports->where('sprint', '<=', $sprint);
+				array_push($task_and_Reports, $taskReports);
+				array_push($tasks, $task_and_Reports);
+			}
 		}
 		
-		return view('team_report', compact('group_id', 'sprint', 'team_members', 'team_report', 'reports', 'timeLogs', 'taskReports'));
+		return view('team_report', compact('group_id', 'sprint', 'team_members', 'team_report', 'reports', 'timeLogs', 'tasks'));
 	}
 }

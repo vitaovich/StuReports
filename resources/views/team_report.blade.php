@@ -50,7 +50,19 @@
 					@endforeach
 				@endif
 				<h3 class="bg-primary">Tasks</h3>
-				
+				@if ( ! empty($tasks))
+					@foreach($team_members as $member)
+						<h5 class="bg-primary">{{$member->name}}</h5>
+						@foreach($tasks as $task)
+							@if($task[0]->student_id == $member->id)
+								{{$task[0]->task_name}}<br />
+								@foreach($task[1] as $taskReport)
+									{{$taskReport}}<br />
+								@endforeach
+							@endif
+						@endforeach
+					@endforeach
+				@endif
 				<h3 class="bg-primary">Team Report</h3>
 				@if ( ! empty($team_report))
 					<h5 class="bg-primary">Understand</h5>
