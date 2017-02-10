@@ -24,22 +24,24 @@ class TeamReportsController extends Controller
 		$sprint = $request->sprint;
 		$team_members = Project_group::findOrFail($group_id)->students;
 		$team_report = TeamReport::where('group_id',$group_id)->where('sprint', $sprint)->first();
-		
 		$reports = Project_group::findOrFail($group_id)->individualReports->where('sprint',$sprint);
+		$team_members = $team_members->keyBy('id');
+		$reports = $reports->keyBy('id');
 		
 		$timeLogs = [];
 		foreach($reports as $report)
 		{
-			$tl = IndividualReport::findOrFail($report->id)->timeLogs;
-			array_push($timeLogs, $tl);
+			$timeLog = IndividualReport::findOrFail($report->id)->timeLogs;
+			array_push($timeLogs, $timeLog);
 		}
 		
 		$taskReports = [];
 		foreach($reports as $report)
 		{
-			$tr = IndividualReport::findOrFail($report->id)->taskReports;
-			array_push($taskReports, $tr);
+			$taskReport = IndividualReport::findOrFail($report->id)->taskReports;
+			array_push($taskReports, $taskReport);
 		}
+		
 		return view('team_report', compact('group_id', 'sprint', 'team_members', 'team_report', 'reports', 'timeLogs', 'taskReports'));
 	}
 }
