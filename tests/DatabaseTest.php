@@ -5,7 +5,6 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\User;
 use App\Course;
-use App\Project_group;
 
 class DatabaseTest extends TestCase
 {
@@ -18,8 +17,12 @@ class DatabaseTest extends TestCase
         $student->email = 'test@test.com';
         $student->password = bcrypt('password');
         $student->role = 'Student';
+        $student->course_id = 1;
+        $student->group_id = 1;
         $student->save();
-
+        $course = Course::where('id', '=', 1)->first();
+        $course->reports_available = 1;
+        $course->save();
         $saturday_hours = '' . (rand(1, 96) * .25);
         $sunday_hours = '' . (rand(1, 96) * .25);
         $monday_hours = '' . (rand(1, 96) * .25);
@@ -97,41 +100,12 @@ class DatabaseTest extends TestCase
         $student->email = 'test@test.com';
         $student->password = bcrypt('password');
         $student->role = 'Student';
+        $student->course_id = 1;
+        $student->group_id = 1;
         $student->save();
-        $student_id = $student->getAttribute('id');
-
-        //uncomment once functionality is added in ReportsController
-        //$instructor = new User;
-        //$instructor->name = 'Instructor';
-        //$instructor->email = 'instructor@instructor.com';
-        //$instructor->password = bcrypt('password');
-        //$instructor->role = 'Instructor';
-        //$instructor->save();
-        //$instructor_id = $instructor->getAttribute('id');
-
-        //uncomment once functionality is added in ReportsController
-        //$course = new Course;
-        //$course->teacher_id = $instructor_id;
-        //$course->year = 2017;
-        //$course->quarter = 'Fall';
-        //$course->course_number = 488;
-        //$course->sprint_length = 7;
-        //$course->save();
-        //$course_id = $course->getAttribute('id');
-        //$student->course_id = $course_id;
-        $student->course_id = 1; //comment once functionality is added in ReportsController
-        $student->save();
-
-        //uncomment once functionality is added in ReportsController
-        //$project_group = new Project_group;
-        //$project_group->course_id = $course_id;
-        //$project_group->project = "Test";
-        //$project_group->save();
-        //$project_id = $project_group->getAttribute('id');
-        //$student->group_id = $project_id;
-        $student->group_id = 1; //comment once functionality is added in ReportsController
-        $student->save();
-
+        $course = Course::where('id', '=', 1)->first();
+        $course->reports_available = 1;
+        $course->save();
         $easiest_understand = 'easiest understand';
         $hardest_understand = 'hardest_understand';
         $easiest_approach = 'easiest_approach';
@@ -163,8 +137,7 @@ class DatabaseTest extends TestCase
              ->type($comments, 'comments')
              ->press('Submit')
              ->seeInDatabase('team_reports', [
-               //'group_id' => $project_id, //uncomment once functionality is added in ReportsController
-               'group_id' => 1, //comment once functionality is added in ReportsController
+               'group_id' => 1,
                'easiest_understand' => $easiest_understand,
                'hardest_understand' => $hardest_understand,
                'easiest_approach' => $easiest_approach,
