@@ -27,14 +27,21 @@ class TeamReportsController extends Controller
 		$reports = Project_group::findOrFail($group_id)->individualReports->where('sprint',$sprint);
 		$team_members = $team_members->keyBy('id');
 		$reports = $reports->keyBy('id');
-		
 		$timeLogs = [];
 		foreach($reports as $report)
 		{
 			$timeLog = IndividualReport::findOrFail($report->id)->timeLogs;
 			array_push($timeLogs, $timeLog);
 		}
-		
+		$taskEvaluations = [];
+		foreach($reports as $report)
+		{
+			$taskEvaluation = IndividualReport::findOrFail($report->id)->taskEvaluations;
+			foreach($taskEvaluation as $taskEval)
+			{
+				array_push($taskEvaluations, $taskEval);
+			}
+		}
 		$tasks = [];
 		foreach($team_members as $member)
 		{
@@ -48,7 +55,12 @@ class TeamReportsController extends Controller
 				array_push($tasks, $task_and_Reports);
 			}
 		}
-		
-		return view('team_report', compact('group_id', 'sprint', 'team_members', 'team_report', 'reports', 'timeLogs', 'tasks'));
+		$memberEvaluations = [];
+		foreach($reports as $report)
+		{
+			$evaluations = IndividualReport::findOrFail($report->id)->memberEvaluations;
+			array_push($memberEvaluations, $evaluations);
+		}
+		return view('team_report', compact('group_id', 'sprint', 'team_members', 'team_report', 'reports', 'timeLogs', 'tasks', 'memberEvaluations', 'taskEvaluations'));
 	}
 }

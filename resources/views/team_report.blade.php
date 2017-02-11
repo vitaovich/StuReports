@@ -53,21 +53,66 @@
 				@else
 					<p>No Time Logs For This Sprint</p>
 				@endif
-				@if (Auth::check() && Auth::user()->isInstructor())
-					<h2 class="bg-primary">Member Evaluations</h2>
-				@endif
 				<h2 class="bg-primary">Tasks</h2>
 				@if ( ! empty($tasks))
 					@foreach($team_members as $member)
 						<h4 class="bg-primary">{{$member->name}}</h4>
 						@foreach($tasks as $task)
 							@if($task[0]->student_id == $member->id)
+								<hr>
 								<b><u><h4>{{$task[0]->task_name}}</h4></u>
 								Original description:</b> {{$task[0]->description}}<br />
 								@foreach($task[1] as $taskReport)
-									<b>Progess in sprint {{$taskReport->sprint}}:</b> {{$taskReport->latest_progress}}<br />
+									@if($taskReport->sprint == $sprint)
+										<b>Latest Progress: </b>
+									@else
+										<b>Progess in sprint {{$taskReport->sprint}}: </b>
+									@endif
+									{{$taskReport->latest_progress}}<br />
 								@endforeach
-							<br />
+								@if (Auth::check() && Auth::user()->isInstructor() && !empty($taskEvaluations))
+									<br />
+									<table border='1' width=65%>
+										<col align="left">
+										<col align="right">
+										<col align="right">
+										<tr>
+											<th>
+												<h4 class="bg-primary">Task Evaluations</h4>
+											</th>
+										</tr>
+										<tr>
+											<th>
+												Member Name
+											</th>
+											<th>
+												Concurs
+											</th>
+											<th>
+												Comments
+											</th>
+										</tr>
+									@foreach($taskEvaluations as $evaluation)
+										@if($evaluation->task_id == $task[0]->id)
+											<tr>
+												<td>
+													{{$team_members[$reports[$evaluation->individual_report_id]->student_id]->name}}:
+												</td>
+											@if($evaluation->concur == 'yes')
+												<td>Yes</td>
+											@elseif($evaluation->concur == 'no')
+												<td><b>No</b></td>
+											@else
+												<td>Maybe</td>
+											@endif
+												<td>
+													{{$evaluation->comments}}
+												</td>
+											</tr>
+										@endif
+									@endforeach
+									</table>
+								@endif
 							@endif
 						@endforeach
 					@endforeach
@@ -75,7 +120,7 @@
 					<p>No Tasks For This Group</p>
 				@endif
 				@if (Auth::check() && Auth::user()->isInstructor())
-					<h2 class="bg-primary">Task Evaluations</h2>
+					<h2 class="bg-primary">Member Evaluations</h2>
 				@endif
 				<h2 class="bg-primary">Team Report</h2>
 				@if ( ! empty($team_report))
