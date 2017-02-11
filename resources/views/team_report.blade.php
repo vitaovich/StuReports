@@ -121,6 +121,47 @@
 				@endif
 				@if (Auth::check() && Auth::user()->isInstructor())
 					<h2 class="bg-primary">Member Evaluations</h2>
+					@foreach($team_members as $evaluated)
+						<h4 class="bg-primary">{{$evaluated->name}}</h4>
+						<table border='1' width=65%>
+						<col align="left">
+						<col align="left">
+						<col align="right">
+						<col align="right">
+						<tr>
+							<th>
+								Evaluated By
+							</th>
+							<th>
+								Concur Hours
+							</th>
+							<th>
+								Performing
+							</th>
+							<th>
+								Comments
+							</th>
+						</tr>
+						@foreach($memberEvaluations as $evaluation)
+							@if($evaluation->student_id == $evaluated->id)
+								<tr>
+									<td>
+										{{ $team_members[$reports[$evaluation->individual_report_id]->student_id]->name }}
+									</td>
+									<td>
+										{{$evaluation->concur_hours}}
+									</td>
+									<td>
+										{{$evaluation->performing}}
+									</td>
+									<td>
+										{{$evaluation->comments}}
+									</td>
+								</tr>
+							@endif
+						@endforeach
+						</table>
+					@endforeach
 				@endif
 				<h2 class="bg-primary">Team Report</h2>
 				@if ( ! empty($team_report))

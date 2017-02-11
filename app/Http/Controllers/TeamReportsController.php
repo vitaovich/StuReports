@@ -59,7 +59,10 @@ class TeamReportsController extends Controller
 		foreach($reports as $report)
 		{
 			$evaluations = IndividualReport::findOrFail($report->id)->memberEvaluations;
-			array_push($memberEvaluations, $evaluations);
+			foreach($evaluations as $eval)
+			{
+				array_push($memberEvaluations, $eval);
+			}
 		}
 		return view('team_report', compact('group_id', 'sprint', 'team_members', 'team_report', 'reports', 'timeLogs', 'tasks', 'memberEvaluations', 'taskEvaluations'));
 	}
