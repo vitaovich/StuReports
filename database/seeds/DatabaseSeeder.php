@@ -25,19 +25,30 @@ class DatabaseSeeder extends Seeder
           'role' => 'Instructor',
           'remember_token' => str_random(10)
       ]);
+      DB::table('courses')->insert([
+          'teacher_id' => 1,
+          'year' => 0,
+          'quarter' => 'None',
+          'course_number' => 0,
+          'sprint_length'=> 0,
+      ]);
+      DB::table('project_groups')->insert([
+          'course_id' => 1,
+          'project' => 'Empty project.',
+      ]);
       factory(App\Course::class, 2)->states('active')->create();
+      factory(App\Course::class, 10)->create();
+      factory(App\Project_group::class, 10)->create();
+      factory(App\User::class, 20)->create();
+      factory(App\User::class, 30)->states('unassigned')->create();
       DB::table('users')->insert([
           'name' => 'Student',
           'email' => 'student',
           'password' => bcrypt('password'),
           'role' => 'Student',
           'remember_token' => str_random(10),
-          'course_id' => 1
+          'course_id' => 2
       ]);
-      factory(App\Course::class, 10)->create();
-      factory(App\Project_group::class, 10)->create();
-      factory(App\User::class, 20)->create();
-      factory(App\User::class, 30)->states('unassigned')->create();
       DB::table('users')->insert([
           'name' => 'Tom Capaul',
           'email' => 'tom',
@@ -91,7 +102,7 @@ class DatabaseSeeder extends Seeder
 		  'id' => 30001,
           'name' => 'Joe Smith',
           'email' => 'SmithLord@excite.com',
-          'password' => bcrypt('smith1234'),
+          'password' => bcvirypt('smith1234'),
           'role' => 'Student',
           'remember_token' => str_random(10)
       ]);

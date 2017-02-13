@@ -21,12 +21,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
         'group_id' => $faker->numberBetween($min = 1, $max = 10),
-        'course_id' => 1
+        'course_id' => 2
     ];
 });
 
 $factory->state(App\User::class, 'unassigned', function (Faker\Generator $faker) {
     return [
-        'group_id' => null,
+        'group_id' => 1,
     ];
 });

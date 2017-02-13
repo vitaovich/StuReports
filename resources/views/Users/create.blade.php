@@ -6,11 +6,10 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading">Dashboard</div>
+            <div class="panel-heading"><h1>Create User</h1></div>
 
             <div class="panel-body">
-              <form class="form-horizontal" method="POST" action="/api/users">
-                <input type="hidden" name="_method" value="PUT">
+              <form class="form-horizontal" method="POST" action="/users">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

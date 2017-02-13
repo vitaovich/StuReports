@@ -19,21 +19,11 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/users', 'UsersController@index');
-
-Route::get('/users/create', function () {
-    return view('Users.create');
-});
-
 Route::get('/users/import', function () {
     return view('Users.import');
 });
 
 Route::put('/users/import', 'CSVController@handleFile');
-
-Route::get('/classes/create', function () {
-    return view('Class.create');
-});
 
 Route::get('/student_individual', function() {
 	return view('student_individual');
@@ -42,6 +32,7 @@ Route::get('/student_individual', function() {
 Route::get('/aggregated_report/group/{group_id}/sprint/{sprint}', 'TeamReportsController@getTeamReport');
 
 Route::resource('course', 'CourseController');
+Route::resource('users', 'UsersController');
 
 /*
 / Still working on the POST route for the report submissions.
