@@ -18,6 +18,7 @@ class CreateIndividualReportsTable extends Migration
             $table->string('private_comments')->nullable();
             $table->unsignedInteger('student_id');
             $table->integer('sprint');
+			$table->float('total_hours');
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('users');
