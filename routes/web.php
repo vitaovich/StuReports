@@ -45,7 +45,7 @@ Route::post('submit_team_report', 'ReportsController@putTeamReport');
 //	return view('student_team');
 //});
 
-//uses AvailabilityController to check if it's a submission day (under construction)
+//uses AvailabilityController to check if it's a submission day
 Route::get('/student_team', 'AvailabilityController@getTeam');
 
 Route::post('submit_individual_report', 'ReportsController@putIndividualReport');
@@ -54,7 +54,7 @@ Route::post('submit_individual_report', 'ReportsController@putIndividualReport')
 //	return view('student_individual');
 //});
 
-//uses AvailabilityController to check if it's a submission day (under construction)
+//uses AvailabilityController to check if it's a submission day
 Route::get('/student_individual', 'AvailabilityController@getIndividual');
 
 Auth::routes();

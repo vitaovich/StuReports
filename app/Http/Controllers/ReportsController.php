@@ -35,6 +35,7 @@ class ReportsController extends Controller
     //TODO: the following two lines contain dummy data that needs to be changed
     $teamReport->sprint = 0;
     $teamReport->group_id = 1;
+    $teamReport->submitted_by = Auth::user()->id;
     $teamReport->save();
     return view('home');
   }
@@ -52,6 +53,7 @@ class ReportsController extends Controller
     $report->student_id = Auth::user()->id;
     $report->private_comments = $request->private_comments;
     $report->sprint = 1; // dummy value
+    $report->total_hours = $request->saturday_hours + $request->sunday_hours + $request->monday_hours + $request->tuesday_hours + $request->wednesday_hours + $request->thursday_hours + $request->friday_hours;
     $report->save();
 
     $reportID = $report->id;
