@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Course;
+use APP\User;
 use Auth;
 
 class HomeController extends Controller
@@ -34,7 +36,9 @@ class HomeController extends Controller
         }
         else
         {
-          return view('Home.Student.index');
+		  $course_assignments = Course::findOrFail(Auth::user()->course_id)->assignments;
+		  $submitted = User::findOrFail(Auth::user()->id)->assignments;
+          return view('Home.Student.index', compact('course_assignments','submitted'));
         }
     }
 }

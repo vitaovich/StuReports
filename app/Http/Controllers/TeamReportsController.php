@@ -18,6 +18,27 @@ use Carbon\Carbon;
 
 class TeamReportsController extends Controller
 {
+	public function getIndividualReport(Request $request)
+	{
+		$student = User::findOrFail($request->user_id);
+		$sprint = $request->sprint;
+		//$report = User::findOrFail($student->id)->individualReports->where('sprint', '<=', $sprint);
+		//echo $report;
+		//$timeLogs = IndividualReport::findOrFail($report->id)->timeLogs->where('sprint', '=', $sprint);
+		//echo $timeLogs;
+		$tasks = [];
+		$student_tasks = User::findOrFail($student->id)->tasks;
+		foreach($student_tasks as $task)
+		{
+			$task_and_Reports = [];
+			array_push($task_and_Reports, $task);
+			$taskReports = Task::findOrFail($task->id)->taskReports->where('sprint', '<=', $sprint);
+			array_push($task_and_Reports, $taskReports);
+			array_push($tasks, $task_and_Reports);
+		}
+		return view('individual_report',compact('student','sprint', 'tasks'));
+	}
+	
 	public function getTeamReport(Request $request)
 	{
 		$group_id = $request->group_id;
