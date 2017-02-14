@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
 		  'id' => 30001,
           'name' => 'Joe Smith',
           'email' => 'SmithLord@excite.com',
-          'password' => bcvirypt('smith1234'),
+          'password' => bcrypt('smith1234'),
           'role' => 'Student',
           'remember_token' => str_random(10)
       ]);

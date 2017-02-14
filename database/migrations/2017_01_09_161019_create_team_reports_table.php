@@ -27,11 +27,11 @@ class CreateTeamReportsTable extends Migration
             $table->string('client');
             $table->string('comments');
             $table->integer('sprint');
-			$table->integer('submitted_by');
+			      $table->unsignedInteger('submitted_by');
             $table->unsignedInteger('group_id');
             $table->timestamps();
             $table->foreign('group_id')->references('id')->on('project_groups');
-			$table->foreign('submitted_by')->references('id')->('users');
+			      $table->foreign('submitted_by')->references('id')->on('users');
         });
     }
 
