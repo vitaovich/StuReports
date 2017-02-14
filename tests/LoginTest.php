@@ -11,16 +11,16 @@ class LoginTest extends TestCase
 
     public function testGoodLoginWorks()
     {
-        $user = new User;
-        $user->name = 'Test';
-        $user->email = 'test@test.com';
-        $user->password = bcrypt('password');
-        $user->role = 'Student';
-        $user->save();
+        //$user = new User;
+        //$user->name = 'Test';
+        //$user->email = 'test@test.com';
+        //$user->password = bcrypt('password');
+        //$user->role = 'Student';
+        //$user->save();
         $this->visit('/')
              ->click('Login')
              ->seePageIs('/login')
-             ->type('test@test.com', 'email')
+             ->type('student', 'email')
              ->type('password', 'password')
              ->press('Login')
              ->seePageIs('/home')
