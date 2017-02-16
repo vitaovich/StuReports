@@ -36,9 +36,10 @@ class HomeController extends Controller
         }
         else
         {
-		  $course_assignments = Course::findOrFail(Auth::user()->course_id)->assignments;
+		  $report_assignments = Course::findOrFail(Auth::user()->course_id)->assignments->where('sprint', '!=', null)->sortBy('code')->groupBy('sprint');
+		  $course_assignments = Course::findOrFail(Auth::user()->course_id)->assignments->where('sprint', '==', null)->sortBy('close_assignment');
 		  $submitted = User::findOrFail(Auth::user()->id)->assignments;
-          return view('Home.Student.index', compact('course_assignments','submitted'));
+          return view('Home.Student.index', compact('report_assignments','submitted', 'course_assignments'));
         }
     }
 }
