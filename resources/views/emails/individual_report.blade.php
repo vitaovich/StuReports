@@ -1,11 +1,6 @@
-@extends('layouts.app')
-
-@section('content')
-
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
-		@if (Auth::check() && (Auth::user()->isStudent() || Auth::user()->isInstructor()))
 			<div class="panel-heading">
 				<h1 class="bg-primary">{{$student->name}}, Report for Sprint: {{$sprint}}</h1>
 			</div>
@@ -27,8 +22,6 @@
 						@endforeach
 					@endforeach
 			</div>
-		@endif
 		</div>
 	</div>
 </div>
-@endsection

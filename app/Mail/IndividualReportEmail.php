@@ -8,11 +8,11 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User;
 
-class IndividualReport extends Mailable
+class IndividualReportEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    private $user;
 
     /**
      * Create a new message instance.
@@ -41,10 +41,11 @@ class IndividualReport extends Mailable
             array_push($task_and_Reports, $taskReports);
             array_push($tasks, $task_and_Reports);
         }
-        return $this->view('individual_report', [
-            'student' => $this->user,
-            'sprint' => $this->user->course()->sprint,
-            'tasks' => $tasks
-        ]);
+        return $this->subject("Individual Report, " . $this->user->name)
+                    ->view('emails.individual_report', [
+                        'student' => $this->user,
+                        'sprint' => $this->user->course()->sprint,
+                        'tasks' => $tasks
+                    ]);
     }
 }

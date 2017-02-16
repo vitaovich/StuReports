@@ -4,17 +4,18 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\IndividualReport;
+use App\Mail\IndividualReportEmail;
+use App\Mail\TeamReportEmail;
 use App\User;
 
-class Test extends Command
+class EmailTest extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'test:test';
+    protected $signature = 'email:test';
 
     /**
      * The console command description.
@@ -40,6 +41,7 @@ class Test extends Command
      */
     public function handle()
     {
-        Mail::to('seth.riedel@gmail.com')->send(new IndividualReport(User::where('id', '=', '5')->first()));
+        Mail::to('seth.riedel@gmail.com')->send(new IndividualReportEmail(User::where('id', '=', '5')->first()));
+        Mail::to('seth.riedel@gmail.com')->send(new TeamReportEmail(User::where('id', '=', '5')->first()));
     }
 }
