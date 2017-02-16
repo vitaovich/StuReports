@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\UpdateSprintTiming::class,
-        Commands\DebugSprint::class
+        Commands\DebugSprint::class,
+        Commands\Test::class
     ];
 
     /**
