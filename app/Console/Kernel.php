@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\UpdateSprintTiming::class,
         Commands\DebugSprint::class,
-        Commands\EmailTest::class
+        Commands\EmailTest::class,
+        Commands\EmailSend::class
     ];
 
     /**
@@ -29,6 +30,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->command('sprint:update')->daily();
+        //uncomment once student emails are always real emails
+        //$schedule->command('email:send')->daily();
+
     }
 
     /**

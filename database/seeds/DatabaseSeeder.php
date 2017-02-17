@@ -47,6 +47,7 @@ class DatabaseSeeder extends Seeder
           'password' => bcrypt('password'),
           'role' => 'Student',
           'remember_token' => str_random(10),
+          'group_id' => 1,
           'course_id' => 2
       ]);
       DB::table('users')->insert([

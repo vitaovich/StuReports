@@ -33,6 +33,7 @@ class IndividualReportEmail extends Mailable
     {
         $tasks = [];
         $student_tasks = $this->user->tasks;
+        $sprint = $this->user->course()->sprint;
         foreach($student_tasks as $task)
         {
             $task_and_Reports = [];
@@ -44,7 +45,7 @@ class IndividualReportEmail extends Mailable
         return $this->subject("Individual Report, " . $this->user->name)
                     ->view('emails.individual_report', [
                         'student' => $this->user,
-                        'sprint' => $this->user->course()->sprint,
+                        'sprint' => $sprint,
                         'tasks' => $tasks
                     ]);
     }
