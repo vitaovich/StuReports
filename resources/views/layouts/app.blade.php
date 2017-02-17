@@ -47,6 +47,10 @@
                     @if (Auth::check() && ( Auth::user()->isAdmin() || Auth::user()->isInstructor()))
                         <li><p class="navbar-text">Role: {{ Auth::user()->role }}</p></li>
                         <li><a href="{{ url('/users') }}">Users</a></li>
+                        <li><a href="{{ url('/debug') }}">Debug sprints</a></li>
+                    @elseif (Auth::check() && ( Auth::user()->isInstructor()))
+                        <li><p class="navbar-text">Role: {{ Auth::user()->role }}</p></li>
+                        <li><a href="{{ url('/users') }}">Users</a></li>
                     <!-- Mike code below -->
                     @elseif (Auth::check() && Auth::user()->isStudent())
                       <li><a href="{{ url('/student_team')  }}">Submit Team Report</a></li>

@@ -75,3 +75,6 @@ Route::get('/home/instructor', function()
                               ])->get();
   return view('Home.Instructor.index', ['courses' => $courses]);
 });
+
+Route::get('/debug', 'DebugController@debug_form');
+Route::put('/debug_submit', 'DebugController@debug_submit');
