@@ -48,7 +48,11 @@ class UpdateSprintTiming extends Command
                 if($course->active == 0) //course is inactive
                     $course->reports_available = 0;
                 elseif($sprint_end == NULL) //just created/set active
+                {
+                    $course->last_sprint_end = new Carbon('yesterday');
                     $course->next_sprint_end = new Carbon('next Friday');
+                    $course->reports_available = 0;
+                }
                 elseif($sprint_end == Carbon::today()) //end of sprint
                 {
                     $course->reports_available = 1;

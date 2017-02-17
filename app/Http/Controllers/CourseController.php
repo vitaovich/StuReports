@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use App\Course;
 
 class CourseController extends Controller
@@ -44,7 +45,7 @@ class CourseController extends Controller
       $course->sprint_length = $request->sprint_length;
 
       $course->save();
-
+      Artisan::call('sprint:update');
       return redirect('/home/admin');
     }
 
