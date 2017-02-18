@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIndividualReportsTable extends Migration
+class CreateAnnouncementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateIndividualReportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('individual_reports', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('private_comments')->nullable();
-            $table->unsignedInteger('student_id');
-            $table->integer('sprint');
-			$table->float('total_hours');
+            $table->string('announcement');
+			$table->unsignedInteger('instructor_id');
+            $table->unsignedInteger('course_id');
             $table->timestamps();
-
-            $table->foreign('student_id')->references('id')->on('users');
+            $table->foreign('course_id')->references('id')->on('courses');
+			$table->foreign('instructor_id')->references('id')->on('users');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateIndividualReportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('individual_reports');
+        Schema::dropIfExists('courses');
     }
 }
