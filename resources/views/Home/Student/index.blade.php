@@ -33,10 +33,10 @@
 								{{$assignment->assignment_name}}
 							</td>
 							<td>
-								{{$assignment->open_assignment}}
+								{{date('d M', strtotime($assignment->open_assignment))}}
 							</td>
 							<td>
-								{{$assignment->close_assignment}}
+								{{date('d M', strtotime($assignment->close_assignment))}}
 							</td>
 						</tr>
 					@endforeach
@@ -85,7 +85,7 @@
 								{{$report[0]->sprint}}
 							</td>
 							<td>
-								{{$report[0]->close_assignment}}
+								{{date('d M', strtotime($report[0]->close_assignment))}}
 							</td>
 							@if($submitted->contains('assignment_id', $report[0]->id))
 								<td>
@@ -107,12 +107,12 @@
 							@endif
 							<td>
 								@if($submitted->contains('assignment_id', $report[0]->id))
-									<a href="/individual_report/user/{{Auth::user()->id}}/sprint/{{$report[0]->sprint}}">Viewable</a>
+									<a href="/individual_report/user/{{Auth::user()->id}}/sprint/{{$report[0]->sprint}}">View</a>
 								@endif
 							</td>
 							<td>
 								@if($submitted->contains('assignment_id', $report[1]->id))
-									<a href="/aggregated_report/group/{{Auth::user()->group_id}}/sprint/{{$report[1]->sprint}}">Viewable</a>
+									<a href="/aggregated_report/group/{{Auth::user()->group_id}}/sprint/{{$report[1]->sprint}}">View</a>
 								@endif
 							</td>
 						</tr>

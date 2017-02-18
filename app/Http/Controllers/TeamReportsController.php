@@ -22,10 +22,6 @@ class TeamReportsController extends Controller
 	{
 		$student = User::findOrFail($request->user_id);
 		$sprint = $request->sprint;
-		//$report = User::findOrFail($student->id)->individualReports->where('sprint', '<=', $sprint);
-		//echo $report;
-		//$timeLogs = IndividualReport::findOrFail($report->id)->timeLogs->where('sprint', '=', $sprint);
-		//echo $timeLogs;
 		$tasks = [];
 		$student_tasks = User::findOrFail($student->id)->tasks;
 		foreach($student_tasks as $task)
