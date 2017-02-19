@@ -17,7 +17,8 @@ class CreateAssignmentsTable extends Migration
             $table->increments('id');
 			$table->unsignedInteger('course_id');
             $table->string('assignment_name');
-			$table->string('code');//Individual report I, team Report T ex. I.1 T.1 I.2 T.2, ..., I.N T.N
+			$table->string('code');//Individual report, I, team Report, T ex. I.1 T.1 I.2 T.2, ..., I.N T.N
+			$table->integer('sprint');//used to identify what sprint a report is for
             $table->date('open_assignment');
             $table->date('close_assignment');
             $table->timestamps();

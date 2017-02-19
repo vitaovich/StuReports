@@ -18,6 +18,8 @@ class CreateTasksTable extends Migration
             $table->string('description');
             $table->string('task_name');
             $table->unsignedInteger('student_id');
+			$table->integer('sprint_started');
+			$table->integer('sprint_ended');
             $table->string('status');
             $table->unsignedInteger('group_id');
             $table->timestamps();
