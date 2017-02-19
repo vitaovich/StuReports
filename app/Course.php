@@ -18,6 +18,11 @@ class Course extends Model
   {
       return $this->hasMany('App\Project_group', 'course_id');
   }
+  
+  public function announcements()
+  {
+      return $this->hasMany('App\Announcement', 'course_id');
+  }
 
   public function students()
   {
