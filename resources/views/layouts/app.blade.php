@@ -44,11 +44,11 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                    @if (Auth::check() && ( Auth::user()->isAdmin() || Auth::user()->isInstructor()))
+                    @if (Auth::check() && Auth::user()->isAdmin())
                         <li><p class="navbar-text">Role: {{ Auth::user()->role }}</p></li>
                         <li><a href="{{ url('/users') }}">Users</a></li>
                         <li><a href="{{ url('/debug') }}">Debug sprints</a></li>
-                    @elseif (Auth::check() && ( Auth::user()->isInstructor()))
+                    @elseif (Auth::check() && Auth::user()->isInstructor())
                         <li><p class="navbar-text">Role: {{ Auth::user()->role }}</p></li>
                         <li><a href="{{ url('/users') }}">Users</a></li>
                     <!-- Mike code below -->
