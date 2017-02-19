@@ -24,7 +24,6 @@ class LoginTest extends TestCase
              ->type('password', 'password')
              ->press('Login')
              ->seePageIs('/home')
-             ->see('Student Home page');
     }
 
     public function testBadLoginDoesntWork()
