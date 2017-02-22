@@ -17,9 +17,11 @@ class CreateProjectGroupsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('course_id');
             $table->string('project');
+            $table->unsignedInteger('project_leader')->nullable();
             $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('project_leader')->references('id')->on('users');
         });
     }
 
@@ -30,7 +32,7 @@ class CreateProjectGroupsTable extends Migration
      */
     public function down()
     {
-      Schema::disableForeignKeyConstraints(); 
+      Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('project_groups');
     }
 }
