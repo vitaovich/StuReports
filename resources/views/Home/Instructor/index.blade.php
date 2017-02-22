@@ -71,8 +71,22 @@
       }
 
       function updateProjectLead(project_id, element) {
-        console.log("project_id: " + project_id);
-        console.log(element[element.selectedIndex]);
+        var optionValue = element[element.selectedIndex].value;
+        console.log(optionValue);
+        var CSRF_TOKEN = document.getElementsByName('csrf-token')[0].getAttribute('content');
+        var formData = new FormData();
+        formData.append("_method", "PUT");
+        formData.append("_token", CSRF_TOKEN);
+        formData.append("project_leader", optionValue);
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status == 200){
+            console.log("Success");
+          }
+        }
+        xhttp.open("POST", "/projectgroups/" + project_id, true);
+        xhttp.send(formData);
       }
     </script>
 @endsection
@@ -117,9 +131,14 @@
                             <div class="col-md-5">
                               Team Leader:
                               <select id="team_lead_project_{{$project->id}}" onchange="updateProjectLead({{$project->id}}, this)">
-                                  <option>No Team Leader</option>
+                                {{$project_lead = $project->project_leader}}
+                                  <option value="0">No Team Leader</option>
                                 @foreach ($project->students as $student)
-                                  <option value="{{$student->id}}">{{$student->name}}</option>
+                                  @if ($student->id === $project_lead)
+                                    <option value="{{$student->id}}" selected>{{$student->name}}</option>
+                                  @else
+                                    <option value="{{$student->id}}">{{$student->name}}</option>
+                                  @endif
                                 @endforeach
                               </select>
                             </div>
