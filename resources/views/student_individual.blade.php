@@ -1,3 +1,6 @@
+<?php use Carbon\Carbon;
+ ?>
+
 @extends('layouts.app')
 
 @section('content')
@@ -8,6 +11,9 @@
       <div class="panel-heading">Dashboard</div>
         <div class="panel-body">
           @if (Auth::check() && Auth::user()->isStudent())
+          <h1>Individual report for sprint <?php echo Auth::user()->course()->sprint ?>.</h1>
+          <h1>Group ID: <?php echo Auth::user()->group_id ?></h1>
+          <h3>Sprint length: <?php echo Auth::user()->course()->sprint_length ?> days.</h3>
           <h2 id="timeLogsHeader">Time Logs</h2>
           <form class="form-horizontal" method="POST" action="/submit_individual_report">
              {!! csrf_field() !!}
@@ -15,27 +21,19 @@
               <tr>
                 <th>Day</th><th>Hours</th><th>On what?</th>
               </tr>
-              <tr>
-                <td>Saturday</td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="saturday_hours" name="saturday_hours"></td><td><input type="text" class="timeLogDescription" id="saturday_description" name="saturday_description"></td>
+
+                <?php
+                  for($i = Auth::user()->course()->sprint_length - 1; $i >= 0; $i = $i-1)
+                  {
+                    echo
+              '<tr>
+                <td>
+                  <p>'; echo Carbon::today()->subDays($i)->formatLocalized('%A, %B %d %Y'); echo '</p></td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="timeloghours[]" name="timeloghours[]" required></td><td><input type="text" class="timeLogDescription" id="timelogdescription[]" name="timelogdescription[]"/>
+                </td>
               </tr>
-              <tr>
-                <td>Sunday</td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="sunday_hours" name="sunday_hours"></td><td><input type="text" class="timeLogDescription" id="sunday_description" name="sunday_description"></td>
-              </tr>
-              <tr>
-                <td>Monday</td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="monday_hours" name="monday_hours"></td><td><input type="text" class="timeLogDescription" id="monday_description" name="monday_description"></td>
-              </tr>
-              <tr>
-                <td>Tuesday</td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="tuesday_hours" name="tuesday_hours"></td><td><input type="text" class="timeLogDescription" id="tuesday_description" name="tuesday_description"></td>
-              </tr>
-              <tr>
-                <td>Wednesday</td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="wednesday_hours" name="wednesday_hours"></td><td><input type="text" class="timeLogDescription" id="wednesday_description" name="wednesday_description"></td>
-              </tr>
-              <tr>
-                <td>Thursday</td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="thursday_hours" name="thursday_hours"></td><td><input type="text" class="timeLogDescription" id="thursday_description" name="thursday_description"></td>
-              </tr>
-              <tr>
-                <td>Friday</td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="friday_hours" name="friday_hours"></td><td><input type="text" class="timeLogDescription" id="friday_description" name="friday_description"></td>
-              </tr>
+              ';
+                  }
+                ?>
             </table>
             <br />
             <h2 id="newTaskHeader">New Tasks</h2>
@@ -45,30 +43,28 @@
                <th>Title</th><th>Description</th>
               </tr>
               <tr id="rowID1">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
               </tr>
               <tr id="rowID2">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
               </tr>
               <tr id="rowID3">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
               </tr>
               <tr id="rowID4">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
               </tr>
               <tr id="rowID5">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
               </tr>
               <tr id="rowID6">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"</td>
+                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
               </tr>
             </table>
             <script type="text/javascript" src="{!! asset('js/NewTask.js') !!}"></script>
             <br />
             <!-- {{ $priorReports = App\Task::where('Student_id', Auth::user()->id)->get() }} -->
             <?php $priorReports = App\Task::getTasks(Auth::user()->id);//->get();
-                // I also want to get all teammate IDs here
-                // TODO only one radio button in total is selectable
                 $counter = 0;
                 $teammateCounter = 0;
                 $teammates = App\User::getGroupmates(Auth::user()->group_id);
