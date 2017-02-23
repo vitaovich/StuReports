@@ -35,6 +35,7 @@ Route::get('/individual_report/user/{user_id}/sprint/{sprint}', 'TeamReportsCont
 
 Route::resource('course', 'CourseController');
 Route::resource('users', 'UsersController');
+Route::resource('projectgroups', 'Project_GroupsController');
 
 /*
 / Still working on the POST route for the report submissions.

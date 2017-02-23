@@ -71,6 +71,43 @@ class DatabaseSeeder extends Seeder
           'role' => 'Instructor',
           'remember_token' => str_random(10)
       ]);
+      DB::table('users')->insert([
+          'name' => 'Elliot Alderson',
+          'email' => 'ealderson@allsafe.com',
+          'password' => bcrypt('password'),
+          'role' => 'Student',
+          'remember_token' => str_random(10),
+          'course_id' => 2,
+          'group_id' => 11
+      ]);
+      DB::table('users')->insert([
+          'name' => 'Angela Moss',
+          'email' => 'amoss@allsafe.com',
+          'password' => bcrypt('password'),
+          'role' => 'Student',
+          'remember_token' => str_random(10),
+          'course_id' => 2,
+          'group_id' => 11
+      ]);
+      DB::table('users')->insert([
+          'name' => 'Tyrell Wellick',
+          'email' => 'twellick@allsafe.com',
+          'password' => bcrypt('password'),
+          'role' => 'Student',
+          'remember_token' => str_random(10),
+          'course_id' => 2,
+          'group_id' => 11
+      ]);
+      DB::table('users')->insert([
+          'name' => 'Giddeon Goddard',
+          'email' => 'ggoddard@allsafe.com',
+          'password' => bcrypt('password'),
+          'role' => 'Student',
+          'remember_token' => str_random(10),
+          'course_id' => 2,
+          'group_id' => 11
+      ]);
+      // For Mike
     }
 
 	public function seedUsers()

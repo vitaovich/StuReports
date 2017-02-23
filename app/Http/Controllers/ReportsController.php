@@ -32,9 +32,12 @@ class ReportsController extends Controller
     $teamReport->pace = $request->pace;
     $teamReport->client = $request->client;
     $teamReport->comments = $request->comments;
-    //TODO: the following two lines contain dummy data that needs to be changed
-    $teamReport->sprint = 0;
-    $teamReport->group_id = 1;
+    $teamReport->sprint = Auth::user()->course()->sprint;
+    $teamReport->group_id = Auth::user()->group_id;
+    if(is_null($teamReport->group_id))
+    {
+      $teamReport->group_id = 0;
+    }
     $teamReport->submitted_by = Auth::user()->id;
     $teamReport->save();
     return view('home');
@@ -46,86 +49,34 @@ class ReportsController extends Controller
     return $reports;
   }
 
-  // TODO: fix this (test to get long error messsages)
   public function putIndividualReport(Request $request)
   {
     $report = new IndividualReport;
     $report->student_id = Auth::user()->id;
     $report->private_comments = $request->private_comments;
-    $report->sprint = 1; // dummy value
+    $report->sprint = Auth::user()->course()->sprint;
     $report->total_hours = $request->saturday_hours + $request->sunday_hours + $request->monday_hours + $request->tuesday_hours + $request->wednesday_hours + $request->thursday_hours + $request->friday_hours;
     $report->save();
 
     $reportID = $report->id;
-
-    if($request->saturday_hours > 0 || $request->saturday_description)
+    $timelogHours = Input::get('timeloghours');
+    $timeLogDescriptions = Input::get('timelogdescription');
+    $index = 0;
+    if(is_array($timelogHours) || is_object($timelogHours))
     {
-      $timelog = new IndividualTimeLog;
-      $timelog->individual_report_id = $reportID;
-      $timelog->day = Carbon::today()->subDays(6);
-      $timelog->hours = $request->saturday_hours;
-      $timelog->description = $request->saturday_description;
-      $timelog->save();
-    }
-
-    if($request->sunday_hours > 0 || $request->sunday_description)
-    {
-      $timelog = new IndividualTimeLog;
-      $timelog->individual_report_id = $reportID;
-      $timelog->day = Carbon::today()->subDays(5);
-      $timelog->hours = $request->sunday_hours;
-      $timelog->description = $request->sunday_description;
-      $timelog->save();
-    }
-
-    if($request->monday_hours > 0 || $request->monday_description)
-    {
-      $timelog = new IndividualTimeLog;
-      $timelog->individual_report_id = $reportID;
-      $timelog->day = Carbon::today()->subDays(4);
-      $timelog->hours = $request->monday_hours;
-      $timelog->description = $request->monday_description;
-      $timelog->save();
-    }
-
-    if($request->tuesday_hours > 0 || $request->tuesday_description)
-    {
-      $timelog = new IndividualTimeLog;
-      $timelog->individual_report_id = $reportID;
-      $timelog->day = Carbon::today()->subDays(3);
-      $timelog->hours = $request->tuesday_hours;
-      $timelog->description = $request->tuesday_description;
-      $timelog->save();
-    }
-
-    if($request->wednesday_hours > 0 || $request->wednesday_description)
-    {
-      $timelog = new IndividualTimeLog;
-      $timelog->individual_report_id = $reportID;
-      $timelog->day = Carbon::today()->subDays(2);
-      $timelog->hours = $request->wednesday_hours;
-      $timelog->description = $request->wednesday_description;
-      $timelog->save();
-    }
-
-    if($request->thursday_hours > 0 || $request->thursday_description)
-    {
-      $timelog = new IndividualTimeLog;
-      $timelog->individual_report_id = $reportID;
-      $timelog->day = Carbon::today()->subDays(1);
-      $timelog->hours = $request->thursday_hours;
-      $timelog->description = $request->thursday_description;
-      $timelog->save();
-    }
-
-    if($request->friday_hours > 0 || $request->friday_description)
-    {
-      $timelog = new IndividualTimeLog;
-      $timelog->individual_report_id = $reportID;
-      $timelog->day = Carbon::today();
-      $timelog->hours = $request->friday_hours;
-      $timelog->description = $request->friday_description;
-      $timelog->save();
+      foreach ($timelogHours as $timelogHour)
+      {
+        if(($timelogHours[$index] != "0" && $timelogHours[$index] != "") || $timeLogDescriptions[$index] != "")
+        {
+          $timelog = new IndividualTimeLog;
+          $timelog->individual_report_id = $reportID;
+          $timelog->day = Carbon::today()->subDays(Auth::user()->course()->sprint_length - $index - 1);
+          $timelog->hours = $request->timeloghours[$index];
+          $timelog->description = $request->timelogdescription[$index];
+          $timelog->save();
+          $index++;
+        }
+      }
     }
 
     $index = 0;
@@ -144,7 +95,11 @@ class ReportsController extends Controller
           $newTask->task_name = $newTaskNames[$index]; // problem line?
           $newTask->student_id = Auth::user()->id;
           $newTask->status = "new";
-          $newTask->group_id = 1;
+          $teamReport->group_id = Auth::user()->group_id;
+          if(is_null($teamReport->group_id))
+          {
+            $teamReport->group_id = 0;
+          }
           $newTask->save();
           $index++;
         }
@@ -204,7 +159,7 @@ class ReportsController extends Controller
         $taskReport->task_id = $priorTask->id;
         $taskReport->latest_progress = $priorTaskProgress[$index];
         $taskReport->individual_report_id = $reportID;
-        $taskReport->sprint = 1; // fix this
+        $taskReport->sprint =  Auth::user()->course()->sprint;
         $radio = $priorTaskStatuses[$index];
         $priorTaskEntry = Task::find($priorTask->id);//->first();
 
