@@ -23,7 +23,7 @@ class Project_GroupsController extends Controller
      */
     public function create()
     {
-        //
+        return view('Group.create');
     }
 
     /**
@@ -34,7 +34,12 @@ class Project_GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $group = new Project_group;
+        $group->course_id = $request->course_id;
+        $group->project = $request->project;
+        $group->save();
+
+        return redirect('/home/instructor');
     }
 
     /**
@@ -56,7 +61,8 @@ class Project_GroupsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project_group = Project_group::find($id);
+        return view('Group.edit', ['project_group' => $project_group]);
     }
 
     /**
@@ -75,7 +81,11 @@ class Project_GroupsController extends Controller
         else {
           $group->project_leader = $request->project_leader;
         }
+        $group->course_id = $request->course_id;
+        $group->project = $request->project;
         $group->save();
+
+        return redirect('/home/instructor');
     }
 
     /**

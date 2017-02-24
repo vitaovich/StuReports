@@ -22,7 +22,7 @@
                       foreach($instructors as $instructor)
                           $options[$instructor['id']] = $instructor['name'];
                   ?>
-                  {{ Form::select('teacher_id', $options) }}
+                  {{ Form::select('teacher_id', $options, $course->teacher_id) }}
               </div>
               <div class="form-group row">
                   {{ Form::label('year', 'Year') }}

@@ -116,7 +116,7 @@
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th>Group Projects</th>
+                        <th>Group Projects <span align='right'><a href="/projectgroups/create" class="btn-sm btn-primary">Create</a></span></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -141,6 +141,8 @@
                                   @endif
                                 @endforeach
                               </select>
+                              <br>
+                              <a href="/projectgroups/{{$project->id}}/edit" class="btn-sm btn-primary">Edit</a>
                             </div>
 
                             <div id="{{$project->id}}_project" class="collapse col-md-12">
