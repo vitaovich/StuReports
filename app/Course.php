@@ -18,7 +18,12 @@ class Course extends Model
   {
       return $this->hasMany('App\Project_group', 'course_id');
   }
-  
+
+  public function quarterString() {
+      $seasons = ['Fall','Winter','Spring','Summer'];
+      return $seasons[$this->quarter];
+  }
+
   public function announcements()
   {
       return $this->hasMany('App\Announcement', 'course_id');
