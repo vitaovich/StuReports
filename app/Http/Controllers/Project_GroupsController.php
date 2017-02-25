@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project_group;
+use App\User;
 
 class Project_GroupsController extends Controller
 {
@@ -39,7 +40,7 @@ class Project_GroupsController extends Controller
         $group->project = $request->project;
         $group->save();
 
-        return redirect('/home/instructor');
+        return redirect('/home');
     }
 
     /**
@@ -85,7 +86,7 @@ class Project_GroupsController extends Controller
         $group->project = $request->project;
         $group->save();
 
-        return redirect('/home/instructor');
+        return redirect('/home');
     }
 
     /**
@@ -96,6 +97,15 @@ class Project_GroupsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $group = Project_group::find($id);
+        $members = $group->students;
+        foreach($members as $member)
+        {
+            $member->group_id = 1;
+            $member->save();
+        }
+        $group->delete();
+
+        return redirect('/home');
     }
 }

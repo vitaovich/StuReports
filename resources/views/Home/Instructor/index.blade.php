@@ -143,6 +143,7 @@
                               </select>
                               <br>
                               <a href="/projectgroups/{{$project->id}}/edit" class="btn-sm btn-primary">Edit</a>
+                              <a href="/projectgroups/delete/{{$project->id}}" class="btn-sm btn-danger">Delete</a>
                             </div>
 
                             <div id="{{$project->id}}_project" class="collapse col-md-12">

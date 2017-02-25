@@ -25,7 +25,7 @@
                   {{ Form::select('course_id', $options) }}
               </div>
               <div class="form-group row">
-                  {{ Form::label('project', 'Project description') }}
+                  {{ Form::label('project', 'Project title') }}
                   {{ Form::text('project') }}
               </div>
               {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
