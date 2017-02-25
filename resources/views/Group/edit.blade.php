@@ -16,11 +16,11 @@
                   {{ Form::label('course_id', 'Course')}}
                   <!-- {{ Form::text('teacher_id') }} -->
                   <?php
-                      $courses = App\Course::where('teacher_id', '=', Auth::user()->id)->get()->toArray();
+                      $courses = App\Course::where('teacher_id', '=', Auth::user()->id)->get();
                       $options = [];
                       //echo json_encode($instructors);
                       foreach($courses as $course)
-                          $options[$course['id']] = $course['quarter'] . ' ' . $course['year'];
+                          $options[$course->id] = $course->quarterString() . ' ' . $course->year;
                   ?>
                   {{ Form::select('course_id', $options, $project_group->course_id) }}
               </div>

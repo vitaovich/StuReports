@@ -99,7 +99,7 @@
           @foreach($courses as $course)
             <div class="panel panel-default">
               <div class="panel-heading">
-                  <h1>CSCD {{$course->quarter}} {{$course->year}}</h1>
+                  <h1>CSCD {{$course->quarterString()}} {{$course->year}}</h1>
               </div>
               <div class="panel-body">
                 <div class="col-md-3" ondrop="drop(event, unassigned_students_list_{{$course->id}}, 1)" ondragover="allowDrop(event)"  >
