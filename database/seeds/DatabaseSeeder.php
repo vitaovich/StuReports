@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
       DB::table('courses')->insert([
           'teacher_id' => 1,
           'year' => 0,
-          'quarter' => 'None',
-          'course_number' => 0,
+          'quarter' => 1,
+          'course_title' => 'CSCD 488',
           'sprint_length'=> 0,
       ]);
       DB::table('project_groups')->insert([

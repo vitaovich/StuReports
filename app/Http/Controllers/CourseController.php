@@ -41,7 +41,7 @@ class CourseController extends Controller
       $course->year = $request->year;
       $course->quarter = $request->quarter;
       $course->active = $request->active;
-      $course->course_number = $request->course_number;
+      $course->course_title = $request->course_title;
       $course->sprint_length = $request->sprint_length;
 
       $course->save();
@@ -86,7 +86,7 @@ class CourseController extends Controller
         $course->year = $request->year;
         $course->quarter = $request->quarter;
         $course->active = $request->active;
-        $course->course_number = $request->course_number;
+        $course->course_title = $request->course_title;
         $course->sprint_length = $request->sprint_length;
 
         $course->save();

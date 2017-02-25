@@ -42,7 +42,7 @@ class User extends Authenticatable
 
   public function courses()
   {
-      return Course::All();
+      return Course::orderBy('year','desc')->orderBy('quarter', 'desc')->get();
   }
 
   public function isStudent()
