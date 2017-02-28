@@ -10,6 +10,6 @@ class DeleteController extends Controller
     {
       $id = $request->get('id');
       $thing = $request->get('thing');
-      return view('test_delete_group', ['id' => $id, 'thing' => $thing]);
+      return view('delete_page', ['id' => $id, 'thing' => $thing]);
     }
 }

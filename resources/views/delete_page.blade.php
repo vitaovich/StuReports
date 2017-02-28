@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Delete group')
+@if ($thing == 'projectgroups')
+  @section('title', 'Delete group')
+@elseif ($thing == 'users')
+  @section('title', 'Delete user')
+@endif
 
 @section('content')
 
@@ -10,6 +14,8 @@
             <div class="panel-heading">Delete
             @if ($thing == 'projectgroups')
               group
+            @elseif ($thing == 'users')
+              user
             @else
               {{ $thing }}
             @endif
