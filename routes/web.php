@@ -81,7 +81,4 @@ Route::get('/debug', 'DebugController@debug_form');
 Route::put('/debug_submit', 'DebugController@debug_submit');
 
 //test for deletion page
-Route::get('/projectgroups/delete/{id}', function($id)
-{
-  return view('test_delete_group', ['id' => $id]);
-});
+Route::post('/delete', 'DeleteController@handle');
