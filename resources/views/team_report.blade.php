@@ -7,7 +7,7 @@
 		<div class="panel panel-default">
 		@if (Auth::check() && (Auth::user()->isStudent() || Auth::user()->isInstructor()))
 			<div class="panel-heading">
-				<h1 class="bg-primary">Sprint: {{$sprint}}, Group: {{$group_id}} Report</h1>
+				<h1 class="bg-primary">Sprint: {{$sprint}}, Aggregated Team Report</h1>
 			</div>
 			<div class="panel-body">
 				<h2 class="bg-primary">Members</h2>
@@ -23,6 +23,7 @@
 				@if( ! empty($timeLogs))
 					@foreach($timeLogs as $timeLog)
 						<h4 class="bg-primary">{{$team_members[$reports[$timeLog[0]->individual_report_id]->student_id]->name}}</h4>
+						<b>Total Hours: </b>{{$reports[$timeLog[0]->individual_report_id]->total_hours}}
 						<table>
 						<tr>
 							<th>
@@ -38,7 +39,7 @@
 						@foreach($timeLog as $log)
 							<tr>
 								<td>
-									{{$log['day']}}
+									{{date('d M', strtotime($log['day']))}}
 								</td>
 								<td>
 									{{$log['hours']}}
@@ -60,8 +61,18 @@
 						@foreach($tasks as $task)
 							@if($task[0]->student_id == $member->id)
 								<hr>
-								<b><u><h4>{{$task[0]->task_name}}</h4></u>
-								Original description:</b> {{$task[0]->description}}<br />
+								<b><u><h4>{{$task[0]->task_name}}</h4></u></b>
+								<u><b>Status: </b></u>
+								@if($task[0]->sprint_started == $sprint)
+									new<br />
+								@elseif($task[0]->sprint_started <= $sprint)
+									Continuing<br />
+								@elseif($task[0]->sprint_ended == $sprint)
+									Completed<br />
+								@else
+									{{$task[0]->status}}
+								@endif
+								<b>Original description:</b> {{$task[0]->description}}<br />
 								@foreach($task[1] as $taskReport)
 									@if($taskReport->sprint == $sprint)
 										<b>Latest Progress: </b>

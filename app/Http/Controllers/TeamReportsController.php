@@ -11,6 +11,7 @@ use App\Project_group;
 use App\Member_evaluation;
 use App\Task_evaluation;
 use App\User;
+use App\Course;
 use Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Input;
@@ -24,6 +25,11 @@ class TeamReportsController extends Controller
 		$sprint = $request->sprint;
 		$tasks = [];
 		$student_tasks = User::findOrFail($student->id)->tasks;
+		$reports = User::findOrFail($student->id)->individualReports->where('sprint', '>=', $sprint);
+		$reports = $reports->keyBy('id');
+		$report = $reports->where('sprint', $sprint);
+		//echo $report;
+		//$timeLogs = IndividualTimeLog::findOrFail($report->id)->timeLogs;
 		foreach($student_tasks as $task)
 		{
 			$task_and_Reports = [];
@@ -32,7 +38,22 @@ class TeamReportsController extends Controller
 			array_push($task_and_Reports, $taskReports);
 			array_push($tasks, $task_and_Reports);
 		}
-		return view('individual_report',compact('student','sprint', 'tasks'));
+		return view('individual_report',compact('student','sprint', 'tasks', 'reports'));
+	}
+	
+	public function getGroupReports(Request $request)
+	{
+		
+		return view('team_reports');
+	}
+	
+	public function getIndividualReports(Request $request)
+	{
+		$user = User::findOrFail($request->user_id);// $request->user_id;
+		$currentTime = Carbon::now();
+		$report_assignments = Course::findOrFail($user->course_id)->assignments->where('sprint', '!=', null)->sortBy('code')->groupBy('sprint');
+		$submitted = User::findOrFail($user->id)->assignments;
+		return view('individual_reports', compact('user', 'currentTime', 'report_assignments', 'submitted'));
 	}
 	
 	public function getTeamReport(Request $request)

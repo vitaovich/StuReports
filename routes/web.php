@@ -33,6 +33,10 @@ Route::get('/aggregated_report/group/{group_id}/sprint/{sprint}', 'TeamReportsCo
 
 Route::get('/individual_report/user/{user_id}/sprint/{sprint}', 'TeamReportsController@getIndividualReport');
 
+Route::get('/reports/user/{user_id}', 'TeamReportsController@getIndividualReports');
+
+Route::get('/reports/group/{group_id}', 'TeamReportsController@getGroupReports');
+
 Route::resource('course', 'CourseController');
 Route::resource('users', 'UsersController');
 Route::resource('projectgroups', 'Project_GroupsController');
