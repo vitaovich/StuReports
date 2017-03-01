@@ -43,8 +43,10 @@ class TeamReportsController extends Controller
 	
 	public function getGroupReports(Request $request)
 	{
-		
-		return view('team_reports');
+		$group = Project_group::findOrFail($request->group_id);
+		$currentTime = Carbon::now();
+		$report_assignments = Course::findOrFail($group->course_id)->assignments->where('sprint', '!=', null)->sortBy('code')->groupBy('sprint');
+		return view('team_reports', compact('group', 'currentTime', 'report_assignments'));
 	}
 	
 	public function getIndividualReports(Request $request)
