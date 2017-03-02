@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+  <link href="/css/reports.css" rel="stylesheet">
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
               <div class="panel-heading"><h1 class="bg-primary">{{$user->name}} Reports</h1></div>
               <div class="panel-body">
-				@if (Auth::user()->isInstructor())
+				@if (Auth::check() && Auth::user()->isInstructor())
 					<table width="45%">
 						<tr>
 							<th>
@@ -45,7 +46,7 @@
 							@endif
 							<td>
 								@if($submitted->contains('assignment_id', $report[0]->id))
-									<a href="/individual_report/user/{{Auth::user()->id}}/sprint/{{$report[0]->sprint}}">View</a>
+									<a href="/individual_report/user/{{$user->id}}/sprint/{{$report[0]->sprint}}">View</a>
 								@endif
 							</td>
 						</tr>

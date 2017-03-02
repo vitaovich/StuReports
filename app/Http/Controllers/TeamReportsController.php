@@ -27,9 +27,9 @@ class TeamReportsController extends Controller
 		$student_tasks = User::findOrFail($student->id)->tasks;
 		$reports = User::findOrFail($student->id)->individualReports->where('sprint', '>=', $sprint);
 		$reports = $reports->keyBy('id');
-		$report = $reports->where('sprint', $sprint);
-		//echo $report;
-		//$timeLogs = IndividualTimeLog::findOrFail($report->id)->timeLogs;
+		$report = $reports->where('sprint', $sprint)->pop();
+		if($report != null)
+			$timeLogs = IndividualReport::findOrFail($report->id)->timeLogs;
 		foreach($student_tasks as $task)
 		{
 			$task_and_Reports = [];
@@ -38,7 +38,7 @@ class TeamReportsController extends Controller
 			array_push($task_and_Reports, $taskReports);
 			array_push($tasks, $task_and_Reports);
 		}
-		return view('individual_report',compact('student','sprint', 'tasks', 'reports'));
+		return view('individual_report',compact('student', 'timeLogs', 'sprint', 'tasks', 'reports'));
 	}
 	
 	public function getGroupReports(Request $request)
@@ -51,7 +51,7 @@ class TeamReportsController extends Controller
 	
 	public function getIndividualReports(Request $request)
 	{
-		$user = User::findOrFail($request->user_id);// $request->user_id;
+		$user = User::findOrFail($request->user_id);
 		$currentTime = Carbon::now();
 		$report_assignments = Course::findOrFail($user->course_id)->assignments->where('sprint', '!=', null)->sortBy('code')->groupBy('sprint');
 		$submitted = User::findOrFail($user->id)->assignments;

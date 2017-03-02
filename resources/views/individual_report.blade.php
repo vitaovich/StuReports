@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<link href="/css/reports.css" rel="stylesheet">
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
@@ -28,7 +28,7 @@
 						@foreach($timeLogs as $log)
 							<tr>
 								<td>
-									{{$log['day']}}
+									{{date('d M', strtotime($log['day']))}}
 								</td>
 								<td>
 									{{$log['hours']}}

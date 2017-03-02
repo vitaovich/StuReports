@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+  <link href="/css/reports.css" rel="stylesheet">
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
               <div class="panel-heading"><div class="panel-heading"><h1 class="bg-primary">{{$group->project}} Reports</h1></div></div>
               <div class="panel-body">
-				@if (Auth::user()->isInstructor())
+				@if (Auth::check() && Auth::user()->isInstructor())
 					<table width="45%">
 						<tr>
 							<th>
