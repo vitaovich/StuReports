@@ -8,7 +8,7 @@
               <div class="panel-heading"><h1 class="bg-primary">{{$user->name}} Reports</h1></div>
               <div class="panel-body">
 				@if (Auth::check() && Auth::user()->isInstructor())
-					<table>
+					<table width="45%">
 						<tr>
 							<th>
 								<b><u>Sprint</b></u>

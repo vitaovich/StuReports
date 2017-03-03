@@ -67,8 +67,6 @@ class TeamReportsController extends Controller
 		$reports = Project_group::findOrFail($group_id)->individualReports->where('sprint',$sprint);
 		$team_members = $team_members->keyBy('id');
 		$reports = $reports->keyBy('id');
-		$hours = Project_group::findOrFail($group_id)->individualReports;
-		$hours = $hours->sortBy('sprint')->groupBy('student_id');
 		$timeLogs = [];
 		foreach($reports as $report)
 		{
@@ -84,32 +82,17 @@ class TeamReportsController extends Controller
 				array_push($taskEvaluations, $taskEval);
 			}
 		}
-		$new_tasks = [];
-		$continuing_tasks = [];
-		$completed_tasks = [];
-		$abandoned_taks = [];
-		$group_tasks = Project_group::findOrFail($group_id)->tasks;
-		foreach($group_tasks as $task)
+		$tasks = [];
+		foreach($team_members as $member)
 		{
-			$task_and_Reports = [];
-			array_push($task_and_Reports, $task);
-			$taskReports = Task::findOrFail($task->id)->taskReports->where('sprint', '<=', $sprint);
-			array_push($task_and_Reports, $taskReports);
-			if($task->status == 'new')
+			$member_tasks = User::findOrFail($member->id)->tasks;
+			foreach($member_tasks as $task)
 			{
-				array_push($new_tasks, $task_and_Reports);
-			}
-			elseif($task->status == 'continuing')
-			{
-				array_push($continuing_tasks, $task_and_Reports);
-			}
-			elseif($task->status == 'completed')
-			{
-				array_push($completed_tasks, $task_and_Reports);
-			}
-			elseif($task->status == 'abandoned')
-			{
-				array_push($abandoned_taks, $task_and_Reports);
+				$task_and_Reports = [];
+				array_push($task_and_Reports, $task);
+				$taskReports = Task::findOrFail($task->id)->taskReports->where('sprint', '<=', $sprint);
+				array_push($task_and_Reports, $taskReports);
+				array_push($tasks, $task_and_Reports);
 			}
 		}
 		$memberEvaluations = [];
@@ -121,6 +104,6 @@ class TeamReportsController extends Controller
 				array_push($memberEvaluations, $eval);
 			}
 		}
-		return view('team_report', compact('group_id', 'sprint', 'team_members', 'team_report', 'reports', 'timeLogs', 'new_tasks','continuing_tasks','completed_tasks','abandoned_taks', 'memberEvaluations', 'taskEvaluations', 'hours'));
+		return view('team_report', compact('group_id', 'sprint', 'team_members', 'team_report', 'reports', 'timeLogs', 'tasks', 'memberEvaluations', 'taskEvaluations'));
 	}
 }

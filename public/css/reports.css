@@ -1,6 +1,3 @@
 /* cellpadding */
 th, td { padding-right: 15px; }
 table { border-collapse: separate; border-spacing: 2px; }
-no {color: red;}
-yes {color: green;}
-maybe {color: orange;}
