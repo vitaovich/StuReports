@@ -64,7 +64,6 @@ class ReportsController extends Controller
     $report->total_hours = $totalHours;
     $report->save();
     $reportID = $report->id;
-    //$timelogHours = Input::get('timeloghours');
     $timeLogDescriptions = Input::get('timeLogDescriptions');
     $sprintLength = Auth::user()->course()->sprint_length;
     $index = 0;
