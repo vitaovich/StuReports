@@ -55,30 +55,34 @@ class ReportsController extends Controller
     $report->student_id = Auth::user()->id;
     $report->private_comments = $request->private_comments;
     $report->sprint = Auth::user()->course()->sprint;
-    $report->total_hours = $request->saturday_hours + $request->sunday_hours + $request->monday_hours + $request->tuesday_hours + $request->wednesday_hours + $request->thursday_hours + $request->friday_hours;
-    $report->save();
-
-    $reportID = $report->id;
+    $totalHours = 0;
     $timelogHours = Input::get('timeloghours');
-    $timeLogDescriptions = Input::get('timelogdescription');
-    $index = 0;
-    if(is_array($timelogHours) || is_object($timelogHours))
+    foreach($timelogHours as $timelogHour)
     {
-      foreach ($timelogHours as $timelogHour)
-      {
-        if(($timelogHours[$index] != "0" && $timelogHours[$index] != "") || $timeLogDescriptions[$index] != "")
-        {
-          $timelog = new IndividualTimeLog;
-          $timelog->individual_report_id = $reportID;
-          $timelog->day = Carbon::today()->subDays(Auth::user()->course()->sprint_length - $index - 1);
-          $timelog->hours = $request->timeloghours[$index];
-          $timelog->description = $request->timelogdescription[$index];
-          $timelog->save();
-          $index++;
-        }
-      }
+      $totalHours += $timelogHour;
     }
+    $report->total_hours = $totalHours;
+    $report->save();
+    $reportID = $report->id;
+    //$timelogHours = Input::get('timeloghours');
+    $timeLogDescriptions = Input::get('timeLogDescriptions');
+    $sprintLength = Auth::user()->course()->sprint_length;
+    $index = 0;
 
+    while($index < $sprintLength)
+    {
+      if(($timelogHours[$index] != "0" && $timelogHours[$index] != "") || $timeLogDescriptions[$index] != "")
+      {
+        $timelog = new IndividualTimeLog;
+        $timelog->individual_report_id = $reportID;
+        $timelog->day = Carbon::today()->subDays($sprintLength - $index - 1);
+        $hours = $request->timeloghours[$index];
+        $timelog->hours = $hours;
+        $timelog->description = $request->timeLogDescriptions[$index];
+        $timelog->save();
+      }
+      $index++;
+    }
     $index = 0;
     $newTaskNames = Input::get('newTaskName');
     $newTaskDescriptions = Input::get('newTaskDescription');
@@ -95,10 +99,11 @@ class ReportsController extends Controller
           $newTask->task_name = $newTaskNames[$index]; // problem line?
           $newTask->student_id = Auth::user()->id;
           $newTask->status = "new";
-          $teamReport->group_id = Auth::user()->group_id;
-          if(is_null($teamReport->group_id))
+          $newTask->sprint_started = Auth::user()->course()->sprint;
+          $newTask->group_id = Auth::user()->group_id;
+          if(is_null($newTask->group_id))
           {
-            $teamReport->group_id = 0;
+            $newTask->group_id = 0;
           }
           $newTask->save();
           $index++;
@@ -108,7 +113,7 @@ class ReportsController extends Controller
 
     // beging teammate evaluation section
     $counter = 0;
-    $teammates = User::getGroupmates(Auth::user()->id);
+    $teammates = User::getGroupmates(Auth::user()->group_id);
     if((is_array($teammates) && count($teammates) > 0) || (is_object($teammates) && !is_null($teammates)))
     {
       foreach($teammates as $teammate)
@@ -135,7 +140,15 @@ class ReportsController extends Controller
           }
           $memberEvaluation = new Member_evaluation;
           $memberEvaluation->individual_report_id = $report->id;
-          $memberEvaluation->concur_hours = "yes"; // TODO fix this
+          $memberEvaluation->concur_hours = "yes";
+          $memberEvaluation->comments_hours = "0th sprint";
+          if(Auth::user()->course()->sprint > 0)
+          {
+            $hours = Input::get("hourEvaluations");
+            $hour_comments = Input::get("hourEvaluationsExplanation");
+            $memberEvaluation->concur_hours = $hours[$teammate->id];
+            $memberEvaluation->comments_hours = $hour_comments[$teammate->id];
+          }
           $performing = Input::get("teammateExpectations");
           $memberEvaluation->performing = $performing[$teammate->id];
           $comments = Input::get("teammateExpectationsExplanation");

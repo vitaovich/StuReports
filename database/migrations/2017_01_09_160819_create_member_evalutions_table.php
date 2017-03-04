@@ -20,6 +20,7 @@ class CreateMemberEvalutionsTable extends Migration
             $table->string('concur_hours');
             $table->string('performing');
             $table->string('comments')->nullable();
+            $table->string('comments_hours')->nullable();
             $table->timestamps();
 
             $table->foreign('individual_report_id')->references('id')->on('individual_reports');
