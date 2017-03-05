@@ -101,6 +101,15 @@
               <div class="panel-heading">
                   <h1>CSCD {{$course->quarterString()}} {{$course->year}}</h1>
               </div>
+              <div class="panel-heading">
+                <h3>Announcements</h2>
+              </div>
+              <div cass="panel-body">
+                <h1>hello</h1>
+              </div>
+              <div class="panel-heading">
+                <h3>Assignments</h2>
+              </div>
               <div class="panel-body">
                 <div class="col-md-3" ondrop="drop(event, unassigned_students_list_{{$course->id}}, 1)" ondragover="allowDrop(event)"  >
                   <h4>Students</h4>

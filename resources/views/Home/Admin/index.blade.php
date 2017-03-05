@@ -23,7 +23,10 @@
                       <tr>
                         <td>{{$course->course_title }} {{ $course->quarterString() }} {{ $course->year }}</td>
                         <td>{{ $course->instructor->name }}</td>
-                        <td><a href="/course/{{$course->id}}/edit" class="btn-sm btn-primary">Edit</a></td>
+                        <td>
+                          <a href="/course/{{$course->id}}/edit" class="btn-sm btn-primary">Edit</a>
+                          <a class="btn-sm btn-danger" href="">Delete</a>
+                        </td>
                       </tr>
                     @endforeach
                   </tbody>

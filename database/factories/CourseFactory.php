@@ -3,7 +3,7 @@ $factory->define(App\Course::class, function (Faker\Generator $faker) {
 
 
   return [
-      'teacher_id' => 2,
+      'teacher_id' => 1,
       'year' => $faker->numberBetween($min = 1997, $max = 2017),
       'quarter' => $faker->numberBetween($min = 0, $max = 3),
       'course_title' => 'CSCD 488',

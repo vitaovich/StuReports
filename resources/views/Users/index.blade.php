@@ -14,6 +14,7 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Role</th>
+                      <th><a class="btn-sm btn-success" href="/course/create">Create</a></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -22,8 +23,10 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->role}}</td>
-                        <td><a class="btn-sm btn-primary" href="/users/{{$user->id}}/edit">Edit</a></td>
-                        <td><a class="btn-sm btn-danger" href="/users/{{$user->id}}">Delete</a></td>
+                        <td>
+                          <a class="btn-sm btn-primary" href="/users/{{$user->id}}/edit">Edit</a>
+                          <a class="btn-sm btn-danger" href="/users/{{$user->id}}">Delete</a>
+                        </td>
                       </tr>
                     @endforeach
                   </tbody>
