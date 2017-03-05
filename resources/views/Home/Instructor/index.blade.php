@@ -115,7 +115,6 @@
                 <h3>Announcements</h2>
               </div>
               <div cass="panel-body">
-                <h1>hello</h1>
               </div>
               <div class="panel-heading">
                 <h3>Assignments</h2>
