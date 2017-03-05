@@ -88,10 +88,20 @@
         xhttp.open("POST", "/projectgroups/" + project_id, true);
         xhttp.send(formData);
       }
+
+      function sendDelete(id) {
+        document.getElementById('delete_form').id.value = id;
+        document.getElementById('delete_form').submit();
+      }
     </script>
 @endsection
 
 @section('content')
+
+<form id='delete_form' action="/delete" method="POST">
+  {{ csrf_field() }}
+  <input type="hidden" name="thing" value="projectgroups">
+  <input type="hidden" name="id" value="-1">
 
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
@@ -152,7 +162,7 @@
                               </select>
                               <br>
                               <a href="/projectgroups/{{$project->id}}/edit" class="btn-sm btn-primary">Edit</a>
-                              <a href="/projectgroups/delete/{{$project->id}}" class="btn-sm btn-danger">Delete</a>
+                              <a href="javascript:sendDelete({{$project->id}})" class="btn-sm btn-danger">Delete</a>
                             </div>
 
                             <div id="{{$project->id}}_project" class="collapse col-md-12">
@@ -182,4 +192,5 @@
         @endif
       </div>
   </div>
+</form>
 @endsection

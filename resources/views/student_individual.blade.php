@@ -1,4 +1,5 @@
 <?php use Carbon\Carbon;
+use App\IndividualReport;
  ?>
 
 @extends('layouts.app')
@@ -28,7 +29,7 @@
                     echo
               '<tr>
                 <td>
-                  <p>'; echo Carbon::today()->subDays($i)->formatLocalized('%A, %B %d %Y'); echo '</p></td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="timeloghours[]" name="timeloghours[]" required></td><td><input type="text" class="timeLogDescription" id="timelogdescription[]" name="timelogdescription[]"/>
+                  <p>'; echo Carbon::today()->subDays($i)->formatLocalized('%A, %B %d %Y'); echo '</p></td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="timeloghours[]" name="timeloghours[]" required></td><td><input type="text" class="timeLogDescription" id="timeLogDescriptions[]" name="timeLogDescriptions[]"/>
                 </td>
               </tr>
               ';
@@ -63,7 +64,6 @@
             </table>
             <script type="text/javascript" src="{!! asset('js/NewTask.js') !!}"></script>
             <br />
-            <!-- {{ $priorReports = App\Task::where('Student_id', Auth::user()->id)->get() }} -->
             <?php $priorReports = App\Task::getTasks(Auth::user()->id);//->get();
                 $counter = 0;
                 $teammateCounter = 0;
@@ -92,7 +92,9 @@
                   <div class="statusOptionsClass">
                     <input type="radio" name="taskStatus[<?php echo $counter ?>]" value="reassigned"><p>Reassigned to: </p>
                     @foreach($teammates as $teammate)
+                      @if($teammate->id != Auth::user()->id)
                       <input type="radio" name="teammateReassign[<?php echo $counter ?>]" value="<?php echo $teammate->id; ?>" <?php if($teammateCounter == 0) {echo "checked=\"true\"";} $teammateCounter++; ?>><p><?php echo $teammate->name; ?></p>
+                      @endif
                     @endforeach
                   </div>
                 </div>
@@ -141,7 +143,29 @@
                 </div>
                 <?php $counter++; ?>
               @endforeach
-              <!-- TODO  Add hours concur -->
+              @if(Auth::user()->course()->sprint > 0)
+            <div class="statusPointsClass">
+              @if(is_null(IndividualReport::getHours($teammate->id, Auth::user()->course()->sprint - 1)) || (IndividualReport::getHours($teammate->id, Auth::user()->course()->sprint - 1)) == 0)
+                  <h4>{{ $teammate->name }} logged 0 hours or did not submit a report last sprint. Do you concur?</h4>
+              @else
+                <h4>{{$teammate->name}} logged <?php echo IndividualReport::getHours($teammate->id, Auth::user()->course()->sprint - 1) ?> hours. Do you concur?</h4>
+              @endif
+
+                <div class="statusOptionsClass">
+                  <input type="radio" name="hourEvaluations[<?php echo $teammate->id; ?>]" value="yes" checked><p>Yes</p>
+                </div>
+                <div class="statusOptionsClass">
+                  <input type="radio" name="hourEvaluations[<?php echo $teammate->id; ?>]" value="no"><p>No (explain why)</p>
+                </div>
+                <div class="statusOptionsClass">
+                  <input type="radio" name="hourEvaluations[<?php echo $teammate->id; ?>]" value="maybe"><p>Maybe (explain why)</p>
+                </div>
+                <div>
+                   <p>Explain</p>
+                  <input type="text" name="hourEvaluationsExplanation[<?php echo $teammate->id; ?>]" value="">
+                </div>
+            </div>
+            @endif
               <div class="statusPointsClass">
                 <h4>Overall, is {{$teammate->name}} meeting reasonable expectations?</h4>
                 <div class="statusOptionsClass">
