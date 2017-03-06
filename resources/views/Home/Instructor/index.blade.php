@@ -72,7 +72,7 @@
 
       function updateProjectLead(project_id, element) {
         var optionValue = element[element.selectedIndex].value;
-        console.log(optionValue);
+        // console.log(optionValue);
         var CSRF_TOKEN = document.getElementsByName('csrf-token')[0].getAttribute('content');
         var formData = new FormData();
         formData.append("_method", "PUT");
@@ -82,7 +82,7 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
           if(this.readyState == 4 && this.status == 200){
-            console.log("Success");
+            // console.log(this.responseText);
           }
         }
         xhttp.open("POST", "/projectgroups/" + project_id, true);

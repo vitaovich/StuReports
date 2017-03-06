@@ -75,6 +75,7 @@ class Project_GroupsController extends Controller
      */
     public function update(Request $request, $id)
     {
+      // return $request->all();
         $group = Project_group::find($id);
         if($request->project_leader == 0) {
           $group->project_leader = null;
@@ -82,8 +83,8 @@ class Project_GroupsController extends Controller
         else {
           $group->project_leader = $request->project_leader;
         }
-        $group->course_id = $request->course_id;
-        $group->project = $request->project;
+        $group->course_id = $request->input('course_id', $group->course_id);
+        $group->project = $request->input('project', $group->course_id);
         $group->save();
 
         return redirect('/home');
