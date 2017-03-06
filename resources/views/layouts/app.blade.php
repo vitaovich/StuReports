@@ -49,8 +49,7 @@
                         <li><a href="{{ url('/debug') }}">Debug sprints</a></li>
                     @elseif (Auth::check() && Auth::user()->isInstructor())
                         <li><a href="{{ url('/users') }}">Users</a></li>
-                        <li><a href="{{ url('/announcements') }}">Announcements</a></li>
-                        <li><a href="{{ url('/assignments') }}">Assignments</a></li>
+                        <li><a href="{{ url('/course') }}">Courses</a></li>
                     <!-- Mike code below -->
                     @elseif (Auth::check() && Auth::user()->isStudent())
                       <li><a href="{{ url('/student_team')  }}">Submit Team Report</a></li>

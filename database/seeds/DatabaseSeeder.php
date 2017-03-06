@@ -18,6 +18,13 @@ class DatabaseSeeder extends Seeder
           'role' => 'Admin',
           'remember_token' => str_random(10)
       ]);
+      DB::table('users')->insert([
+          'name' => 'fname lname',
+          'email' => 'instructor',
+          'password' => bcrypt('password'),
+          'role' => 'Instructor',
+          'remember_token' => str_random(10)
+      ]);
       $this->call(CoursesSeeder::class);
       $this->call(ProjectsSeeder::class);
       $this->call(UsersTableSeeder::class);
