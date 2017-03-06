@@ -22,34 +22,35 @@
 				<h2 class="bg-primary">Logged Hours</h2>
 				@if( ! empty($timeLogs))
 					@foreach($timeLogs as $timeLog)
-						<h4 class="bg-primary">{{$team_members[$reports[$timeLog[0]->individual_report_id]->student_id]->name}}</h4>
-						<b>Total Hours: </b>{{$reports[$timeLog[0]->individual_report_id]->total_hours}}
-						<table>
-						<tr>
-							<th>
-								<u>Date</u>
-							</th>
-							<th>
-								<u>Hours</u>
-							</th>
-							<th>
-								<u>Description</u>
-							</th>
-						</tr>
-						@foreach($timeLog as $log)
+						@if(!empty($timeLog))
+							
+							<table>
 							<tr>
-								<td>
-									{{date('d M', strtotime($log['day']))}}
-								</td>
-								<td>
-									{{$log['hours']}}
-								</td>
-								<td>
-									{{$log['description']}}
-								</td>
+								<th>
+									<u>Date</u>
+								</th>
+								<th>
+									<u>Hours</u>
+								</th>
+								<th>
+									<u>Description</u>
+								</th>
 							</tr>
-						@endforeach
-						</table>
+							@foreach($timeLog as $log)
+								<tr>
+									<td>
+										{{date('d M', strtotime($log['day']))}}
+									</td>
+									<td>
+										{{$log['hours']}}
+									</td>
+									<td>
+										{{$log['description']}}
+									</td>
+								</tr>
+							@endforeach
+							</table>
+						@endif
 					@endforeach
 				@else
 					<p>No Time Logs For This Sprint</p>
@@ -59,70 +60,74 @@
 					@foreach($team_members as $member)
 						<h4 class="bg-primary">{{$member->name}}</h4>
 						@foreach($tasks as $task)
-							@if($task[0]->student_id == $member->id)
-								<hr>
-								<b><u><h4>{{$task[0]->task_name}}</h4></u></b>
-								<u><b>Status: </b></u>
-								@if($task[0]->sprint_started == $sprint)
-									new<br />
-								@elseif($task[0]->sprint_started <= $sprint)
-									Continuing<br />
-								@elseif($task[0]->sprint_ended == $sprint)
-									Completed<br />
-								@else
-									{{$task[0]->status}}
-								@endif
-								<b>Original description:</b> {{$task[0]->description}}<br />
-								@foreach($task[1] as $taskReport)
-									@if($taskReport->sprint == $sprint)
-										<b>Latest Progress: </b>
+							@if(!empty($task))
+								@if($task[0]->student_id == $member->id)
+									<hr>
+									<b><u><h4>{{$task[0]->task_name}}</h4></u></b>
+									<u><b>Status: </b></u>
+									@if($task[0]->sprint_started == $sprint)
+										new<br />
+									@elseif($task[0]->sprint_started <= $sprint)
+										Continuing<br />
+									@elseif($task[0]->sprint_ended == $sprint)
+										Completed<br />
 									@else
-										<b>Progess in sprint {{$taskReport->sprint}}: </b>
+										{{$task[0]->status}}
 									@endif
-									{{$taskReport->latest_progress}}<br />
-								@endforeach
-								@if (Auth::check() && Auth::user()->isInstructor() && !empty($taskEvaluations))
-									<br />
-									<table border='1' width=65%>
-										<col align="left">
-										<col align="right">
-										<col align="right">
-										<tr>
-											<th>
-												<h4 class="bg-primary">Task Evaluations</h4>
-											</th>
-										</tr>
-										<tr>
-											<th>
-												Member Name
-											</th>
-											<th>
-												Concurs
-											</th>
-											<th>
-												Comments
-											</th>
-										</tr>
-									@foreach($taskEvaluations as $evaluation)
-										@if($evaluation->task_id == $task[0]->id)
-											<tr>
-												<td>
-													{{$team_members[$reports[$evaluation->individual_report_id]->student_id]->name}}:
-												</td>
-											@if($evaluation->concur == 'yes')
-												<td>Yes</td>
-											@elseif($evaluation->concur == 'no')
-												<td><b>No</b></td>
-											@else
-												<td>Maybe</td>
-											@endif
-												<td>
-													{{$evaluation->comments}}
-												</td>
-											</tr>
+									<b>Original description:</b> {{$task[0]->description}}<br />
+									@foreach($task[1] as $taskReport)
+										@if($taskReport->sprint == $sprint)
+											<b>Latest Progress: </b>
+										@else
+											<b>Progess in sprint {{$taskReport->sprint}}: </b>
 										@endif
+										{{$taskReport->latest_progress}}<br />
 									@endforeach
-									</table>
+									@if (Auth::check() && Auth::user()->isInstructor() && !empty($taskEvaluations))
+										<br />
+										<table border='1' width=65%>
+											<col align="left">
+											<col align="right">
+											<col align="right">
+											<tr>
+												<th>
+													<h4 class="bg-primary">Task Evaluations</h4>
+												</th>
+											</tr>
+											<tr>
+												<th>
+													Member Name
+												</th>
+												<th>
+													Concurs
+												</th>
+												<th>
+													Comments
+												</th>
+											</tr>
+										@foreach($taskEvaluations as $evaluation)
+											@if(!empty($task))
+												@if($evaluation->task_id == $task[0]->id)
+													<tr>
+														<td>
+															{{$team_members[$reports[$evaluation->individual_report_id]->student_id]->name}}:
+														</td>
+													@if($evaluation->concur == 'yes')
+														<td>Yes</td>
+													@elseif($evaluation->concur == 'no')
+														<td><b>No</b></td>
+													@else
+														<td>Maybe</td>
+													@endif
+														<td>
+															{{$evaluation->comments}}
+														</td>
+													</tr>
+												@endif
+											@endif
+										@endforeach
+										</table>
+									@endif
 								@endif
 							@endif
 						@endforeach

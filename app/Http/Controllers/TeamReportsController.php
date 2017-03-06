@@ -67,41 +67,63 @@ class TeamReportsController extends Controller
 		$reports = Project_group::findOrFail($group_id)->individualReports->where('sprint',$sprint);
 		$team_members = $team_members->keyBy('id');
 		$reports = $reports->keyBy('id');
+		
 		$timeLogs = [];
 		foreach($reports as $report)
 		{
 			$timeLog = IndividualReport::findOrFail($report->id)->timeLogs;
-			array_push($timeLogs, $timeLog);
+			if(!empty($timeLog))
+			{
+				array_push($timeLogs, $timeLog);
+			}
 		}
 		$taskEvaluations = [];
 		foreach($reports as $report)
 		{
 			$taskEvaluation = IndividualReport::findOrFail($report->id)->taskEvaluations;
-			foreach($taskEvaluation as $taskEval)
+			if(!empty($taskEvaluation))
 			{
-				array_push($taskEvaluations, $taskEval);
+				foreach($taskEvaluation as $taskEval)
+				{
+					if(!empty($taskEval))
+					{
+						array_push($taskEvaluations, $taskEval);
+					}
+				}
 			}
 		}
 		$tasks = [];
 		foreach($team_members as $member)
 		{
 			$member_tasks = User::findOrFail($member->id)->tasks;
-			foreach($member_tasks as $task)
+			if(!empty($member_tasks))
 			{
-				$task_and_Reports = [];
-				array_push($task_and_Reports, $task);
-				$taskReports = Task::findOrFail($task->id)->taskReports->where('sprint', '<=', $sprint);
-				array_push($task_and_Reports, $taskReports);
-				array_push($tasks, $task_and_Reports);
+				foreach($member_tasks as $task)
+				{
+					if(!empty($task))
+					{
+						$task_and_Reports = [];
+						array_push($task_and_Reports, $task);
+						$taskReports = Task::findOrFail($task->id)->taskReports->where('sprint', '<=', $sprint);
+						array_push($task_and_Reports, $taskReports);
+						array_push($tasks, $task_and_Reports);
+					}
+				}
 			}
 		}
 		$memberEvaluations = [];
 		foreach($reports as $report)
 		{
 			$evaluations = IndividualReport::findOrFail($report->id)->memberEvaluations;
-			foreach($evaluations as $eval)
+			if(!empty($evaluations))
 			{
-				array_push($memberEvaluations, $eval);
+				foreach($evaluations as $eval)
+				{
+					if(!empty($eval))
+					{
+						array_push($memberEvaluations, $eval);
+					}
+				}
 			}
 		}
 		return view('team_report', compact('group_id', 'sprint', 'team_members', 'team_report', 'reports', 'timeLogs', 'tasks', 'memberEvaluations', 'taskEvaluations'));
