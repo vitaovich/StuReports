@@ -23,5 +23,11 @@ class DatabaseSeeder extends Seeder
       $this->call(UsersTableSeeder::class);
       $this->call(IndividualReportsSeeder::class);
       $this->call(TasksSeeder::class);
+      $this->call(AssignmentsSeeder::class);
+      $this->call(GradebookSeeder::class);
+      $this->call(MemberEvaluationsSeeder::class);
+      $this->call(TaskEvaluationsSeeder::class);
+      $this->call(TaskReportsSeeder::class);
+      $this->call(TimeLogsSeeder::class);
     }
 }

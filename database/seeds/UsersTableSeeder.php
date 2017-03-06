@@ -10,10 +10,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(App\User::class, 20)->create();
-      factory(App\User::class, 30)->states('unassigned')->create();
       DB::table('users')->insert([
-          'name' => 'Stu Steiner',
+          'name' => 'fname lname',
           'email' => 'instructor',
           'password' => bcrypt('password'),
           'role' => 'Instructor',
@@ -48,6 +46,8 @@ class UsersTableSeeder extends Seeder
           'role' => 'Instructor',
           'remember_token' => str_random(10)
       ]);
+      factory(App\User::class, 20)->create();
+      factory(App\User::class, 30)->states('unassigned')->create();
       DB::table('users')->insert([
           'name' => 'Elliot Alderson',
           'email' => 'ealderson@allsafe.com',
