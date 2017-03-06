@@ -84,7 +84,7 @@ class Project_GroupsController extends Controller
           $group->project_leader = $request->project_leader;
         }
         $group->course_id = $request->input('course_id', $group->course_id);
-        $group->project = $request->input('project', $group->course_id);
+        $group->project = $request->input('project', $group->project);
         $group->save();
 
         return redirect('/home');
