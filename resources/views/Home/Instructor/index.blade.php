@@ -111,21 +111,13 @@
               <div class="panel-heading">
                   <h1>CSCD {{$course->quarterString()}} {{$course->year}}</h1>
               </div>
-              <div class="panel-heading">
-                <h3>Announcements</h2>
-              </div>
-              <div cass="panel-body">
-              </div>
-              <div class="panel-heading">
-                <h3>Assignments</h2>
-              </div>
               <div class="panel-body">
                 <div class="col-md-3" ondrop="drop(event, unassigned_students_list_{{$course->id}}, 1)" ondragover="allowDrop(event)"  >
                   <h4>Students</h4>
                   <ul id="unassigned_students_list_{{$course->id}}">
                     @foreach ($course->students->where('group_id', 1) as $student)
                       <li id="{{$student->id}}_student"  draggable="true" ondragstart="drag(event)" >
-                        <a>{{$student->name}}</a>
+                        <a href="/reports/user/{{$student->id}}">{{$student->name}}</a>
                       </li>
                     @endforeach
                   </ul>
@@ -143,7 +135,7 @@
                           <td>
                             <div class="col-md-7" data-toggle="collapse" data-target="#{{$project->id}}_project">
                               <h4>
-                                <span class="caret"></span> <a href="">Group {{$loop->index + 1}}: {{$project->project}}</a>
+                                <span class="caret"></span> <a href="/reports/group/{{$project->id}}">Group {{$loop->index + 1}}: {{$project->project}}</a>
                               </h4>
                             </div>
                             <div class="col-md-5">
@@ -168,7 +160,7 @@
                               <ul id="list_team_{{$project->id}}">
                                 @foreach ($project->students as $student)
                                 <li id="{{$student->id}}_student" draggable="true" ondragstart="drag(event)" >
-                                  <a>{{$student->name}}</a>
+                                  <a href="/reports/user/{{$student->id}}">{{$student->name}}</a>
                                 </li>
                                 @endforeach
                             </ul>
