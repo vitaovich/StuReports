@@ -41,7 +41,7 @@ class EmailTest extends Command
      */
     public function handle()
     {
-        Mail::to('seth.riedel@gmail.com')->send(new IndividualReportEmail(User::where('id', '=', '5')->first()));
-        Mail::to('seth.riedel@gmail.com')->send(new TeamReportEmail(User::where('id', '=', '5')->first()));
+        Mail::to('seth.riedel@gmail.com')->send(new IndividualReportEmail(User::where('id', '=', '30001')->first()));
+        Mail::to('seth.riedel@gmail.com')->send(new TeamReportEmail(User::where('id', '=', '30001')->first()));
     }
 }
