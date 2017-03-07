@@ -26,6 +26,8 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Role</th>
+                      <th></th>
+                      <th><a class="btn-sm btn-success" href="/users/create">Create</a></th>
                     </tr>
                   </thead>
                   <tbody>

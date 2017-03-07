@@ -3,6 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
+<link href="/css/reports.css" rel="stylesheet">
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
@@ -12,8 +13,8 @@
 					Email: {{$instructor->email}}
 			</div>
             <div class="panel-body">
-				<h3 class="bg-primary">Tasks</h3>
-					<table width='35%'>
+				<h3 class="bg-primary">Assignments</h3>
+					<table>
 					<tr>
 						<th>
 							
@@ -46,7 +47,7 @@
 					@endforeach
 					</table>
                 <h3 class="bg-primary">Status Reports</h3>
-					<table width="45%">
+					<table>
 						<tr>
 							<th>
 							

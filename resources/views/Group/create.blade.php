@@ -16,7 +16,10 @@
                   {{ Form::label('course_id', 'Course')}}
                   <!-- {{ Form::text('teacher_id') }} -->
                   <?php
-                      $courses = App\Course::where('teacher_id', '=', Auth::user()->id)->get();
+                      $courses = App\Course::where([
+                        ['teacher_id', '=', Auth::user()->id],
+                        ['active', '=', '1']
+                      ])->get();
                       $options = [];
                       //echo json_encode($instructors);
                       foreach($courses as $course)
