@@ -8,6 +8,13 @@
 		@if (Auth::check() && (Auth::user()->isStudent() || Auth::user()->isInstructor()))
 			<div class="panel-heading">
 				<h1 class="bg-primary">{{$student->name}}, Report for Sprint: {{$sprint}}</h1>
+				@if(Auth::user()->isInstructor())
+					<br>
+					{{ Form::open(['url' => 'individual_report/sendemail']) }}
+					{{ Form::hidden('id', $student->id) }}
+					{{ Form::submit('Send email', ['class' => 'btn btn-primary']) }}
+					{{ Form::close() }}
+				@endif
 			</div>
 			<div class="panel-body">
 				<h2 class="bg-primary">Logged Hours</h2>

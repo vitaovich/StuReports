@@ -35,6 +35,12 @@ class IndividualReportEmail extends Mailable
         $tasks = [];
         $student_tasks = $this->user->tasks;
         $sprint = $this->user->course()->sprint;
+        $reports = User::findOrFail($this->user->id)->individualReports->where('sprint', '>=', $sprint);
+    		$reports = $reports->keyBy('id');
+    		$report = $reports->where('sprint', $sprint)->pop();
+        $timeLogs = [];
+    		if($report != null)
+    			$timeLogs = IndividualReport::findOrFail($report->id)->timeLogs;
         foreach($student_tasks as $task)
         {
             $task_and_Reports = [];
@@ -43,11 +49,16 @@ class IndividualReportEmail extends Mailable
             array_push($task_and_Reports, $taskReports);
             array_push($tasks, $task_and_Reports);
         }
-        return $this->subject("Individual Report, " . $this->user->name)
+        $instructor = $this->user->course()->instructor;
+        return $this
+                    //->from($instructor->email) //uncomment once emails are always correct
+                    ->subject("Individual Report, " . $this->user->name)
                     ->view('emails.individual_report', [
                         'student' => $this->user,
+                        'timeLogs' => $timeLogs,
                         'sprint' => $sprint,
-                        'tasks' => $tasks
+                        'tasks' => $tasks,
+                        'reports' => $reports
                     ]);
     }
 }

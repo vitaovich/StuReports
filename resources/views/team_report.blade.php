@@ -8,6 +8,13 @@
 		@if (Auth::check() && (Auth::user()->isStudent() || Auth::user()->isInstructor()))
 			<div class="panel-heading">
 				<h1 class="bg-primary">Sprint: {{$sprint}}, Aggregated Team Report</h1>
+				@if(Auth::user()->isInstructor())
+					<br>
+					{{ Form::open(['url' => 'aggregated_report/sendemails']) }}
+					{{ Form::hidden('id', $group_id) }}
+					{{ Form::submit('Send emails', ['class' => 'btn btn-primary']) }}
+					{{ Form::close() }}
+				@endif
 			</div>
 			<div class="panel-body">
 				<h2 class="bg-primary">Members</h2>
@@ -23,7 +30,7 @@
 				@if( ! empty($timeLogs))
 					@foreach($timeLogs as $timeLog)
 						@if(!empty($timeLog))
-							
+
 							<table>
 							<tr>
 								<th>

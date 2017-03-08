@@ -79,7 +79,10 @@ class TeamReportEmail extends Mailable
     				array_push($memberEvaluations, $eval);
     			}
     		}
-    		return $this->subject("Team Report, Group " . $group_id . ", Sprint " . $sprint)
+        $instructor = $this->user->course()->instructor;
+    		return $this
+                    //->from($instructor->email) //uncomment once emails are always correct
+                    ->subject("Team Report, Group " . $group_id . ", Sprint " . $sprint)
                     ->view('emails.team_report', [
                       'group_id' => $group_id,
                       'sprint' => $sprint,
