@@ -20,7 +20,7 @@ class Course extends Model
   }
 
   public function quarterString() {
-      $seasons = ['Fall','Winter','Spring','Summer'];
+      $seasons = [1=>'Fall',2=>'Winter',3=>'Spring',4=>'Summer'];
       return $seasons[$this->quarter];
   }
 
@@ -37,10 +37,5 @@ class Course extends Model
   public function instructor()
   {
       return $this->belongsTo('App\User', 'teacher_id');
-  }
-
-  public function assignments()
-  {
-      return $this->hasMany('App\Assignment', 'course_id');
   }
 }

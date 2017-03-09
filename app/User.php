@@ -75,11 +75,6 @@ class User extends Authenticatable
 		return $this->hasMany('App\Member_evaluation');
 	}
 
-	public function assignments()
-	{
-		return $this->hasMany('App\Gradebook', 'student_id');
-	}
-
   public static function getGroupmates($userGroupID) // need to account for multiple classes
   {
     // This class doesn't extend model, meaning I can't use some of the query builder
