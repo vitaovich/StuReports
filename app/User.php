@@ -67,7 +67,7 @@ class User extends Authenticatable
 
 	public function individualReports()
 	{
-		return $this->hasMany('App\individualReport', 'student_id');
+		return $this->hasMany('App\IndividualReport', 'student_id');
 	}
 
 	public function evaluations()
