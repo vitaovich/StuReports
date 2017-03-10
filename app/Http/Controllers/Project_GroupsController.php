@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project_group;
 use App\User;
+use App\Task_evaluation;
 
 class Project_GroupsController extends Controller
 {
@@ -100,11 +101,30 @@ class Project_GroupsController extends Controller
     {
         $group = Project_group::find($id);
         $members = $group->students;
+
         foreach($members as $member)
         {
             $member->group_id = 1;
             $member->save();
         }
+
+        $tasks = $group->tasks;
+
+        foreach($tasks as $task)
+        {
+            $taskevals = Task_evaluation::where('task_id', '=', $task->id)->get();
+
+            foreach($taskevals as $taskeval)
+                $taskeval->delete();
+
+            $taskReports = $task->taskReports;
+
+            foreach($taskReports as $taskReport)
+                $taskReport->delete();
+
+            $task->delete();
+        }
+        
         $group->delete();
 
         return redirect('/home');
