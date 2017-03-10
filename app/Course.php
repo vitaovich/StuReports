@@ -20,7 +20,7 @@ class Course extends Model
   }
 
   public function quarterString() {
-      $seasons = [1=>'Fall',2=>'Winter',3=>'Spring',4=>'Summer'];
+      $seasons = ['Fall','Winter','Spring','Summer'];
       return $seasons[$this->quarter];
   }
 
