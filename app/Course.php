@@ -38,9 +38,4 @@ class Course extends Model
   {
       return $this->belongsTo('App\User', 'teacher_id');
   }
-
-  public function assignments()
-  {
-      return $this->hasMany('App\Assignment', 'course_id');
-  }
 }
