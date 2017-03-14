@@ -30,7 +30,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach (Auth::user()->courses() as $course)
+                    @foreach ($courses as $course)
                       <tr>
                         <td>{{$course->course_title }} {{ $course->quarterString() }} {{ $course->year }}</td>
                         <td>{{ $course->instructor->name }}</td>
@@ -42,6 +42,7 @@
                     @endforeach
                   </tbody>
                 </table>
+                {{ $courses->links() }}
                 @endif
             </div>
           </div>

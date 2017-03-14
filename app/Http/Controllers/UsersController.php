@@ -20,7 +20,10 @@ class UsersController extends Controller
       if(!(Auth::user()->isInstructor() || Auth::user()->isAdmin()))
           return view('no_permission');
       else
-          return view('Users.index', ['users' => User::all()]);
+      {
+          $users = User::paginate(15);
+          return view('Users.index', ['users' => $users]);
+      }
     }
 
     /**

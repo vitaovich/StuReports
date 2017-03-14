@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use App\Course;
 use App\Task_evaluation;
+use Auth;
 
 class CourseController extends Controller
 {
@@ -16,7 +17,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('Course.index');
+        $courses = Course::orderBy('year','desc')->orderBy('quarter', 'desc')->paginate(15);
+        return view('Course.index', ['courses' => $courses]);
     }
 
     /**

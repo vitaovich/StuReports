@@ -69,7 +69,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/home/admin', function()
 {
-  return view('Home.Admin.index');
+  $courses = App\Course::orderBy('year','desc')->orderBy('quarter', 'desc')->paginate(15);
+  return view('Home.Admin.index', ['courses' => $courses]);
 });
 Route::get('/home/instructor', function()
 {
