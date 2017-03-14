@@ -47,7 +47,7 @@ class CourseController extends Controller
 
       $course->save();
       Artisan::call('sprint:update');
-      return redirect('/home/admin');
+      return redirect('/home');
     }
 
     /**
