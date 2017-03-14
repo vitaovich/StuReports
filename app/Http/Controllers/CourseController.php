@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use App\Course;
+use App\Task_evaluation;
 
 class CourseController extends Controller
 {
@@ -102,6 +103,43 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Course::find($id);
+        foreach($course->projects as $project)
+        {
+          $members = $project->students;
+
+          foreach($members as $member)
+          {
+              $member->group_id = null;
+              $member->course_id = null;
+              $member->save();
+          }
+
+          $tasks = $project->tasks;
+
+          foreach($tasks as $task)
+          {
+              $taskevals = Task_evaluation::where('task_id', '=', $task->id)->get();
+
+              foreach($taskevals as $taskeval)
+                  $taskeval->delete();
+
+              $taskReports = $task->taskReports;
+
+              foreach($taskReports as $taskReport)
+                  $taskReport->delete();
+
+              $task->delete();
+          }
+
+          $project->delete();
+        }
+
+        foreach($course->students as $student)
+          $student->delete();
+
+        $course->delete();
+
+        return redirect('/course');
     }
 }
