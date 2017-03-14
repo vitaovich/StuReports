@@ -11,6 +11,6 @@ class TeamReportsSeeder extends Seeder
      */
     public function run()
     {
-        //
+      factory(App\TeamReport::class, 10)->create();
     }
 }

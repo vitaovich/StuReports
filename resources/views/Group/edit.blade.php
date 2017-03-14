@@ -12,7 +12,7 @@
             <div class="panel-body">
               <div class="container">
               {{ Form::model($project_group, ['route' => ['projectgroups.update', $project_group->id], 'method' => 'PUT']) }}
-              <div class="form-group row">
+              <div class="form-group">
                   {{ Form::label('course_id', 'Course')}}
                   <!-- {{ Form::text('teacher_id') }} -->
                   <?php
@@ -27,7 +27,7 @@
                   ?>
                   {{ Form::select('course_id', $options, $project_group->course_id) }}
               </div>
-              <div class="form-group row">
+              <div class="form-group">
                   {{ Form::label('project', 'Project title') }}
                   {{ Form::text('project') }}
               </div>

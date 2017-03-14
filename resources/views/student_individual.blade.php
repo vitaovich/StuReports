@@ -29,7 +29,7 @@ use App\IndividualReport;
                     echo
               '<tr>
                 <td>
-                  <p>'; echo Carbon::today()->subDays($i)->formatLocalized('%A, %B %d %Y'); echo '</p></td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="timeloghours[]" name="timeloghours[]" required></td><td><input type="text" class="timeLogDescription" id="timeLogDescriptions[]" name="timeLogDescriptions[]"/>
+                  <p>'; echo Carbon::today()->subDays($i)->formatLocalized('%A, %B %d %Y'); echo '</p></td><td><input type="number"  min="0"  max="24" step="0.25" value="0" id="timeloghours[]" name="timeloghours[]" required></td><td><textarea class="timeLogDescription" id="timeLogDescriptions[]" rows="1" name="timeLogDescriptions[]"></textarea>
                 </td>
               </tr>
               ';
@@ -44,22 +44,22 @@ use App\IndividualReport;
                <th>Title</th><th>Description</th>
               </tr>
               <tr id="rowID1">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
+                <td><textarea name="newTaskName[]" class="newTaskNameClass"></textarea></td><td><textarea rows="1" name="newTaskDescription[]" class="newTaskDescriptionClass"></textarea></td>
               </tr>
               <tr id="rowID2">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
+                <td><textarea name="newTaskName[]" class="newTaskNameClass"></textarea></td><td><textarea rows="1" name="newTaskDescription[]" class="newTaskDescriptionClass"></textarea></td>
               </tr>
               <tr id="rowID3">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
+                <td><textarea name="newTaskName[]" class="newTaskNameClass"></textarea></td><td><textarea rows="1" name="newTaskDescription[]" class="newTaskDescriptionClass"></textarea></td>
               </tr>
               <tr id="rowID4">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
+                <td><textarea name="newTaskName[]" class="newTaskNameClass"></textarea></td><td><textarea rows="1" name="newTaskDescription[]" class="newTaskDescriptionClass"></textarea></td>
               </tr>
               <tr id="rowID5">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
+                <td><textarea name="newTaskName[]" class="newTaskNameClass"></textarea></td><td><textarea rows="1" name="newTaskDescription[]" class="newTaskDescriptionClass"></textarea></td>
               </tr>
               <tr id="rowID6">
-                <td><input type="text" name="newTaskName[]" class="newTaskNameClass"></td><td><input type="text" name="newTaskDescription[]" class="newTaskDescriptionClass"/></td>
+                <td><textarea name="newTaskName[]" class="newTaskNameClass"></textarea></td><td><textarea rows="1" name="newTaskDescription[]" class="newTaskDescriptionClass"></textarea></td>
               </tr>
             </table>
             <script type="text/javascript" src="{!! asset('js/NewTask.js') !!}"></script>
@@ -77,7 +77,7 @@ use App\IndividualReport;
                 <h4 class="taskNameHeader">Task Name:</h4> <p>{{ $priorReport->task_name }}</p>
                 <h4>Original Description:</h4> <p>{{ $priorReport->description }}</p>
                 <h4>Latest Progress</h4>
-                <input type="text" name="latestProgress[]" class="latestProgressClass" required>
+                <textarea name="latestProgress[]" class="latestProgressClass" rows="1" required></textarea>
                 <h4>Status</h4>
                 <div class="statusPointsClass">
                   <div class="statusOptionsClass">
@@ -93,7 +93,7 @@ use App\IndividualReport;
                     <input type="radio" name="taskStatus[<?php echo $counter ?>]" value="reassigned"><p>Reassigned to: </p>
                     @foreach($teammates as $teammate)
                       @if($teammate->id != Auth::user()->id)
-                      <input type="radio" name="teammateReassign[<?php echo $counter ?>]" value="<?php echo $teammate->id; ?>" <?php if($teammateCounter == 0) {echo "checked=\"true\"";} $teammateCounter++; ?>><p><?php echo $teammate->name; ?></p>
+                      <input type="radio" name="teammateReassign[<?php echo $counter ?>]" value="<?php echo $teammate->id; ?>" <?php if($teammateCounter == 0) {echo "checked=\"true\"";} $teammateCounter++; ?>><p><?php echo "$teammate->name "; ?></p>
                       @endif
                     @endforeach
                   </div>
@@ -137,7 +137,7 @@ use App\IndividualReport;
                     </div>
                     <div>
                        <p>Explain</p>
-                      <input type="text" name="teammateTaskExplain[<?php echo $teammate->id; ?>][<?php echo $counter ?>]" value="">
+                      <textarea name="teammateTaskExplain[<?php echo $teammate->id; ?>][<?php echo $counter ?>]" rows="1" value=""></textarea>
                     </div>
                   </div>
                 </div>
@@ -162,7 +162,7 @@ use App\IndividualReport;
                 </div>
                 <div>
                    <p>Explain</p>
-                  <input type="text" name="hourEvaluationsExplanation[<?php echo $teammate->id; ?>]" value="">
+                  <textarea name="hourEvaluationsExplanation[<?php echo $teammate->id; ?>]" rows="1" value=""></textarea>
                 </div>
             </div>
             @endif
@@ -179,14 +179,14 @@ use App\IndividualReport;
                 </div>
                 <div>
                    <p>Explain</p>
-                  <input type="text" name="teammateExpectationsExplanation[<?php echo $teammate->id; ?>]" value="">
+                  <textarea name="teammateExpectationsExplanation[<?php echo $teammate->id; ?>]" rows="1" value=""></textarea>
                 </div>
               </div>
               <?php $counter = 0; ?>
             @endif
            @endforeach
            <h2>Private comments about your project</h2>
-           <input type="text" name="private_comments" id="private_comments">
+           <textarea name="private_comments" rows="1" id="private_comments"></textarea>
            <br>
            <input type="submit" value="Submit"/>
          </form>

@@ -49,9 +49,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  {{ Form::label('sprint_length', 'Sprint length (Weeks):', ['class' => 'col-sm-2 control-label']) }}
+                  {{ Form::label('sprint_length', 'Sprint length (Days):', ['class' => 'col-sm-2 control-label']) }}
                   <div class="col-sm-10">
-                    {{ Form::number('sprint_length', '1') }}
+                    {{ Form::number('sprint_length', '7', ['min' => '7', 'max' => '14']) }}
                   </div>
                 </div>
                 <div class="form-group">

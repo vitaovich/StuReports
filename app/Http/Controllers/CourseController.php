@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use App\Course;
+use App\Task_evaluation;
+use Auth;
 
 class CourseController extends Controller
 {
@@ -15,7 +17,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('Course.index');
+        $courses = Course::orderBy('year','desc')->orderBy('quarter', 'desc')->paginate(15);
+        return view('Course.index', ['courses' => $courses]);
     }
 
     /**
@@ -46,7 +49,7 @@ class CourseController extends Controller
 
       $course->save();
       Artisan::call('sprint:update');
-      return redirect('/home/admin');
+      return redirect('/home');
     }
 
     /**
@@ -102,6 +105,43 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Course::find($id);
+        foreach($course->projects as $project)
+        {
+          $members = $project->students;
+
+          foreach($members as $member)
+          {
+              $member->group_id = null;
+              $member->course_id = null;
+              $member->save();
+          }
+
+          $tasks = $project->tasks;
+
+          foreach($tasks as $task)
+          {
+              $taskevals = Task_evaluation::where('task_id', '=', $task->id)->get();
+
+              foreach($taskevals as $taskeval)
+                  $taskeval->delete();
+
+              $taskReports = $task->taskReports;
+
+              foreach($taskReports as $taskReport)
+                  $taskReport->delete();
+
+              $task->delete();
+          }
+
+          $project->delete();
+        }
+
+        foreach($course->students as $student)
+          $student->delete();
+
+        $course->delete();
+
+        return redirect('/course');
     }
 }

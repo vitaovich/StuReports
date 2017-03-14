@@ -11,6 +11,28 @@
    border-color: #636b6f;
  }
 
+ textarea {
+   margin-top: .33333em;
+   rows:1;
+ }
+
+.timeLogDescription {
+  width: 25em;
+  resize: both;
+}
+
+.newTaskNameClass {
+  width: 10em;
+}
+
+.newTaskDescriptionClass {
+  width: 20em;
+}
+
+.teamReportAnswer {
+  width: 100%;
+}
+
 .statusPointsClass {
   display: block;
 }

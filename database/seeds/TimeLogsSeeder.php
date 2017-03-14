@@ -113,5 +113,6 @@ class TimeLogsSeeder extends Seeder
             'hours' => 24.00,
             'description' => 'entire day',
         ]);
+        factory(App\IndividualTimeLog::class, 5)->create();
     }
 }

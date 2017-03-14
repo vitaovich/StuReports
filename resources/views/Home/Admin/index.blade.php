@@ -3,6 +3,17 @@
 @section('title', 'Home')
 
 @section('content')
+<script>
+  function sendDelete(id) {
+    document.getElementById('delete_form').id.value = id;
+    document.getElementById('delete_form').submit();
+  }
+</script>
+
+<form id='delete_form' action="/delete" method="POST">
+  {{ csrf_field() }}
+  <input type="hidden" name="thing" value="course">
+  <input type="hidden" name="id" value="-1">
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
@@ -19,21 +30,23 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach (Auth::user()->courses() as $course)
+                    @foreach ($courses as $course)
                       <tr>
                         <td>{{$course->course_title }} {{ $course->quarterString() }} {{ $course->year }}</td>
                         <td>{{ $course->instructor->name }}</td>
                         <td>
                           <a href="/course/{{$course->id}}/edit" class="btn-sm btn-primary">Edit</a>
-                          <a class="btn-sm btn-danger" href="">Delete</a>
+                          <a class="btn-sm btn-danger" href="javascript:sendDelete({{ $course->id }})">Delete</a>
                         </td>
                       </tr>
                     @endforeach
                   </tbody>
                 </table>
+                {{ $courses->links() }}
                 @endif
             </div>
           </div>
       </div>
   </div>
+</form>
 @endsection
