@@ -13,32 +13,27 @@ class CSVController extends Controller
         if($file->getClientOriginalExtension() != 'csv')
             return view('Users.bad_file');
         $fin = fopen($file->getRealPath(),"r");
-        $firstline = fgetcsv($fin);
-        if($firstline[0] != 'student_id' || $firstline[1] != 'name' || $firstline[2] != 'email')
-        {
-            fclose($fin);
-            return view('Users.bad_file');
-        }
         $numAdded = 0;
-        $numDupEmails = 0;
+        $numDupIDs = 0;
         while(($line = fgetcsv($fin)) !== FALSE)
         {
             //print_r($line);
             $user = new User;
-            $user->name = $line[1];
-            $user->email = $line[2];
-            $user->password = bcrypt('password');
-            if(User::where('email', '=', $user->email)->count() == 0) //no record with same email; email is unique
+            $user->name = $line[0];
+            $user->student_id = $line[1];
+            $user->group_id = 1;
+            $user->course_id = $request->get('course_id');
+            if(User::where('student_id', '=', $user->student_id)->count() == 0) //no record with same email; email is unique
             {
                 $user->save();
                 $numAdded++;
             }
             else
-                $numDupEmails++;
+                $numDupIDs++;
         }
 
         fclose($fin);
 
-        return view('Users.file_accepted', ['numAdded' => $numAdded, 'numDupEmails' => $numDupEmails]);
+        return view('Users.file_accepted', ['numAdded' => $numAdded, 'numDupIDs' => $numDupIDs]);
     }
 }

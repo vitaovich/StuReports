@@ -8,8 +8,8 @@
           <div class="panel panel-default">
               <div class="panel-body">
                   File accepted! {{ $numAdded }} users added.
-                  @if($numDupEmails != 0)
-                      {{ $numDupEmails }} users were not added due to duplicate email addresses.
+                  @if($numDupIDs != 0)
+                      {{ $numDupIDs }} users were not added due to duplicate student IDs.
                   @endif
               </div>
           </div>
