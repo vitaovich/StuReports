@@ -12,7 +12,7 @@
             <div class="panel-body">
               <div class="container">
               {{ Form::open(['route' => 'projectgroups.store']) }}
-              <div class="form-group row">
+              <div class="form-group">
                   {{ Form::label('course_id', 'Course')}}
                   <!-- {{ Form::text('teacher_id') }} -->
                   <?php
@@ -23,11 +23,11 @@
                       $options = [];
                       //echo json_encode($instructors);
                       foreach($courses as $course)
-                          $options[$course->id] = $course->quarterString() . ' ' . $course->year;
+                          $options[$course->id] = $course->course_title . ' ' . $course->quarterString() . ' ' . $course->year;
                   ?>
                   {{ Form::select('course_id', $options) }}
               </div>
-              <div class="form-group row">
+              <div class="form-group">
                   {{ Form::label('project', 'Project title') }}
                   {{ Form::text('project') }}
               </div>
