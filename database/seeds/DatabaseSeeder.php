@@ -31,8 +31,9 @@ class DatabaseSeeder extends Seeder
       $this->call(IndividualReportsSeeder::class);
       $this->call(TasksSeeder::class);
       $this->call(MemberEvaluationsSeeder::class);
-      $this->call(TaskEvaluationsSeeder::class);
       $this->call(TaskReportsSeeder::class);
+      $this->call(TaskEvaluationsSeeder::class);
       $this->call(TimeLogsSeeder::class);
+      $this->call(TeamReportsSeeder::class);
     }
 }

@@ -115,5 +115,7 @@ class TaskReportsSeeder extends Seeder
             'remaining_sprints' => 1,
             'reassigned' => 0,
         ]);
+        factory(App\TaskReport::class, 5)->create();
+
     }
 }

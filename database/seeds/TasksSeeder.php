@@ -155,5 +155,7 @@ class TasksSeeder extends Seeder
             'status' => 'continuing',
             'group_id' => 4
         ]);
+        factory(App\Task::class, 5)->create();
+
     }
 }

@@ -137,5 +137,6 @@ class MemberEvaluationsSeeder extends Seeder
           'performing' => 'yes',
           'comments' => 'no comment',
       ]);
+      factory(App\Member_evaluation::class, 5)->create();
     }
 }

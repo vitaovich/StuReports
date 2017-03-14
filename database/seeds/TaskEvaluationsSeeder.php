@@ -168,5 +168,7 @@ class TaskEvaluationsSeeder extends Seeder
             'individual_report_id' => 9,
             'concur' => 'yes',
         ]);
+        factory(App\Task_evaluation::class, 5)->create();
+
     }
 }

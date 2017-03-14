@@ -89,5 +89,6 @@ class IndividualReportsSeeder extends Seeder
             'sprint' => 1,
 
         ]);
+        factory(App\IndividualReport::class, 5)->create();
     }
 }
