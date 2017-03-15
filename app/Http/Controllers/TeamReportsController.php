@@ -52,8 +52,10 @@ class TeamReportsController extends Controller
 	public function getIndividualReports(Request $request)
 	{
 		$user = User::findOrFail($request->user_id);
+		$reports = User::findOrFail($user->id)->individualReports;
+		$course = Course::findOrFail($user->course_id);
 		$currentTime = Carbon::now();
-		return view('individual_reports', compact('user', 'currentTime'));
+		return view('individual_reports', compact('user', 'currentTime', 'reports', 'course'));
 	}
 	
 	public function getTeamReport(Request $request)
