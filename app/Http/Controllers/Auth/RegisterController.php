@@ -49,8 +49,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'student_id' => 'exists:users',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'email' => 'required|email|max:255|unique:users|isnotset:' . User::where('student_id', '=', $data['student_id'])->first()->id,
+            'password' => 'required|min:6|confirmed|isnotset:' . User::where('student_id', '=', $data['student_id'])->first()->id,
         ]);
     }
 

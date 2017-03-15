@@ -99,6 +99,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'email' => [
+            'isnotset' => 'This student id already has an email set.',
+        ],
+        'password' => [
+            'isnotset' => 'This student id already has a password set.',
+        ],
     ],
 
     /*
