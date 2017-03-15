@@ -40,18 +40,28 @@ class IndividualReport extends Model
 	  return $this->hasMany('App\Member_evaluation', 'individual_report_id');
   }
 
+  public static function hasSubmitted($studentID, $sprint)
+  {
+    $report = IndividualReport::where('student_id', $studentID)->where('sprint', $sprint)->first();//->total_hours;
+    if(is_null($report) == false)
+    {
+      return true;
+    }
+    return false;
+  }
+
   public function totalHours()
   {
   return $this->total_hours;
   }
   public static function getHours($studentID, $sprint)
   {
-    $hours = IndividualReport::where('student_id', $studentID)->where('sprint', $sprint)->first();//->total_hours;
+    $hours = IndividualReport::where('student_id', $studentID)->where('sprint', $sprint)->first();
     if(is_null($hours) == false)
     {
       $total = $hours->totalHours();
       return $total;
-    }		
+    }
     return 0;
   }
 }

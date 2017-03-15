@@ -24,9 +24,19 @@ class TeamReport extends Model
     'group_id',
     'sprint',
   );
-  
+
   public function group()
   {
 	  return $this->belongsTo('App\Project_group', 'group_id');
+  }
+
+  public static function hasSubmitted($groupID, $sprint)
+  {
+    $report = TeamReport::where('group_id', $groupID)->where('sprint', $sprint)->first();
+    if(is_null($report) == false)
+    {
+      return true;
+    }
+    return false;
   }
 }
