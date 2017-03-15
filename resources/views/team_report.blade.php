@@ -21,23 +21,28 @@
 				@endforeach
 				<h2 class="bg-primary">Logged Hours</h2>
 				@if( ! empty($timeLogs))
+					<table>
+						<tr>
+							<th>
+								<u>Member</u>
+							</th>
+							<th>
+								<u>Date</u>
+							</th>
+							<th>
+								<u>Hours</u>
+							</th>
+							<th>
+								<u>Description</u>
+							</th>
+						</tr>
 					@foreach($timeLogs as $timeLog)
 						@if(!empty($timeLog))
-							
-							<table>
-							<tr>
-								<th>
-									<u>Date</u>
-								</th>
-								<th>
-									<u>Hours</u>
-								</th>
-								<th>
-									<u>Description</u>
-								</th>
-							</tr>
 							@foreach($timeLog as $log)
 								<tr>
+									<td>
+									{{$team_members[$reports[$timeLog[0]->individual_report_id]->student_id]->name}}
+									</td>
 									<td>
 										{{date('d M', strtotime($log['day']))}}
 									</td>
@@ -49,9 +54,9 @@
 									</td>
 								</tr>
 							@endforeach
-							</table>
 						@endif
 					@endforeach
+					</table>
 				@else
 					<p>No Time Logs For This Sprint</p>
 				@endif
