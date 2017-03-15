@@ -84,6 +84,7 @@ Route::get('/home/instructor', function()
 
 Route::get('/debug', 'DebugController@debug_form');
 Route::put('/debug_submit', 'DebugController@debug_submit');
+Route::get('/increment', 'IncrementController@increment_page');
 
 //test for deletion page
 Route::post('/delete', 'DeleteController@handle');

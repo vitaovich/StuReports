@@ -47,6 +47,7 @@
                     @if (Auth::check() && Auth::user()->isAdmin())
                         <li><a href="{{ url('/users') }}">Users</a></li>
                         <li><a href="{{ url('/debug') }}">Debug sprints</a></li>
+                        <li><a href="{{ url('/increment') }}">Increment sprints</a></li>
                     @elseif (Auth::check() && Auth::user()->isInstructor())
                         <li><a href="{{ url('/users') }}">Users</a></li>
                         <li><a href="{{ url('/course') }}">Courses</a></li>
