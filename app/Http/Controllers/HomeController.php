@@ -42,9 +42,10 @@ class HomeController extends Controller
         {
 		  $course = Course::findOrFail(Auth::user()->course_id);
 		  $group = Project_group::findOrFail(Auth::user()->group_id);
+		  $reports = User::findOrFail(Auth::user()->id)->individualReports;
 		  $instructor = User::findOrFail($course->teacher_id);
 		  $currentTime = Carbon::now();
-          return view('Home.Student.index', compact('currentTime', 'course', 'instructor', 'group'));
+          return view('Home.Student.index', compact('currentTime', 'course', 'instructor', 'group', 'reports'));
         }
     }
 }
