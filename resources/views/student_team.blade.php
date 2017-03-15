@@ -1,3 +1,6 @@
+<?php
+use App\TeamReport;
+ ?>
 @extends('layouts.app')
 
 @section('content')
@@ -6,7 +9,9 @@
     <div class="panel panel-default">
     <div class="panel-heading"><h1>Team Report</h1></div>
       <div class="panel-body">
-        @if (Auth::check() && Auth::user()->isStudent())
+        @if(TeamReport::hasSubmitted(Auth::user()->group_id, Auth::user()->course()->sprint) == true)
+        <p>A member of your team has already submitted the team report for this sprint.</p>
+        @elseif (Auth::check() && Auth::user()->isStudent())
         <form class="form-horizontal" method="POST" action="/submit_team_report">
           {!! csrf_field() !!}
           <p>What was the easiest to understand?</p>

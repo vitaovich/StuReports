@@ -11,7 +11,9 @@ use App\IndividualReport;
       <div class="panel panel-default">
       <div class="panel-heading"><h1>{{ Auth::user()->group->project }}: Individual Report Sprint {{Auth::user()->course()->sprint}}</h1></div>
         <div class="panel-body">
-          @if (Auth::check() && Auth::user()->isStudent())
+          @if(IndividualReport::hasSubmitted(Auth::user()->id, Auth::user()->course()->sprint) == true)
+          <p>You have already submitted an individual report for this sprint.</p>
+          @elseif (Auth::check() && Auth::user()->isStudent())
           <h2 id="timeLogsHeader">Time Logs</h2>
           <form class="form-horizontal" method="POST" action="/submit_individual_report">
              {!! csrf_field() !!}
