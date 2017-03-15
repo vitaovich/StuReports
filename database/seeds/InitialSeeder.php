@@ -18,5 +18,9 @@ class InitialSeeder extends Seeder
           'role' => 'Admin',
           'remember_token' => str_random(10)
       ]);
+      DB::table('project_groups')->insert([
+          'course_id' => null,
+          'project' => 'Empty project.',
+      ]);
     }
 }

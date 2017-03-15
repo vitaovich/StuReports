@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
         Commands\UpdateSprintTiming::class,
         Commands\DebugSprint::class,
         Commands\EmailTest::class,
-        Commands\EmailSend::class
+        Commands\EmailSend::class,
+        Commands\IncrementSprint::class
     ];
 
     /**

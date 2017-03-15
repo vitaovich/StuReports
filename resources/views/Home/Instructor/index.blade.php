@@ -14,8 +14,12 @@
       };
 
       function drag(ev) {
-          ev.dataTransfer.setData("text", ev.target.id);
-          ev.dataTransfer.setData("parentid", ev.target.parentNode.id);
+          var element = ev.target;
+          if(ev.target.tagName === 'A') {
+            element = element.parentNode;
+          }
+          ev.dataTransfer.setData("text", element.id);
+          ev.dataTransfer.setData("parentid", element.parentNode.id);
       };
 
       function drop(ev, list, groupid) {
@@ -116,7 +120,7 @@
                   <h4>Students</h4>
                   <ul id="unassigned_students_list_{{$course->id}}">
                     @foreach ($course->students->where('group_id', 1) as $student)
-                      <li id="{{$student->id}}_student"  draggable="true" ondragstart="drag(event)" >
+                      <li id="{{$student->id}}_student"  draggable="true" ondragstart="drag(event)">
                         <a href="/reports/user/{{$student->id}}">{{$student->name}}</a>
                       </li>
                     @endforeach

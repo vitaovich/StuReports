@@ -11,10 +11,6 @@ class ProjectsSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('project_groups')->insert([
-          'course_id' => 1,
-          'project' => 'Empty project.',
-      ]);
       factory(App\Project_group::class, 10)->create();
       DB::table('project_groups')->insert([
             'course_id' => 10001,

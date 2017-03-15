@@ -15,11 +15,10 @@ class CreateProjectGroupsTable extends Migration
     {
         Schema::create('project_groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('course_id');
+            $table->unsignedInteger('course_id')->nullable();
             $table->string('project');
             $table->unsignedInteger('project_leader')->nullable();
             $table->timestamps();
-
             $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('project_leader')->references('id')->on('users');
         });
