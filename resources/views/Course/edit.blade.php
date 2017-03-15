@@ -11,9 +11,9 @@
             <div class="panel-body">
               {{ Form::model($course, ['route' => ['course.update', $course->id], 'method' => 'PUT', 'class' =>'form-horizontal']) }}
               <div class="form-group">
-                {{ Form::label('course_title', 'Course Name:', ['class' => 'col-sm-2 control-label']) }}
-                <div class="col-sm-10">
-                  {{ Form::text('course_title') }}
+                {{ Form::label('course_title', 'Course Name:', ['class' => 'col-md-3 control-label']) }}
+                <div class="col-md-6">
+                  {{ Form::text('course_title', null, ['class' => 'form-control'] ) }}
                 </div>
               </div>
               <div class="form-group">
@@ -24,39 +24,39 @@
                     foreach($instructors as $instructor)
                         $options[$instructor['id']] = $instructor['name'];
                 ?>
-                  {{ Form::label('teacher_id', 'Instructor:', ['class' => 'col-sm-2 control-label']) }}
-                <div class="col-sm-10">
+                  {{ Form::label('teacher_id', 'Instructor:', ['class' => 'col-md-3 control-label']) }}
+                <div class="col-md-6">
                   {{ Form::select('teacher_id', $options) }}
                 </div>
               </div>
               <div class="form-group">
-                {{ Form::label('year', 'Year:', ['class' => 'col-sm-2 control-label']) }}
-                <div class="col-sm-10">
-                  {{ Form::number('year') }}
+                {{ Form::label('year', 'Year:', ['class' => 'col-md-3 control-label']) }}
+                <div class="col-md-6">
+                  {{ Form::number('year', null, ['class' => 'form-control']) }}
                 </div>
               </div>
               <div class="form-group">
-                {{ Form::label('quarter', 'Quarter:', ['class' => 'col-sm-2 control-label']) }}
-                <div class="col-sm-10">
+                {{ Form::label('quarter', 'Quarter:', ['class' => 'col-md-3 control-label']) }}
+                <div class="col-md-6">
                     {{ Form::select('quarter', [0 => 'Fall', 1 => 'Winter', 2 => 'Spring', 3 => 'Summer']) }}
                 </div>
               </div>
               <div class="form-group">
-                {{ Form::label('active', 'Active:', ['class' => 'col-sm-2 control-label']) }}
-                <div class="col-sm-10">
+                {{ Form::label('active', 'Active:', ['class' => 'col-md-3 control-label']) }}
+                <div class="col-md-6">
                   {{ Form::hidden('active', 0) }}
                   {{ Form::checkbox('active', 1) }}
                 </div>
               </div>
 
               <div class="form-group">
-                {{ Form::label('sprint_length', 'Sprint length (Days):', ['class' => 'col-sm-2 control-label']) }}
-                <div class="col-sm-10">
-                  {{ Form::number('sprint_length', $course->sprint_length, ['min' => '7', 'max' => '14']) }}
+                {{ Form::label('sprint_length', 'Sprint length (Days):', ['class' => 'col-md-3 control-label']) }}
+                <div class="col-md-6">
+                  {{ Form::number('sprint_length', $course->sprint_length, ['min' => '7', 'max' => '14', 'class' => 'form-control']) }}
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-md-offset-3 col-md-6">
                   {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
                 </div>
               </div>

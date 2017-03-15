@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://vitoal2.com/" />
+<title>Fill out Individual Reports</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Fill out Individual Reports</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email</td>
+	<td>va@ewu.edu</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Submit Individual Report</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeloghours[]</td>
+	<td>0.25</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeloghours[]</td>
+	<td>0.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeloghours[]</td>
+	<td>0.75</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeloghours[]</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[3]</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[5]</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeLogDescriptions[]</td>
+	<td>Researching stuff for project.</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskName[]</td>
+	<td>Setup dev environment</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskDescription[]</td>
+	<td>Created environment for coding and running my program.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Submit Team Report</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=easiest_understand</td>
+	<td>The easiest part to understand of the project has been everything. It's been coming along great.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=hardest_understand</td>
+	<td>Everything was the hardest to understand, and we feel like we can't finish this project.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=easiest_approach</td>
+	<td>Everything was easy to approach except coming with a game plan.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=hardest_approach</td>
+	<td>Nothing was the hardest to approach and we can't figure out a certain aspect of the project.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=easiest_solve</td>
+	<td>Solving everything has been tough, but we have made great progress.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=hardest_solve</td>
+	<td>Everyone has had a challenging time trying to solve this project.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=easiest_evaluate</td>
+	<td>We have just begun doing research can't say much.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=hardest_evaluate</td>
+	<td>A lot of stuff was hard to evaluate, but we haven't had much time to test our code.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=pace</td>
+	<td>We are about 2% along with our project, and expect to finish on time.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=client</td>
+	<td>We did establish communication with our client this week.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=comments</td>
+	<td>We have no concerns currently.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

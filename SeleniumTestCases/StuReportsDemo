@@ -11,6 +11,9 @@
 <tr><td><a href="Create Instructor">Create Instructor</a></td></tr>
 <tr><td><a href="Create Course">Create Course</a></td></tr>
 <tr><td><a href="Create Project Groups">Create Project Groups</a></td></tr>
+<tr><td><a href="Import Students">Import Students</a></td></tr>
+<tr><td><a href="Register Students">Register Students</a></td></tr>
+<tr><td><a href="Fill out Individual Reports">Fill out Individual Reports</a></td></tr>
 </tbody></table>
 </body>
 </html>

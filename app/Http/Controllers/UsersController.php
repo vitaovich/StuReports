@@ -104,7 +104,7 @@ class UsersController extends Controller
       $user->role = $request->input('role', $user->role);
       $user->group_id = $request->input('group_id', $user->group_id);
       $user->save();
-      return "Successful edit.";
+      return redirect("/users");
     }
 
     /**

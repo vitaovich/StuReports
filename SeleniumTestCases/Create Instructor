@@ -33,6 +33,21 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
+	<td>link=Debug sprints</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=on</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
 	<td>link=Users</td>
 	<td></td>
 </tr>
@@ -81,7 +96,6 @@
 	<td>link=Logout</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

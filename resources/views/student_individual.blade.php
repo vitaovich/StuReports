@@ -9,12 +9,9 @@ use App\IndividualReport;
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-      <div class="panel-heading">Dashboard</div>
+      <div class="panel-heading"><h1>{{ Auth::user()->group->project }}: Individual Report Sprint {{Auth::user()->course()->sprint}}</h1></div>
         <div class="panel-body">
           @if (Auth::check() && Auth::user()->isStudent())
-          <h1>Individual report for sprint <?php echo Auth::user()->course()->sprint ?>.</h1>
-          <h1>Group ID: <?php echo Auth::user()->group_id ?></h1>
-          <h3>Sprint length: <?php echo Auth::user()->course()->sprint_length ?> days.</h3>
           <h2 id="timeLogsHeader">Time Logs</h2>
           <form class="form-horizontal" method="POST" action="/submit_individual_report">
              {!! csrf_field() !!}
