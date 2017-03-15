@@ -47,4 +47,34 @@ function deleteTable()
     table.innerHTML = "";
 }
 
+function explainTask(studentId, taskId)
+{
+  document.getElementById("teammateTaskExplain_" + studentId + ","+ taskId).required = true;
+}
+
+function dontExplainTask(studentId, taskId)
+{
+  document.getElementById("teammateTaskExplain_" + studentId + ","+ taskId).required = false;
+}
+
+function explainReasonable(id)
+{
+  document.getElementById("teammateExpectationsExplanation" + id).required = true;
+}
+
+function dontExplainReasonable(id)
+{
+  document.getElementById("teammateExpectationsExplanation" + id).required = false;
+}
+
+function explainHours(id)
+{
+  document.getElementById("hourEvaluationsExplanation" + id).required = true;
+}
+
+function dontExplainHours(id)
+{
+  document.getElementById("hourEvaluationsExplanation" + id).required = false;
+}
+
 window.onLoad = addNewTaskButton();
