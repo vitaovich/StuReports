@@ -40,7 +40,7 @@ class ReportsController extends Controller
     }
     $teamReport->submitted_by = Auth::user()->id;
     $teamReport->save();
-    return view('home');
+    return redirect('home');
   }
 
   public function getTeamReports()
@@ -204,6 +204,6 @@ class ReportsController extends Controller
         $index++;
       }
     }
-    return view('home');
+    return redirect('home');
   }
 }
