@@ -8,17 +8,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h1 class="bg-primary">Senior Project 
-					@if($course->quarter == 1)
-						Fall
-					@elseif($course->quarter == 2)
-						Winter
-					@elseif($course->quarter == 3)
-						Spring
-					@elseif($course->quarter == 4)
-						Summer
-					@endif
-					{{$course->year}}</h1>
+				<h1 class="bg-primary">Senior Project {{$course->quarterString()}} {{$course->year}}</h1>
 					<h2>Instructor: {{$instructor->name}}</h2>
 					Email: {{$instructor->email}}
 			</div>
