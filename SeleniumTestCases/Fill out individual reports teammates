@@ -11,7 +11,531 @@
 <thead>
 <tr><td rowspan="1" colspan="3">Fill out individual reports teammates</td></tr>
 </thead><tbody>
-
+<tr>
+	<td>open</td>
+	<td>/login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email</td>
+	<td>mc@ewu.edu</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Submit Individual Report</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeloghours[]</td>
+	<td>0.25</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[3]</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[6]</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[5]</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//textarea[@id='timeLogDescriptions[]'])[6]</td>
+	<td>Researching</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeLogDescriptions[]</td>
+	<td>Went through tutorials</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskName[]</td>
+	<td>Development environment</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskDescription[]</td>
+	<td>Created environment for coding and running my program.</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=#rowID2 &gt; td &gt; textarea[name=&quot;newTaskName[]&quot;]</td>
+	<td>Working on demo code</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//textarea[@name='newTaskDescription[]'])[2]</td>
+	<td>demonstration code to show off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=#rowID3 &gt; td &gt; textarea[name=&quot;newTaskName[]&quot;]</td>
+	<td>SRS</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//textarea[@name='newTaskDescription[]'])[3]</td>
+	<td>started working on an SRS</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=private_comments</td>
+	<td>A private comment Michael made</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Michael Collison</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email</td>
+	<td>ml@ewu.edu</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Submit Individual Report</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[3]</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[2]</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[4]</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[5]</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[6]</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskName[]</td>
+	<td>Researching development environment</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskDescription[]</td>
+	<td>Tutorials and documentation reading</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@id='newTaskButton'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Michael Lutch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Increment sprints</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=admin</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email</td>
+	<td>ml@ewu.edu</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Submit Individual Report</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[7]</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[3]</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[2]</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskName[]</td>
+	<td>Database</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskDescription[]</td>
+	<td>Database schema</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=estimatedSprints[]</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=estimatedSprints[]</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=latestProgress[]</td>
+	<td>Went through Lynda tutorials</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Michael Lutch</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email</td>
+	<td>mc@ewu.edu</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Submit Individual Report</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeloghours[]</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[3]</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[4]</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskName[]</td>
+	<td>Database rough draft</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskDescription[]</td>
+	<td>rough draft of database schema</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=latestProgress[]</td>
+	<td>Wrote simple test page</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//textarea[@name='latestProgress[]'])[2]</td>
+	<td>Have working code to show off to teammates</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//textarea[@name='latestProgress[]'])[3]</td>
+	<td>Have instructor requirements set</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Michael Collison</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email</td>
+	<td>sr@ewu.edu</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Submit Individual Report</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeloghours[]</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[3]</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[4]</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[5]</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskName[]</td>
+	<td>Research environment</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskDescription[]</td>
+	<td>look for a framework to code in a LAMP stack.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Submit Team Report</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=easiest_approach</td>
+	<td>Aspects of the current work that are the easiest to approach are implementing SSO. This is because we were provided with example code, a demonstration, and documentation for doing so. Aspects of the current work that are the easiest to approach are implementing SSO. This is because we were provided with example code, a demonstration, and documentation for doing so.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=hardest_approach</td>
+	<td>the hardest aspect to approach has been how to make the aggregated report blade not try to process data that isn't there without having to make convoluted control structure. the hardest aspect to approach has been how to make the aggregated report blade not try to process data that isn't there without having to make convoluted control structure.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=easiest_understand</td>
+	<td>Aspects of the current work that are the easiest to understand are the need to get the individual reports working properly, aggregated team reports displaying properly, and getting SSO implemented. This is because we understand that these are requirements that still require work to be done.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=hardest_understand</td>
+	<td>Aspects of the current work that are the hardest to understand are what strategies we can use to test our web application once we get SSO working. This is because we cannot create dummy users with SSO, since to our knowledge, SSO only has real user data. This becomes more complicated because we cannot use SSO on our local machines.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=easiest_evaluate</td>
+	<td>The aspects of the current work that are the easiest to evaluate are knowing what information we need to take from SSO for our user profiles. This is because we have similar information in our user profiles, so the crossover should be straightforward in that respect.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=hardest_evaluate</td>
+	<td>The aspects of the current work that are the easiest to evaluate are knowing what information we need to take from SSO for our user profiles. This is because we have similar information in our user profiles, so the crossover should be straightforward in that respect.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=easiest_solve</td>
+	<td>the easiest to solve was making pages for an instructor to see what reports they can view whether it's for a team or an Individual student.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=hardest_solve</td>
+	<td>The aspects of the current work that are the easiest to evaluate are knowing what information we need to take from SSO for our user profiles. This is because we have similar information in our user profiles, so the crossover should be straightforward in that respect.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=pace</td>
+	<td>I feel we are 90% of the way toward the final goal. This pace seems likely to succeed because we are getting very close to meeting all of our requirements.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=client</td>
+	<td>No we met with our client last Wednesday</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=comments</td>
+	<td>No concerns</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
 </tbody></table>
 </body>
 </html>

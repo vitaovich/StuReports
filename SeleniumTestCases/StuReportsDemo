@@ -13,7 +13,10 @@
 <tr><td><a href="Create Project Groups">Create Project Groups</a></td></tr>
 <tr><td><a href="Import Students">Import Students</a></td></tr>
 <tr><td><a href="Register Students">Register Students</a></td></tr>
+<tr><td><a href="Turn on sprint debugging">Turn on sprint debugging</a></td></tr>
 <tr><td><a href="Fill out Individual Reports">Fill out Individual Reports</a></td></tr>
+<tr><td><a href="Fill out team report">Fill out team report</a></td></tr>
+<tr><td><a href="Fill out individual reports teammates">Fill out individual reports teammates</a></td></tr>
 </tbody></table>
 </body>
 </html>
