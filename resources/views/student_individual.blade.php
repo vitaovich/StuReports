@@ -127,17 +127,17 @@ use App\IndividualReport;
                   <h4>Do you concur?</h4>
                   <div class="statusPointsClass">
                     <div class="statusOptionsClass">
-                      <input type="radio" name="teammateTaskConcur[<?php echo $teammate->id; ?>][<?php echo $counter ?>]" value="yes" checked><p>Yes</p>
+                      <input type="radio" onclick="dontExplainTask(<?php echo "$teammate->id, $counter";?>)" name="teammateTaskConcur[<?php echo $teammate->id; ?>][<?php echo $counter ?>]" value="yes" checked><p>Yes</p>
                     </div>
                     <div class="statusOptionsClass">
-                      <input type="radio" name="teammateTaskConcur[<?php echo $teammate->id; ?>][<?php echo $counter ?>]" value="no"><p>No (explain why)</p>
+                      <input type="radio" onclick="explainTask(<?php echo "$teammate->id, $counter";?>)" name="teammateTaskConcur[<?php echo $teammate->id; ?>][<?php echo $counter ?>]" value="no"><p>No (explain why)</p>
                     </div>
                     <div class="statusOptionsClass">
-                      <input type="radio" name="teammateTaskConcur[<?php echo $teammate->id; ?>][<?php echo $counter ?>]" value="maybe"><p>Maybe (explain why)</p>
+                      <input type="radio" onclick="explainTask(<?php echo "$teammate->id, $counter";?>)" name="teammateTaskConcur[<?php echo $teammate->id; ?>][<?php echo $counter ?>]" value="maybe"><p>Maybe (explain why)</p>
                     </div>
                     <div>
                        <p>Explain</p>
-                      <textarea name="teammateTaskExplain[<?php echo $teammate->id; ?>][<?php echo $counter ?>]" rows="1" value=""></textarea>
+                      <textarea id="teammateTaskExplain_<?php echo "$teammate->id,$counter";?>" name="teammateTaskExplain[<?php echo $teammate->id; ?>][<?php echo $counter ?>]" rows="1" value=""></textarea>
                     </div>
                   </div>
                 </div>
@@ -152,34 +152,34 @@ use App\IndividualReport;
               @endif
 
                 <div class="statusOptionsClass">
-                  <input type="radio" name="hourEvaluations[<?php echo $teammate->id; ?>]" value="yes" checked><p>Yes</p>
+                  <input type="radio" onclick="dontExplainHours(<?php echo $teammate->id; ?>)" name="hourEvaluations[<?php echo $teammate->id; ?>]" value="yes" checked><p>Yes</p>
                 </div>
                 <div class="statusOptionsClass">
-                  <input type="radio" name="hourEvaluations[<?php echo $teammate->id; ?>]" value="no"><p>No (explain why)</p>
+                  <input type="radio" onclick="explainHours(<?php echo $teammate->id; ?>)" name="hourEvaluations[<?php echo $teammate->id; ?>]" value="no"><p>No (explain why)</p>
                 </div>
                 <div class="statusOptionsClass">
-                  <input type="radio" name="hourEvaluations[<?php echo $teammate->id; ?>]" value="maybe"><p>Maybe (explain why)</p>
+                  <input type="radio" onclick="explainHours(<?php echo $teammate->id; ?>)" name="hourEvaluations[<?php echo $teammate->id; ?>]" value="maybe"><p>Maybe (explain why)</p>
                 </div>
                 <div>
                    <p>Explain</p>
-                  <textarea name="hourEvaluationsExplanation[<?php echo $teammate->id; ?>]" rows="1" value=""></textarea>
+                  <textarea id="hourEvaluationsExplanation<?php echo $teammate->id; ?>" name="hourEvaluationsExplanation[<?php echo $teammate->id; ?>]" rows="1" value=""></textarea>
                 </div>
             </div>
             @endif
               <div class="statusPointsClass">
                 <h4>Overall, is {{$teammate->name}} meeting reasonable expectations?</h4>
                 <div class="statusOptionsClass">
-                  <input type="radio" name="teammateExpectations[<?php echo $teammate->id; ?>]" value="yes" checked><p>Yes</p>
+                  <input type="radio" onclick="dontExplainReasonable(<?php echo $teammate->id; ?>)" name="teammateExpectations[<?php echo $teammate->id; ?>]" value="yes" checked><p>Yes</p>
                 </div>
                 <div class="statusOptionsClass">
-                  <input type="radio" name="teammateExpectations[<?php echo $teammate->id; ?>]" value="no"><p>No (explain why)</p>
+                  <input type="radio" onclick="explainReasonable(<?php echo $teammate->id; ?>)" name="teammateExpectations[<?php echo $teammate->id; ?>]" value="no"><p>No (explain why)</p>
                 </div>
                 <div class="statusOptionsClass">
-                  <input type="radio" name="teammateExpectations[<?php echo $teammate->id; ?>]" value="maybe"><p>Maybe (explain why)</p>
+                  <input type="radio"  onclick="explainReasonable(<?php echo $teammate->id; ?>)" name="teammateExpectations[<?php echo $teammate->id; ?>]" value="maybe"><p>Maybe (explain why)</p>
                 </div>
                 <div>
                    <p>Explain</p>
-                  <textarea name="teammateExpectationsExplanation[<?php echo $teammate->id; ?>]" rows="1" value=""></textarea>
+                  <textarea id="teammateExpectationsExplanation<?php echo $teammate->id; ?>" name="teammateExpectationsExplanation[<?php echo $teammate->id; ?>]" rows="1" value=""></textarea>
                 </div>
               </div>
               <?php $counter = 0; ?>
