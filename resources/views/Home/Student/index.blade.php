@@ -41,7 +41,7 @@
 								</td>
 								<td>
 									@if($reports->contains('sprint', $i))
-										<a href="/individual_report/user/{{$user->id}}/sprint/{{$i}}">View</a>
+										<a href="/individual_report/user/{{Auth::user()->id}}/sprint/{{$i}}">View</a>
 									@else
 										Not Submitted
 									@endif
