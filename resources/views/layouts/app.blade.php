@@ -49,7 +49,6 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/users') }}">Main Page</a></li>
-                                <li><a href="{{ url('/users/create') }}">Create User</a></li>
                                 <li><a href="{{ url('/users/import') }}">Import From File</a></li>
                             </ul>
                         </li>
@@ -64,9 +63,6 @@
                       <li><a href="{{ url('/student_team')  }}">Submit Team Report</a></li>
                       <li><a href="{{ url('/student_individual')  }}">Submit Individual Report</a></li>
                     <!-- Mike code above -->
-                    @endif
-                    @if (Request::is('users'))
-
                     @endif
                     </ul>
 
