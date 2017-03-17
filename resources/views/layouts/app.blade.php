@@ -44,12 +44,20 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+                    @if (Auth::check() && (Auth::user()->isAdmin() || Auth::user()->isInstructor()))
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/users') }}">Main Page</a></li>
+                                <li><a href="{{ url('/users/create') }}">Create User</a></li>
+                                <li><a href="{{ url('/users/import') }}">Import From File</a></li>
+                            </ul>
+                        </li>
+                    @endif
                     @if (Auth::check() && Auth::user()->isAdmin())
-                        <li><a href="{{ url('/users') }}">Users</a></li>
                         <li><a href="{{ url('/debug') }}">Debug sprints</a></li>
                         <li><a href="{{ url('/increment') }}">Increment sprints</a></li>
                     @elseif (Auth::check() && Auth::user()->isInstructor())
-                        <li><a href="{{ url('/users') }}">Users</a></li>
                         <li><a href="{{ url('/course') }}">Courses</a></li>
                     <!-- Mike code below -->
                     @elseif (Auth::check() && Auth::user()->isStudent())
@@ -58,8 +66,7 @@
                     <!-- Mike code above -->
                     @endif
                     @if (Request::is('users'))
-                        <li><a href="{{ url('/users/create') }}">Create User</a></li>
-                        <li><a href="{{ url('/users/import') }}">Import From File</a></li>
+
                     @endif
                     </ul>
 
