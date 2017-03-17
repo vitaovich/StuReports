@@ -100,7 +100,7 @@
 										Avg
 									</th>
 									<th>
-										Count
+										Reports
 									</th>
 								</tr>
 								<tr>
