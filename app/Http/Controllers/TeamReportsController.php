@@ -65,6 +65,8 @@ class TeamReportsController extends Controller
 		$team_members = Project_group::findOrFail($group_id)->students;
 		$team_report = TeamReport::where('group_id',$group_id)->where('sprint', $sprint)->first();
 		$reports = Project_group::findOrFail($group_id)->individualReports->where('sprint',$sprint);
+		$allReports = Project_group::findOrFail($group_id)->individualReports->where('sprint','<=',$sprint);
+		$allReports = $allReports->groupBy('student_id');
 		$team_members = $team_members->keyBy('id');
 		$reports = $reports->keyBy('id');
 		
@@ -126,6 +128,6 @@ class TeamReportsController extends Controller
 				}
 			}
 		}
-		return view('team_report', compact('group_id', 'sprint', 'team_members', 'team_report', 'reports', 'timeLogs', 'tasks', 'memberEvaluations', 'taskEvaluations'));
+		return view('team_report', compact('group_id', 'sprint', 'team_members', 'team_report', 'reports', 'timeLogs', 'tasks', 'memberEvaluations', 'taskEvaluations', 'allReports'));
 	}
 }
