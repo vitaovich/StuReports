@@ -9,7 +9,7 @@ use App\IndividualReport;
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-      <div class="panel-heading"><h1>{{ Auth::user()->group->project }}: Individual Report Sprint {{Auth::user()->course()->sprint }}</h1></div>
+      <div class="panel-heading"><h1>{{ Auth::user()->group->project }}: Individual Report Sprint {{Auth::user()->course()->sprint}}</h1></div>
         <div class="panel-body">
           @if(IndividualReport::hasSubmitted(Auth::user()->id, Auth::user()->course()->sprint) == true)
           <p>You have already submitted an individual report for this sprint.</p>

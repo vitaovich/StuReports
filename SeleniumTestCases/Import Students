@@ -29,7 +29,7 @@
 <tr>
 	<td>type</td>
 	<td>id=csv</td>
-	<td>/home/vio/Github/myRepos/StuReports/SeleniumTestCases/TestRoster.csv</td>
+	<td>/home/mike/Github/repos/StuReports/SeleniumTestCases/TestRoster.csv</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
