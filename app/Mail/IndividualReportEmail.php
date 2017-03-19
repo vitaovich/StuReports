@@ -50,8 +50,7 @@ class IndividualReportEmail extends Mailable
             array_push($tasks, $task_and_Reports);
         }
         $instructor = $this->user->course()->instructor;
-        return $this
-                    //->from($instructor->email) //uncomment once emails are always correct
+        return $this->from($instructor->email)
                     ->subject("Individual Report, " . $this->user->name)
                     ->view('emails.individual_report', [
                         'student' => $this->user,

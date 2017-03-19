@@ -14,7 +14,8 @@ class EmailsController extends Controller
     public function sendIndividual(Request $request)
     {
       $user = User::find($request->id);
-      Mail::to($user->email)->send(new IndividualReportEmail($user));
+      if($user->email !== null)
+        Mail::to($user->email)->send(new IndividualReportEmail($user));
     }
 
     public function sendTeam(Request $request)
@@ -22,6 +23,9 @@ class EmailsController extends Controller
       $group = Project_group::find($request->id);
       $users = $group->students;
       foreach($users as $user)
-        Mail::to($user->email)->send(new TeamReportEmail($user));
+      {
+        if($user->email !== null)
+          Mail::to($user->email)->send(new TeamReportEmail($user));
+      }
     }
 }

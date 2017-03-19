@@ -80,8 +80,7 @@ class TeamReportEmail extends Mailable
     			}
     		}
         $instructor = $this->user->course()->instructor;
-    		return $this
-                    //->from($instructor->email) //uncomment once emails are always correct
+    		return $this->from($instructor->email)
                     ->subject("Team Report, Group " . $group_id . ", Sprint " . $sprint)
                     ->view('emails.team_report', [
                       'group_id' => $group_id,
