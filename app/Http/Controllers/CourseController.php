@@ -93,7 +93,7 @@ class CourseController extends Controller
         $course->sprint_length = $request->sprint_length;
 
         $course->save();
-
+        Artisan::call('sprint:update');
         return redirect('/home/admin');
     }
 

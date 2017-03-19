@@ -15,14 +15,14 @@ class CreateTeamReportsTable extends Migration
     {
         Schema::create('team_reports', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('easiest_understand');
-            $table->string('hardest_understand');
-            $table->string('easiest_approach');
-            $table->string('hardest_approach');
-            $table->string('easiest_solve');
-            $table->string('hardest_solve');
-            $table->string('easiest_evaluate');
-            $table->string('hardest_evaluate');
+            $table->string('easiest_understand', 2047);
+            $table->string('hardest_understand', 2047);
+            $table->string('easiest_approach', 2047);
+            $table->string('hardest_approach', 2047);
+            $table->string('easiest_solve', 2047);
+            $table->string('hardest_solve', 2047);
+            $table->string('easiest_evaluate', 2047);
+            $table->string('hardest_evaluate', 2047);
             $table->string('pace');
             $table->string('client');
             $table->string('comments');

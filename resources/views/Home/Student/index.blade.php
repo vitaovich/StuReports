@@ -40,10 +40,16 @@
 									{{$i}}
 								</td>
 								<td>
-								
+									@if($reports->contains('sprint', $i))
+										<a href="/individual_report/user/{{Auth::user()->id}}/sprint/{{$i}}">View</a>
+									@else
+										Not Submitted
+									@endif
 								</td>
 								<td>
-									<a href="/aggregated_report/group/{{$group->id}}/sprint/{{$i}}">View</a>
+									@if(!empty($group))
+										<a href="/aggregated_report/group/{{$group->id}}/sprint/{{$i}}">View</a>
+									@endif
 								</td>
 							</tr>
 						@endfor

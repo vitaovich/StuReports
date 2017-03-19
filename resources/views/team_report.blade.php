@@ -21,30 +21,39 @@
 				@foreach($team_members as $team_member)
 					{{$team_member->name}}
 					@if(!($reports->contains('student_id',$team_member->id)))
-						<p>Did Not Submit a Report</p>
+						<p>Report Not Submitted</p>
 					@else
 						<br />
 					@endif
 				@endforeach
 				<h2 class="bg-primary">Logged Hours</h2>
 				@if( ! empty($timeLogs))
+					<table>
+						<tr>
+							<th>
+								<u>Member</u>
+							</th>
+							<th>
+								<u>Date</u>
+							</th>
+							<th>
+								<u>Hours</u>
+							</th>
+							<th>
+								<u>Description</u>
+							</th>
+						</tr>
 					@foreach($timeLogs as $timeLog)
 						@if(!empty($timeLog))
-
-							<table>
-							<tr>
-								<th>
-									<u>Date</u>
-								</th>
-								<th>
-									<u>Hours</u>
-								</th>
-								<th>
-									<u>Description</u>
-								</th>
-							</tr>
 							@foreach($timeLog as $log)
 								<tr>
+									@if($loop->first)
+									<td>
+										{{$team_members[$reports[$log->individual_report_id]->student_id]->name}}
+									</td>
+									@else
+										<td></td>
+									@endif
 									<td>
 										{{date('d M', strtotime($log['day']))}}
 									</td>
@@ -56,12 +65,78 @@
 									</td>
 								</tr>
 							@endforeach
-							</table>
+							@if(!$loop->last)
+								<tr>
+									<td>
+										<hr>
+									</td>
+									<td>
+										<hr>
+									</td>
+									<td>
+										<hr>
+									</td>
+									<td>
+										<hr>
+									</td>
+								</tr>
+							@endif
 						@endif
 					@endforeach
+					</table>
 				@else
 					<p>No Time Logs For This Sprint</p>
 				@endif
+				<br />
+				@foreach($team_members as $member)
+					<b><u>{{$member->name}}</u></b>
+					@foreach($allReports as $memberReports)
+						@if($memberReports[0]->student_id == $member->id)
+							<table>
+								<tr>
+									<th>
+										Total Hours
+									</th>
+									<th>
+										Min
+									</th>
+									<th>
+										Max
+									</th>
+									<th>
+										Avg
+									</th>
+									<th>
+										Reports
+									</th>
+								</tr>
+								<tr>
+									<td>
+										{{number_format($memberReports->sum('total_hours'), 2, '.', ',')}}
+									</td>
+									<td>
+										{{number_format($memberReports->min('total_hours'), 2, '.', ',')}}
+									</td>
+									<td>
+										{{number_format($memberReports->max('total_hours', 2, '.', ','))}}
+									</td>
+									<td>
+										{{number_format($memberReports->sum('total_hours')/$sprint, 2, '.', ',')}}
+									</td>
+									<td>
+										{{$memberReports->count('total_hours')}}
+									</td>
+								</tr>
+							</table>
+							@break
+						@elseif($loop->last)
+							<br />Has Not Submitted Any Reports <br />
+						@endif
+					@endforeach
+					@if(!$loop->last)
+						<br />
+					@endif
+				@endforeach
 				<h2 class="bg-primary">Tasks</h2>
 				@if ( ! empty($tasks))
 					@foreach($team_members as $member)
@@ -92,7 +167,7 @@
 									@endforeach
 									@if (Auth::check() && Auth::user()->isInstructor() && !empty($taskEvaluations))
 										<br />
-										<table border='1' width=65%>
+										<table>
 											<col align="left">
 											<col align="right">
 											<col align="right">
@@ -144,47 +219,51 @@
 				@endif
 				@if (Auth::check() && Auth::user()->isInstructor())
 					<h2 class="bg-primary">Member Evaluations</h2>
-					@foreach($team_members as $evaluated)
-						<h4 class="bg-primary">{{$evaluated->name}}</h4>
-						<table border='1' width=65%>
-						<col align="left">
-						<col align="left">
-						<col align="right">
-						<col align="right">
-						<tr>
-							<th>
-								Evaluated By
-							</th>
-							<th>
-								Concur Hours
-							</th>
-							<th>
-								Performing
-							</th>
-							<th>
-								Comments
-							</th>
-						</tr>
-						@foreach($memberEvaluations as $evaluation)
-							@if($evaluation->student_id == $evaluated->id)
-								<tr>
-									<td>
-										{{ $team_members[$reports[$evaluation->individual_report_id]->student_id]->name }}
-									</td>
-									<td>
-										{{$evaluation->concur_hours}}
-									</td>
-									<td>
-										{{$evaluation->performing}}
-									</td>
-									<td>
-										{{$evaluation->comments}}
-									</td>
-								</tr>
-							@endif
+					@if(!empty($memberEvaluations))
+						@foreach($team_members as $evaluated)
+							<h4 class="bg-primary">{{$evaluated->name}}</h4>
+							<table>
+							<col align="left">
+							<col align="left">
+							<col align="right">
+							<col align="right">
+							<tr>
+								<th>
+									Evaluated By
+								</th>
+								<th>
+									Concur Hours
+								</th>
+								<th>
+									Performing
+								</th>
+								<th>
+									Comments
+								</th>
+							</tr>
+							@foreach($memberEvaluations as $evaluation)
+								@if($evaluation->student_id == $evaluated->id)
+									<tr>
+										<td>
+											{{ $team_members[$reports[$evaluation->individual_report_id]->student_id]->name }}
+										</td>
+										<td>
+											{{$evaluation->concur_hours}}
+										</td>
+										<td>
+											{{$evaluation->performing}}
+										</td>
+										<td>
+											{{$evaluation->comments}}
+										</td>
+									</tr>
+								@endif
+							@endforeach
+							</table>
 						@endforeach
-						</table>
-					@endforeach
+					@else
+						No Member Evaluations For This Sprint
+					@endif
 				@endif
 				<h2 class="bg-primary">Team Report</h2>
 				@if ( ! empty($team_report))
@@ -209,9 +288,13 @@
 				@endif
 				@if (Auth::check() && Auth::user()->isInstructor())
 					<h2 class="bg-primary">Private Comments</h2>
-					@foreach($reports as $report)
-						<p><b><u>{{$team_members[$report->student_id]->name}}:</u></b> {{$report->private_comments}}</p>
-					@endforeach
+					@if(!empty($reports))
+						@foreach($reports as $report)
+							<p><b><u>{{$team_members[$report->student_id]->name}}:</u></b> {{$report->private_comments}}</p>
+						@endforeach
+					@else
+						No Private Comments For This Sprint
+					@endif
 				@endif
 			</div>
 		@else

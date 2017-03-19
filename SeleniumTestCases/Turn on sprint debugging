@@ -4,22 +4,17 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="https://146.187.135.20/" />
-<title>Stu Reports</title>
+<title>Turn on sprint debugging</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">Create Course</td></tr>
+<tr><td rowspan="1" colspan="3">Turn on sprint debugging</td></tr>
 </thead><tbody>
-<tr>
-	<td>open</td>
-	<td>/login</td>
-	<td></td>
-</tr>
 <tr>
 	<td>type</td>
 	<td>id=email</td>
-	<td>stusteiner@ewu.edu</td>
+	<td>admin</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -33,22 +28,27 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Courses</td>
+	<td>link=Debug sprints</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=on</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Create Course</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
 	<td></td>
 </tr>
 <tr>
-	<td>select</td>
-	<td>id=quarter</td>
-	<td>label=Spring</td>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>css=input.btn.btn-primary</td>
+	<td>link=Increment sprints</td>
 	<td></td>
 </tr>
 </tbody></table>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="https://146.187.135.20/" />
+<title>Fill out Individual Reports</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Fill out Individual Reports</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=email</td>
+	<td>va@ewu.edu</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Submit Individual Report</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeloghours[]</td>
+	<td>0.25</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeloghours[]</td>
+	<td>0.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeloghours[]</td>
+	<td>0.75</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeloghours[]</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[3]</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[6]</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//input[@id='timeloghours[]'])[5]</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//textarea[@id='timeLogDescriptions[]'])[6]</td>
+	<td>looking up tutorials</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=timeLogDescriptions[]</td>
+	<td>Researching stuff for project.</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskName[]</td>
+	<td>Setup dev environment</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=newTaskDescription[]</td>
+	<td>Created environment for coding and running my program.</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=#rowID5 &gt; td &gt; textarea[name=&quot;newTaskName[]&quot;]</td>
+	<td>Looking for framework</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//textarea[@name='newTaskDescription[]'])[2]</td>
+	<td>Researching different frameworks to work with</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=#rowID6 &gt; td &gt; textarea[name=&quot;newTaskName[]&quot;]</td>
+	<td>hello</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@id='newTaskButton'])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=newTaskButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=#rowID7 &gt; td &gt; textarea[name=&quot;newTaskName[]&quot;]</td>
+	<td>SRS</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>xpath=(//textarea[@name='newTaskDescription[]'])[3]</td>
+	<td>started working on an SRS</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name='hourEvaluations[11]'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=hourEvaluationsExplanation11</td>
+	<td>i dont know</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=private_comments</td>
+	<td>A private comment</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input[type=&quot;submit&quot;]</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

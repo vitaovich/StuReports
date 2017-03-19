@@ -6,6 +6,10 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\RedirectsUsers;
 
 class RegisterController extends Controller
 {
@@ -20,7 +24,35 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    //use RegistersUsers;
+    use RedirectsUsers;
+
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->update($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
+    protected function guard()
+    {
+        return Auth::guard();
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        //
+    }
 
     /**
      * Where to redirect users after login / registration.
@@ -60,24 +92,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    protected function update(array $data)
     {
         $user = User::where('student_id', '=', $data['student_id'])->first();
-        $name = $user->name;
-        $id = $user->id;
-        $group_id = $user->group_id;
-        $course_id = $user->course_id;
-        $role = $user->role;
-        $user->delete();
-        return User::create([
-            'name' => $name,
-            'student_id' => $data['student_id'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'group_id' => $group_id,
-            'course_id' => $course_id,
-            'role' => $role,
-            'id' => $id
-        ]);
+        $user->email = $data['email'];
+        $user->password = bcrypt($data['password']);
+        $user->save();
+        return $user;
     }
 }
