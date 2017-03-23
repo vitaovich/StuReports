@@ -22,6 +22,12 @@
                       {{ Form::email('email', null, ['class' => 'form-control']) }}
                     </div>
                 </div>
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    {{ Form::label('password', 'Password:', ['class' => 'col-md-4 control-label']) }}
+                    <div class="col-md-6">
+                      {{ Form::text('password', null, ['class' => 'form-control']) }}
+                    </div>
+                </div>
                 <div class="form-group{{ $errors->has('student_id') ? ' has-error' : '' }}">
                     {{ Form::label('student_id', 'Student ID:', ['class' => 'col-md-4 control-label']) }}
                     <div class="col-md-6">
