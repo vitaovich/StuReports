@@ -1,20 +1,9 @@
-@extends('layouts.app')
-
-@section('content')
 <link href="/css/reports.css" rel="stylesheet">
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
-		@if (Auth::check() && (Auth::user()->isStudent() || Auth::user()->isInstructor()))
 			<div class="panel-heading">
 				<h1 class="bg-primary">Sprint: {{$sprint}}, Aggregated Team Report</h1>
-				@if(Auth::user()->isInstructor())
-					<br>
-					{{ Form::open(['url' => 'aggregated_report/sendemails']) }}
-					{{ Form::hidden('id', $group_id) }}
-					{{ Form::submit('Send emails', ['class' => 'btn btn-primary']) }}
-					{{ Form::close() }}
-				@endif
 			</div>
 			<div class="panel-body">
 				<h2 class="bg-primary">Members</h2>
@@ -286,21 +275,7 @@
 				@else
 					Team Report not submitted
 				@endif
-				@if (Auth::check() && Auth::user()->isInstructor())
-					<h2 class="bg-primary">Private Comments</h2>
-					@if(!empty($reports))
-						@foreach($reports as $report)
-							<p><b><u>{{$team_members[$report->student_id]->name}}:</u></b> {{$report->private_comments}}</p>
-						@endforeach
-					@else
-						No Private Comments For This Sprint
-					@endif
-				@endif
 			</div>
-		@else
-            <p>You must be logged in to view report</p>
-		@endif
 		</div>
 	</div>
 </div>
-@endsection

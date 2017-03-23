@@ -30,8 +30,10 @@ Route::get('/student_individual', function() {
 });
 
 Route::get('/aggregated_report/group/{group_id}/sprint/{sprint}', 'TeamReportsController@getTeamReport');
+Route::post('/aggregated_report/sendemails', 'EmailsController@sendTeam');
 
 Route::get('/individual_report/user/{user_id}/sprint/{sprint}', 'TeamReportsController@getIndividualReport');
+Route::post('/individual_report/sendemail', 'EmailsController@sendIndividual');
 
 Route::get('/reports/user/{user_id}', 'TeamReportsController@getIndividualReports');
 
