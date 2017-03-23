@@ -113,7 +113,6 @@ class CourseController extends Controller
           foreach($members as $member)
           {
               $member->group_id = null;
-              $member->course_id = null;
               $member->save();
           }
 
